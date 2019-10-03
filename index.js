@@ -1,17 +1,7 @@
-"use strict";
+// require all modules on the path and with the pattern defined
+const req = require.context('./src/scripts/', true, /.js$/);
 
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
+const modules = req.keys().map(req);
 
-var _utils = require("src/scripts/_utils");
-
-Object.keys(_utils).forEach(function (key) {
-  if (key === "default" || key === "__esModule") return;
-  Object.defineProperty(exports, key, {
-    enumerable: true,
-    get: function get() {
-      return _utils[key];
-    }
-  });
-});
+// export all modules
+module.exports = modules;
