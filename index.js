@@ -1,2 +1,1 @@
-require('./src/scripts/_utils');
-require('./src/scripts/_emitter');
+module.exports = require('./src/scripts/_utils')(module);
