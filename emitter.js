@@ -3,7 +3,7 @@
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.Emit = void 0;
+exports.default = void 0;
 
 function _instanceof(left, right) { if (right != null && typeof Symbol !== "undefined" && right[Symbol.hasInstance]) { return !!right[Symbol.hasInstance](left); } else { return left instanceof right; } }
 
@@ -13,16 +13,16 @@ function _defineProperties(target, props) { for (var i = 0; i < props.length; i+
 
 function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
 
-var Emit =
+var Emitter =
 /*#__PURE__*/
 function () {
-  function Emit() {
-    _classCallCheck(this, Emit);
+  function Emitter() {
+    _classCallCheck(this, Emitter);
 
     this.events = {};
   }
 
-  _createClass(Emit, [{
+  _createClass(Emitter, [{
     key: "on",
     value: function on(eventName, fn) {
       if (!this.events[eventName]) {
@@ -44,7 +44,7 @@ function () {
     }
   }]);
 
-  return Emit;
+  return Emitter;
 }();
 
-exports.Emit = Emit;
+exports.default = Emitter;
