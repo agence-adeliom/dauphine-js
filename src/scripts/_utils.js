@@ -1,4 +1,58 @@
 /*!
+ * Add Event Listener
+ */
+export const addEvent = function(event, selector, callback, options=false) {
+   
+	if(!selector){
+		throw 'A selector is needed';
+	}
+
+	if(!callback || typeof callback !== "function"){
+		throw 'A function callback is needed';
+	}
+
+	if(typeof selector == 'string'){
+		document.addEventListener(event, (event) => {
+			if (event.target.matches(selector)) {
+				callback(event, event.target);
+			}
+		}, options);
+	}
+	else{
+		selector.addEventListener(event, (event) => {
+			if (event.target.matches('.modal-open')) {
+				callback(event, event.target);
+			}
+		}, options);
+	}
+
+};
+
+
+/*!
+ * Remove Event Listener
+ */
+export const removeEvent = function(event, selector, callback, options=false) {
+
+	if(!selector){
+		throw 'A selector is needed';
+	}
+
+	if(!callback || typeof callback !== "function"){
+		throw 'A function callback is needed';
+	}
+
+	if(typeof selector == 'string'){
+		document.removeEventListener(event, callback, options);
+	}
+	else{
+		selector.removeEventListener(event, callback, options);
+	}
+
+};
+
+
+/*!
  * Get closest parent
  */
 export const getClosest = function(el, selector) {
@@ -159,19 +213,6 @@ export const emitEvent = function (type, elem, detail) {
 	// Dispatch the event
 	elem.dispatchEvent(event);
 
-};
-
-
-/**
- * Get the value of a cookie
- * Source: https://gist.github.com/wpsmith/6cf23551dd140fb72ae7
- * @param  {String} name  The name of the cookie
- * @return {String}       The cookie value
- */
-export const getCookie = function (name) {
-	var value = "; " + document.cookie;
-	var parts = value.split("; " + name + "=");
-	if (parts.length == 2) return parts.pop().split(";").shift();
 };
 
 

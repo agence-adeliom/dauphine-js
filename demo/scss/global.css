@@ -62,10 +62,10 @@ p {
 }
 
 code {
-  background: #eee;
+  background: #e4e4e4;
   border: 1px solid #ddd;
   border-radius: 3px;
-  color: #aaa;
+  color: #000;
   display: block;
   font-family: monospace;
   white-space: pre-wrap;
