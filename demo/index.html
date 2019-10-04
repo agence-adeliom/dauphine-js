@@ -260,6 +260,45 @@ and open the template in the editor.
     
             /******************************
             **
+            ** Animation
+            **
+            ******************************/
+    
+            <b>Callback animation</b>
+    
+    
+            import {animate} from "dauphine-js";
+    
+            const element = document.querySelector('.element');
+
+            <b>1er arg : element / 2eme arg : class css animation / 3eme : fonction callback / 4eme : hidden true or false</b>
+
+            animate(element, 'fade-out', () => {
+                console.log('animation ends, do something');
+            }, false);
+    
+            <b>Exemple CSS</b>
+
+            @keyframes fadeOut {
+                0% {
+                    opacity: 1;
+                }
+                100% {
+                    opacity: 0;
+                }
+            }
+
+            .fade-out{
+                animation: fadeOut 300ms ease-in-out;
+            }
+
+            </code>
+        </div>
+        <div class="box-content">
+            <code>
+    
+            /******************************
+            **
             ** Debounce
             **
             ******************************/
