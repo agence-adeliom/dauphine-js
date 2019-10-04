@@ -382,7 +382,7 @@ export const animate = function (elem, animation, callback, hide) {
 		elem.classList.remove(animation);
 
 		// If the element should be hidden, hide it
-		if (hide || animation.indexOf('out')) {
+		if (hide) {
 			elem.setAttribute('hidden', 'true');
 		}
 
