@@ -361,9 +361,10 @@ export const shuffle = function (array) {
  * (c) 2018 Chris Ferdinandi, MIT License, https://gomakethings.com
  * @param  {Node}    elem      The element to animate
  * @param  {String}  animation The type of animation to apply
+ * @param  {Function}  callback  Get a callback the when animation ends
  * @param  {Boolean} hide      If true, apply the [hidden] attribute after the animation is done
  */
-export const animate = function (elem, animation, hide) {
+export const animate = function (elem, animation, callback, hide) {
 
 	// If there's no element or animation, do nothing
 	if (!elem || !animation) return;
@@ -383,6 +384,11 @@ export const animate = function (elem, animation, hide) {
 		// If the element should be hidden, hide it
 		if (hide) {
 			elem.setAttribute('hidden', 'true');
+		}
+
+		// Add callback when animation ends
+		if(callback && typeof callback === "function"){
+			callback();
 		}
 
 		// Remove this event listener
