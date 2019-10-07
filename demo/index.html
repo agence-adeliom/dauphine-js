@@ -335,11 +335,11 @@ and open the template in the editor.
     
             import {debounce} from "dauphine-js";
     
-            document.addEventListener('resize', () => {
-                debounce(() => {
-                    console.log('test');
-                });
-            });
+            function myFunction(){
+                console.log('do something');
+            }
+
+            document.addEventListener('resize', myFunction);
     
             </code>
         </div>
