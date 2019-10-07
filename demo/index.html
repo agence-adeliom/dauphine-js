@@ -266,7 +266,6 @@ and open the template in the editor.
     
             <b>Callback animation</b>
     
-    
             import {animate} from "dauphine-js";
     
             const element = document.querySelector('.element');
@@ -290,6 +289,35 @@ and open the template in the editor.
 
             .fade-out{
                 animation: fadeOut 300ms ease-in-out;
+            }
+
+            </code>
+        </div>
+        <div class="box-content">
+            <code>
+    
+            /******************************
+            **
+            ** Transition
+            **
+            ******************************/
+    
+            <b>Callback transition</b>
+    
+            import {transition} from "dauphine-js";
+    
+            const element = document.querySelector('.element');
+
+            <b>1er arg : element / 2eme arg : class css animation / 3eme : fonction callback / 4eme : hidden true or false</b>
+
+            transition(element, 'fade-out', () => {
+                console.log('animation ends, do something');
+            }, false);
+    
+            <b>Exemple CSS</b>
+
+            .fade-out{
+                transition: opacity 300ms ease-in-out;
             }
 
             </code>

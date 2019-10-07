@@ -356,6 +356,16 @@ export const shuffle = function (array) {
 };
 
 
+
+export const animate = function (elem, animation, callback, hide) {
+	animation('animationend', elem, animation, callback, hide);
+};
+
+export const transition = function (elem, animation, callback, hide) {
+	animation('transitionend', elem, animation, callback, hide);
+};
+
+
 /*!
  * Apply a CSS animation to an element
  * (c) 2018 Chris Ferdinandi, MIT License, https://gomakethings.com
@@ -364,7 +374,7 @@ export const shuffle = function (array) {
  * @param  {Function}  callback  Get a callback the when animation ends
  * @param  {Boolean} hide      If true, apply the [hidden] attribute after the animation is done
  */
-export const animate = function (elem, animation, callback, hide) {
+export const animation = function (animationType, elem, animation, callback, hide) {
 
 	// If there's no element or animation, do nothing
 	if (!elem || !animation) return;
@@ -376,7 +386,7 @@ export const animate = function (elem, animation, callback, hide) {
 	elem.classList.add(animation);
 
 	// Detect when the animation ends
-	elem.addEventListener('animationend', function endAnimation (event) {
+	elem.addEventListener(animationType, function endAnimation (event) {
 
 		// Remove the animation class
 		elem.classList.remove(animation);
@@ -392,7 +402,7 @@ export const animate = function (elem, animation, callback, hide) {
 		}
 
 		// Remove this event listener
-		elem.removeEventListener('animationend', endAnimation, false);
+		elem.removeEventListener(animationType, endAnimation, false);
 
 	}, false);
 
