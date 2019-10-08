@@ -20,9 +20,7 @@ export const addEvent = function(event, selector, callback, options=false) {
 	}
 	else{
 		selector.addEventListener(event, (event) => {
-			if (event.target.matches('.modal-open')) {
-				callback(event, event.target);
-			}
+			callback(event, event.target);
 		}, options);
 	}
 
