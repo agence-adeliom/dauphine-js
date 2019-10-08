@@ -357,15 +357,6 @@ export const shuffle = function (array) {
 
 
 
-export const animate = function (elem, animation, callback, hide) {
-	animation('animationend', elem, animation, callback, hide);
-};
-
-export const transition = function (elem, animation, callback, hide) {
-	animation('transitionend', elem, animation, callback, hide);
-};
-
-
 /*!
  * Apply a CSS animation to an element
  * (c) 2018 Chris Ferdinandi, MIT License, https://gomakethings.com
@@ -374,7 +365,7 @@ export const transition = function (elem, animation, callback, hide) {
  * @param  {Function}  callback  Get a callback the when animation ends
  * @param  {Boolean} hide      If true, apply the [hidden] attribute after the animation is done
  */
-export const animation = function (animationType, elem, animation, callback, hide) {
+const animation = function (animationType, elem, animation, callback, hide) {
 
 	// If there's no element or animation, do nothing
 	if (!elem || !animation) return;
@@ -407,6 +398,15 @@ export const animation = function (animationType, elem, animation, callback, hid
 	}, false);
 
 };
+
+export const animate = function (elem, animation, callback, hide) {
+	animation('animationend', elem, animation, callback, hide);
+};
+
+export const transition = function (elem, animation, callback, hide) {
+	animation('transitionend', elem, animation, callback, hide);
+};
+
 
 
 /**
