@@ -1,3 +1,5 @@
+require('./polyfill/matches');
+
 /*!
  * Add Event Listener
  */
