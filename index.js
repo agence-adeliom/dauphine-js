@@ -1,5 +1,3 @@
-require('./polyfill/matches');
-
 /*!
  * Add Event Listener
  */
@@ -56,8 +54,9 @@ export const removeEvent = function(event, selector, callback, options=false) {
  * Get closest parent
  */
 export const getClosest = function(el, selector) {
-    var matchesFn;
 
+	var matchesFn;
+	
     // find vendor prefix
     ['matches','webkitMatchesSelector','mozMatchesSelector','msMatchesSelector','oMatchesSelector'].some(function(fn) {
         if (typeof document.body[fn] == 'function') {
@@ -91,8 +90,20 @@ export const getClosest = function(el, selector) {
  * @return {Array}           The matching direct descendants
  */
 export const getChildren = function (elem, selector) {
+
+	var matchesFn;
+
+    // find vendor prefix
+    ['matches','webkitMatchesSelector','mozMatchesSelector','msMatchesSelector','oMatchesSelector'].some(function(fn) {
+        if (typeof document.body[fn] == 'function') {
+            matchesFn = fn;
+            return true;
+        }
+        return false;
+	})
+	
 	return Array.prototype.filter.call(elem.children, function (child) {
-		return child.matches(selector);
+		return child[matchesFn](selector);
 	});
 };
 
@@ -106,6 +117,17 @@ export const getChildren = function (elem, selector) {
  */
 export const getPreviousSibling = function (elem, selector) {
 
+	var matchesFn;
+
+    // find vendor prefix
+    ['matches','webkitMatchesSelector','mozMatchesSelector','msMatchesSelector','oMatchesSelector'].some(function(fn) {
+        if (typeof document.body[fn] == 'function') {
+            matchesFn = fn;
+            return true;
+        }
+        return false;
+	})
+	
 	// Get the next sibling element
 	var sibling = elem.previousElementSibling;
 
@@ -115,7 +137,7 @@ export const getPreviousSibling = function (elem, selector) {
 	// If the sibling matches our selector, use it
 	// If not, jump to the next sibling and continue the loop
 	while (sibling) {
-		if (sibling.matches(selector)) return sibling;
+		if (sibling[matchesFn](selector)) return sibling;
 		sibling = sibling.previousElementSibling;
 	}
 
@@ -131,6 +153,18 @@ export const getPreviousSibling = function (elem, selector) {
  */
 export const getNextSibling = function (elem, selector) {
 
+	var matchesFn;
+
+    // find vendor prefix
+    ['matches','webkitMatchesSelector','mozMatchesSelector','msMatchesSelector','oMatchesSelector'].some(function(fn) {
+        if (typeof document.body[fn] == 'function') {
+            matchesFn = fn;
+            return true;
+        }
+        return false;
+	})
+	
+
 	// Get the next sibling element
 	var sibling = elem.nextElementSibling;
 
@@ -140,7 +174,7 @@ export const getNextSibling = function (elem, selector) {
 	// If the sibling matches our selector, use it
 	// If not, jump to the next sibling and continue the loop
 	while (sibling) {
-		if (sibling.matches(selector)) return sibling;
+		if (sibling[matchesFn](selector)) return sibling;
 		sibling = sibling.nextElementSibling
 	}
 
