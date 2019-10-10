@@ -11,9 +11,20 @@ export const addEvent = function(event, selector, callback, options=false) {
 		throw 'A function callback is needed';
 	}
 
+	var matchesFn;
+
+    // find vendor prefix
+    ['matches','webkitMatchesSelector','mozMatchesSelector','msMatchesSelector','oMatchesSelector'].some(function(fn) {
+        if (typeof document.body[fn] == 'function') {
+            matchesFn = fn;
+            return true;
+        }
+        return false;
+	})
+
 	if(typeof selector == 'string'){
 		document.addEventListener(event, (event) => {
-			if (event.target.matches(selector)) {
+			if (event.target[matchesFn](selector)) {
 				callback(event, event.target);
 			}
 		}, options);
