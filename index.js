@@ -424,11 +424,10 @@ export const animate = function (elem, animation, callback, hide) {
 	// Detect when the animation ends
 	elem.addEventListener('animationend', function endAnimation (event) {
 
-		// Remove the animation class
-		elem.classList.remove(animation);
-
 		// If the element should be hidden, hide it
 		if (hide) {
+            // Remove the animation class
+            elem.classList.remove(animation);
 			elem.setAttribute('hidden', 'true');
 		}
 
@@ -456,11 +455,10 @@ export const transition = function (elem, animation, callback, hide) {
 	// Detect when the animation ends
 	elem.addEventListener('transitionend', function endAnimation (event) {
 
-		// Remove the animation class
-		elem.classList.remove(animation);
-
 		// If the element should be hidden, hide it
 		if (hide) {
+            // Remove the animation class
+            elem.classList.remove(animation);
 			elem.setAttribute('hidden', 'true');
 		}
 
@@ -591,4 +589,36 @@ export const buildQuery = function (data) {
 		}
 	}
 	return query.join('&');
+};
+
+
+export const findIndex = function (array, value, key) {
+    if(array && array.length && value) {
+        if(key){
+            return array.findIndex((el) => {
+                return el[key] === value;
+            });
+        }
+        else{
+            return array.indexOf(value);
+        }
+    }
+    return null;
+};
+
+
+export const find = function (array, value, key, all=false) {
+    if(array && array.length && value && key) {
+        if(!all){
+            return array.find((el) => {
+                return el[key] === value;
+            });
+        }
+        else{
+            return array.filter((el) => {
+                return el[key] === value;
+            });
+        }
+    }
+    return null;
 };
