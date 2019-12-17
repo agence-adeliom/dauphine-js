@@ -592,6 +592,14 @@ export const buildQuery = function (data) {
 };
 
 
+export const updateURL = function(key, value) {
+    if (history.pushState) {
+        const obj = value ? key + '=' + value : key;
+        const newurl = window.location.protocol + "//" + window.location.host + window.location.pathname + '?' + obj + window.location.hash;
+        window.history.pushState({path:newurl},'', newurl);
+    }
+};
+
 export const findIndex = function (array, value, key) {
     if(array && array.length && value) {
         if(key){
