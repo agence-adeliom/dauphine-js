@@ -597,10 +597,10 @@ export const updateURL = function(key, value, push=false) {
         const obj = value ? key + '=' + value : key;
         const newurl = window.location.protocol + "//" + window.location.host + window.location.pathname + '?' + obj + window.location.hash;
         if(push){
-            window.history.replaceState({path:newurl},'', newurl);
+            window.history.pushState({path:newurl},'', newurl);
         }
         else{
-            window.history.pushState({path:newurl},'', newurl);
+            window.history.replaceState({path:newurl},'', newurl);
         }
     }
 };
