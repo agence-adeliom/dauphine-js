@@ -592,11 +592,16 @@ export const buildQuery = function (data) {
 };
 
 
-export const updateURL = function(key, value) {
+export const updateURL = function(key, value, push=false) {
     if (history.pushState) {
         const obj = value ? key + '=' + value : key;
         const newurl = window.location.protocol + "//" + window.location.host + window.location.pathname + '?' + obj + window.location.hash;
-        window.history.pushState({path:newurl},'', newurl);
+        if(push){
+            window.history.replaceState({path:newurl},'', newurl);
+        }
+        else{
+            window.history.pushState({path:newurl},'', newurl);
+        }
     }
 };
 
