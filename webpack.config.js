@@ -11,7 +11,8 @@ module.exports = {
         libraryTarget: "umd",
     },
     optimization: {
-        minimize: false,
+        namedModules: true,
+        minimize: true,
         minimizer: [new TerserPlugin({
             terserOptions: {
                 keep_classnames: true,
