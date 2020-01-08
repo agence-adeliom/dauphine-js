@@ -1,1 +1,845 @@
-!function webpackUniversalModuleDefinition(e,t){"object"==typeof exports&&"object"==typeof module?module.exports=t():"function"==typeof define&&define.amd?define([],t):"object"==typeof exports?exports["Dauphine JS"]=t():e["Dauphine JS"]=t()}(window,(function(){return function(e){var t={};function __webpack_require__(n){if(t[n])return t[n].exports;var r=t[n]={i:n,l:!1,exports:{}};return e[n].call(r.exports,r,r.exports,__webpack_require__),r.l=!0,r.exports}return __webpack_require__.m=e,__webpack_require__.c=t,__webpack_require__.d=function(e,t,n){__webpack_require__.o(e,t)||Object.defineProperty(e,t,{enumerable:!0,get:n})},__webpack_require__.r=function(e){"undefined"!=typeof Symbol&&Symbol.toStringTag&&Object.defineProperty(e,Symbol.toStringTag,{value:"Module"}),Object.defineProperty(e,"__esModule",{value:!0})},__webpack_require__.t=function(e,t){if(1&t&&(e=__webpack_require__(e)),8&t)return e;if(4&t&&"object"==typeof e&&e&&e.__esModule)return e;var n=Object.create(null);if(__webpack_require__.r(n),Object.defineProperty(n,"default",{enumerable:!0,value:e}),2&t&&"string"!=typeof e)for(var r in e)__webpack_require__.d(n,r,function(t){return e[t]}.bind(null,r));return n},__webpack_require__.n=function(e){var t=e&&e.__esModule?function getDefault(){return e.default}:function getModuleExports(){return e};return __webpack_require__.d(t,"a",t),t},__webpack_require__.o=function(e,t){return Object.prototype.hasOwnProperty.call(e,t)},__webpack_require__.p="",__webpack_require__(__webpack_require__.s=0)}([function(e,t,n){"use strict";n.r(t),n.d(t,"addEvent",(function(){return addEvent})),n.d(t,"removeEvent",(function(){return removeEvent})),n.d(t,"getClosest",(function(){return getClosest})),n.d(t,"getChildren",(function(){return getChildren})),n.d(t,"getPreviousSibling",(function(){return getPreviousSibling})),n.d(t,"getNextSibling",(function(){return getNextSibling})),n.d(t,"mergeObjects",(function(){return mergeObjects})),n.d(t,"deepMerge",(function(){return deepMerge})),n.d(t,"$",(function(){return $})),n.d(t,"$$",(function(){return $$})),n.d(t,"emitEvent",(function(){return emitEvent})),n.d(t,"getParams",(function(){return getParams})),n.d(t,"isEqual",(function(){return isEqual})),n.d(t,"ready",(function(){return ready})),n.d(t,"shuffle",(function(){return shuffle})),n.d(t,"animate",(function(){return animate})),n.d(t,"transition",(function(){return transition})),n.d(t,"debounce",(function(){return debounce})),n.d(t,"copy",(function(){return copy})),n.d(t,"buildQuery",(function(){return buildQuery})),n.d(t,"updateURL",(function(){return updateURL})),n.d(t,"findIndex",(function(){return findIndex})),n.d(t,"find",(function(){return find})),n.d(t,"isInViewport",(function(){return isInViewport})),n.d(t,"dedupe",(function(){return dedupe})),n.d(t,"getOffsetTop",(function(){return getOffsetTop}));const addEvent=function(e,t,n,r=!1){if(!t)throw"A selector is needed";if(!n||"function"!=typeof n)throw"A function callback is needed";var o;["matches","webkitMatchesSelector","mozMatchesSelector","msMatchesSelector","oMatchesSelector"].some((function(e){return"function"==typeof document.body[e]&&(o=e,!0)})),"string"==typeof t?document.addEventListener(e,e=>{e.target[o](t)&&n(e,e.target)},r):t.addEventListener(e,e=>{n(e,e.target)},r)},removeEvent=function(e,t,n,r=!1){if(!t)throw"A selector is needed";if(!n||"function"!=typeof n)throw"A function callback is needed";"string"==typeof t?document.removeEventListener(e,n,r):t.removeEventListener(e,n,r)},getClosest=function(e,t){var n,r;for(["matches","webkitMatchesSelector","mozMatchesSelector","msMatchesSelector","oMatchesSelector"].some((function(e){return"function"==typeof document.body[e]&&(n=e,!0)}));e;){if((r=e.parentElement)&&r[n](t))return r;e=r}return null},getChildren=function(e,t){var n;return["matches","webkitMatchesSelector","mozMatchesSelector","msMatchesSelector","oMatchesSelector"].some((function(e){return"function"==typeof document.body[e]&&(n=e,!0)})),Array.prototype.filter.call(e.children,(function(e){return e[n](t)}))},getPreviousSibling=function(e,t){var n;["matches","webkitMatchesSelector","mozMatchesSelector","msMatchesSelector","oMatchesSelector"].some((function(e){return"function"==typeof document.body[e]&&(n=e,!0)}));var r=e.previousElementSibling;if(!t)return r;for(;r;){if(r[n](t))return r;r=r.previousElementSibling}},getNextSibling=function(e,t){var n;["matches","webkitMatchesSelector","mozMatchesSelector","msMatchesSelector","oMatchesSelector"].some((function(e){return"function"==typeof document.body[e]&&(n=e,!0)}));var r=e.nextElementSibling;if(!t)return r;for(;r;){if(r[n](t))return r;r=r.nextElementSibling}},mergeObjects=function(){for(var e={},t=0;t<arguments.length;t+=1)for(var n=arguments[t],r=Object.keys(n),o=0;o<r.length;o+=1)e[r[o]]=n[r[o]];return e},deepMerge=function(){var e=arguments.length;if(!(e<1)){if(e<2)return arguments[0];for(var t=1;t<e;t++)for(var n in arguments[t])"[object Object]"===Object.prototype.toString.call(arguments[t][n])?arguments[0][n]=deepMerge(arguments[0][n]||{},arguments[t][n]):arguments[0][n]=arguments[t][n];return arguments[0]}},$=function(e,t){return(t||document).querySelector(e)},$$=function(e,t){return Array.prototype.slice.call((t||document).querySelectorAll(e))},emitEvent=function(e,t,n){if(e){t=t||window,n=n||{};var r=new CustomEvent(e,{bubbles:!0,cancelable:!0,detail:n});t.dispatchEvent(r)}},getParams=function(e){var t={},n=document.createElement("a");n.href=e||window.location.href;var r=n.search.substring(1).split("&");if(r.length<1||r[0].length<1)return t;for(var o=0;o<r.length;o++){var i=r[o].split("=");t[decodeURIComponent(i[0])]=decodeURIComponent(i[1])}return t},isEqual=function(e,t){var n=Object.prototype.toString.call(e);if(n!==Object.prototype.toString.call(t))return!1;if(["[object Array]","[object Object]"].indexOf(n)<0)return!1;var r="[object Array]"===n?e.length:Object.keys(e).length;if(r!==("[object Array]"===n?t.length:Object.keys(t).length))return!1;var compare=function(e,t){var n=Object.prototype.toString.call(e);if(["[object Array]","[object Object]"].indexOf(n)>=0){if(!isEqual(e,t))return!1}else{if(n!==Object.prototype.toString.call(t))return!1;if("[object Function]"===n){if(e.toString()!==t.toString())return!1}else if(e!==t)return!1}};if("[object Array]"===n){for(var o=0;o<r;o++)if(!1===compare(e[o],t[o]))return!1}else for(var i in e)if(e.hasOwnProperty(i)&&!1===compare(e[i],t[i]))return!1;return!0},ready=function(e){if("function"==typeof e)return"interactive"===document.readyState||"complete"===document.readyState?e():void document.addEventListener("DOMContentLoaded",e,!1)},shuffle=function(e){for(var t,n,r=e.length;0!==r;)n=Math.floor(Math.random()*r),t=e[r-=1],e[r]=e[n],e[n]=t;return e},animate=function(e,t,n,r){e&&t&&(e.removeAttribute("hidden"),e.classList.add(t),e.addEventListener("animationend",(function endAnimation(o){r&&(e.classList.remove(t),e.setAttribute("hidden","true")),n&&"function"==typeof n&&n(),e.removeEventListener("animationend",endAnimation,!1)}),!1))},transition=function(e,t,n,r){e&&t&&(e.removeAttribute("hidden"),e.classList.add(t),e.addEventListener("transitionend",(function endAnimation(o){r&&(e.classList.remove(t),e.setAttribute("hidden","true")),n&&"function"==typeof n&&n(),e.removeEventListener("transitionend",endAnimation,!1)}),!1))},debounce=function(e){var t;return function(){var n=this,r=arguments;t&&window.cancelAnimationFrame(t),t=window.requestAnimationFrame((function(){e.apply(n,r)}))}},copy=function(e){var t=Object.prototype.toString.call(e).slice(8,-1).toLowerCase();return"object"===t?function(){var t={};for(var n in e)e.hasOwnProperty(n)&&(t[n]=copy(e[n]));return t}():"array"===t?e.map((function(e){return copy(e)})):e},buildQuery=function(e){if("string"==typeof e)return e;var t=[];for(var n in e)e.hasOwnProperty(n)&&t.push(encodeURIComponent(n)+"="+encodeURIComponent(e[n]));return t.join("&")},updateURL=function(e,t,n=!1){if(history.pushState){const r=t?e+"="+t:e,o=window.location.protocol+"//"+window.location.host+window.location.pathname+"?"+r+window.location.hash;n?window.history.pushState({path:o},"",o):window.history.replaceState({path:o},"",o)}},findIndex=function(e,t,n){return e&&e.length&&t?n?e.findIndex(e=>e[n]===t):e.indexOf(t):null},find=function(e,t,n,r=!1){return e&&e.length&&t&&n?r?e.filter(e=>e[n]===t):e.find(e=>e[n]===t):null},isInViewport=function(e){var t=e.getBoundingClientRect();return t.top>=0&&t.left>=0&&t.bottom<=(window.innerHeight||document.documentElement.clientHeight)&&t.right<=(window.innerWidth||document.documentElement.clientWidth)},dedupe=function(e){return e.filter((function(t,n){return e.indexOf(t)===n}))},getOffsetTop=function(e){var t=0;if(e.offsetParent)for(;e;)t+=e.offsetTop,e=e.offsetParent;return t>=0?t:0}}])}));
+(function webpackUniversalModuleDefinition(root, factory) {
+	if(typeof exports === 'object' && typeof module === 'object')
+		module.exports = factory();
+	else if(typeof define === 'function' && define.amd)
+		define([], factory);
+	else if(typeof exports === 'object')
+		exports["Dauphine JS"] = factory();
+	else
+		root["Dauphine JS"] = factory();
+})(window, function() {
+return /******/ (function(modules) { // webpackBootstrap
+/******/ 	// The module cache
+/******/ 	var installedModules = {};
+/******/
+/******/ 	// The require function
+/******/ 	function __webpack_require__(moduleId) {
+/******/
+/******/ 		// Check if module is in cache
+/******/ 		if(installedModules[moduleId]) {
+/******/ 			return installedModules[moduleId].exports;
+/******/ 		}
+/******/ 		// Create a new module (and put it into the cache)
+/******/ 		var module = installedModules[moduleId] = {
+/******/ 			i: moduleId,
+/******/ 			l: false,
+/******/ 			exports: {}
+/******/ 		};
+/******/
+/******/ 		// Execute the module function
+/******/ 		modules[moduleId].call(module.exports, module, module.exports, __webpack_require__);
+/******/
+/******/ 		// Flag the module as loaded
+/******/ 		module.l = true;
+/******/
+/******/ 		// Return the exports of the module
+/******/ 		return module.exports;
+/******/ 	}
+/******/
+/******/
+/******/ 	// expose the modules object (__webpack_modules__)
+/******/ 	__webpack_require__.m = modules;
+/******/
+/******/ 	// expose the module cache
+/******/ 	__webpack_require__.c = installedModules;
+/******/
+/******/ 	// define getter function for harmony exports
+/******/ 	__webpack_require__.d = function(exports, name, getter) {
+/******/ 		if(!__webpack_require__.o(exports, name)) {
+/******/ 			Object.defineProperty(exports, name, { enumerable: true, get: getter });
+/******/ 		}
+/******/ 	};
+/******/
+/******/ 	// define __esModule on exports
+/******/ 	__webpack_require__.r = function(exports) {
+/******/ 		if(typeof Symbol !== 'undefined' && Symbol.toStringTag) {
+/******/ 			Object.defineProperty(exports, Symbol.toStringTag, { value: 'Module' });
+/******/ 		}
+/******/ 		Object.defineProperty(exports, '__esModule', { value: true });
+/******/ 	};
+/******/
+/******/ 	// create a fake namespace object
+/******/ 	// mode & 1: value is a module id, require it
+/******/ 	// mode & 2: merge all properties of value into the ns
+/******/ 	// mode & 4: return value when already ns object
+/******/ 	// mode & 8|1: behave like require
+/******/ 	__webpack_require__.t = function(value, mode) {
+/******/ 		if(mode & 1) value = __webpack_require__(value);
+/******/ 		if(mode & 8) return value;
+/******/ 		if((mode & 4) && typeof value === 'object' && value && value.__esModule) return value;
+/******/ 		var ns = Object.create(null);
+/******/ 		__webpack_require__.r(ns);
+/******/ 		Object.defineProperty(ns, 'default', { enumerable: true, value: value });
+/******/ 		if(mode & 2 && typeof value != 'string') for(var key in value) __webpack_require__.d(ns, key, function(key) { return value[key]; }.bind(null, key));
+/******/ 		return ns;
+/******/ 	};
+/******/
+/******/ 	// getDefaultExport function for compatibility with non-harmony modules
+/******/ 	__webpack_require__.n = function(module) {
+/******/ 		var getter = module && module.__esModule ?
+/******/ 			function getDefault() { return module['default']; } :
+/******/ 			function getModuleExports() { return module; };
+/******/ 		__webpack_require__.d(getter, 'a', getter);
+/******/ 		return getter;
+/******/ 	};
+/******/
+/******/ 	// Object.prototype.hasOwnProperty.call
+/******/ 	__webpack_require__.o = function(object, property) { return Object.prototype.hasOwnProperty.call(object, property); };
+/******/
+/******/ 	// __webpack_public_path__
+/******/ 	__webpack_require__.p = "";
+/******/
+/******/
+/******/ 	// Load entry module and return exports
+/******/ 	return __webpack_require__(__webpack_require__.s = 0);
+/******/ })
+/************************************************************************/
+/******/ ([
+/* 0 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "addEvent", function() { return addEvent; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "removeEvent", function() { return removeEvent; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "getClosest", function() { return getClosest; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "getChildren", function() { return getChildren; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "getPreviousSibling", function() { return getPreviousSibling; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "getNextSibling", function() { return getNextSibling; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "mergeObjects", function() { return mergeObjects; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "deepMerge", function() { return deepMerge; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "$", function() { return $; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "$$", function() { return $$; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "emitEvent", function() { return emitEvent; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "getParams", function() { return getParams; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "isEqual", function() { return isEqual; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "ready", function() { return ready; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "shuffle", function() { return shuffle; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "animate", function() { return animate; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "transition", function() { return transition; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "debounce", function() { return debounce; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "copy", function() { return copy; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "buildQuery", function() { return buildQuery; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "updateURL", function() { return updateURL; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "findIndex", function() { return findIndex; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "find", function() { return find; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "isInViewport", function() { return isInViewport; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "dedupe", function() { return dedupe; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "getOffsetTop", function() { return getOffsetTop; });
+/*!
+ * Add Event Listener
+ */
+const addEvent = function(event, selector, callback, options=false) {
+
+    if(!selector){
+        throw 'A selector is needed';
+    }
+
+    if(!callback || typeof callback !== "function"){
+        throw 'A function callback is needed';
+    }
+
+    var matchesFn;
+
+    // find vendor prefix
+    ['matches','webkitMatchesSelector','mozMatchesSelector','msMatchesSelector','oMatchesSelector'].some(function(fn) {
+        if (typeof document.body[fn] == 'function') {
+            matchesFn = fn;
+            return true;
+        }
+        return false;
+    })
+
+    if(typeof selector == 'string'){
+        document.addEventListener(event, (event) => {
+            if (event.target[matchesFn](selector)) {
+                callback(event, event.target);
+            }
+        }, options);
+    }
+    else{
+        selector.addEventListener(event, (event) => {
+            callback(event, event.target);
+        }, options);
+    }
+
+};
+
+
+/*!
+ * Remove Event Listener
+ */
+const removeEvent = function(event, selector, callback, options=false) {
+
+    if(!selector){
+        throw 'A selector is needed';
+    }
+
+    if(!callback || typeof callback !== "function"){
+        throw 'A function callback is needed';
+    }
+
+    if(typeof selector == 'string'){
+        document.removeEventListener(event, callback, options);
+    }
+    else{
+        selector.removeEventListener(event, callback, options);
+    }
+
+};
+
+
+/*!
+ * Get closest parent
+ */
+const getClosest = function(el, selector) {
+
+    var matchesFn;
+
+    // find vendor prefix
+    ['matches','webkitMatchesSelector','mozMatchesSelector','msMatchesSelector','oMatchesSelector'].some(function(fn) {
+        if (typeof document.body[fn] == 'function') {
+            matchesFn = fn;
+            return true;
+        }
+        return false;
+    })
+
+    var parent;
+
+    // traverse parents
+    while (el) {
+        parent = el.parentElement;
+        if (parent && parent[matchesFn](selector)) {
+            return parent;
+        }
+        el = parent;
+    }
+
+    return null;
+};
+
+
+/*!
+ * Get all direct descendant elements that match a selector
+ * Dependency: the matches() polyfill: https://vanillajstoolkit.com/polyfills/matches/
+ * (c) 2018 Chris Ferdinandi, MIT License, https://gomakethings.com
+ * @param  {Node}   elem     The element to get direct descendants for
+ * @param  {String} selector The selector to match against
+ * @return {Array}           The matching direct descendants
+ */
+const getChildren = function (elem, selector) {
+
+    var matchesFn;
+
+    // find vendor prefix
+    ['matches','webkitMatchesSelector','mozMatchesSelector','msMatchesSelector','oMatchesSelector'].some(function(fn) {
+        if (typeof document.body[fn] == 'function') {
+            matchesFn = fn;
+            return true;
+        }
+        return false;
+    })
+
+    return Array.prototype.filter.call(elem.children, function (child) {
+        return child[matchesFn](selector);
+    });
+};
+
+
+/*!
+ * Get previous sibling of an element that matches selector
+ * (c) 2018 Chris Ferdinandi, MIT License, https://gomakethings.com
+ * @param  {Node}   elem     The element
+ * @param  {String} selector The selector to match against
+ * @return {Node}            The sibling
+ */
+const getPreviousSibling = function (elem, selector) {
+
+    var matchesFn;
+
+    // find vendor prefix
+    ['matches','webkitMatchesSelector','mozMatchesSelector','msMatchesSelector','oMatchesSelector'].some(function(fn) {
+        if (typeof document.body[fn] == 'function') {
+            matchesFn = fn;
+            return true;
+        }
+        return false;
+    })
+
+    // Get the next sibling element
+    var sibling = elem.previousElementSibling;
+
+    // If there's no selector, return the first sibling
+    if (!selector) return sibling;
+
+    // If the sibling matches our selector, use it
+    // If not, jump to the next sibling and continue the loop
+    while (sibling) {
+        if (sibling[matchesFn](selector)) return sibling;
+        sibling = sibling.previousElementSibling;
+    }
+
+};
+
+
+/*!
+ * Get next sibling of an element that matches selector
+ * (c) 2018 Chris Ferdinandi, MIT License, https://gomakethings.com
+ * @param  {Node}   elem     The element
+ * @param  {String} selector The selector to match against
+ * @return {Node}            The sibling
+ */
+const getNextSibling = function (elem, selector) {
+
+    var matchesFn;
+
+    // find vendor prefix
+    ['matches','webkitMatchesSelector','mozMatchesSelector','msMatchesSelector','oMatchesSelector'].some(function(fn) {
+        if (typeof document.body[fn] == 'function') {
+            matchesFn = fn;
+            return true;
+        }
+        return false;
+    })
+
+
+    // Get the next sibling element
+    var sibling = elem.nextElementSibling;
+
+    // If there's no selector, return the first sibling
+    if (!selector) return sibling;
+
+    // If the sibling matches our selector, use it
+    // If not, jump to the next sibling and continue the loop
+    while (sibling) {
+        if (sibling[matchesFn](selector)) return sibling;
+        sibling = sibling.nextElementSibling
+    }
+
+};
+
+
+/*!
+ * Merge Object
+ */
+const mergeObjects = function() {
+    var resObj = {};
+    for(var i=0; i < arguments.length; i += 1) {
+        var obj = arguments[i],
+            keys = Object.keys(obj);
+        for(var j=0; j < keys.length; j += 1) {
+            resObj[keys[j]] = obj[keys[j]];
+        }
+    }
+    return resObj;
+};
+
+/*!
+ * Deep merge two or more objects into the first.
+ * (c) 2019 Chris Ferdinandi, MIT License, https://gomakethings.com
+ * @param   {Object} objects  The objects to merge together
+ * @returns {Object}          Merged values of defaults and options
+ */
+const deepMerge = function () {
+
+    // Make sure there are objects to merge
+    var len = arguments.length;
+    if (len < 1) return;
+    if (len < 2) return arguments[0];
+
+    // Merge all objects into first
+    for (var i = 1; i < len; i++) {
+        for (var key in arguments[i]) {
+            // If it's an object, recursively merge
+            // Otherwise, push to key
+            if (Object.prototype.toString.call(arguments[i][key]) === '[object Object]') {
+                arguments[0][key] = deepMerge(arguments[0][key] || {}, arguments[i][key]);
+            } else {
+                arguments[0][key] = arguments[i][key];
+            }
+        }
+    }
+
+    return arguments[0];
+
+};
+
+
+/*!
+ * Get the first matching element in the DOM
+ * (c) 2019 Chris Ferdinandi, MIT License, https://gomakethings.com
+ * @param  {String} selector The element selector
+ * @param  {Node}   parent   The parent to search in [optional]
+ * @return {Node}            The element
+ */
+const $ = function (selector, parent) {
+    return (parent ? parent : document).querySelector(selector);
+};
+
+
+/*!
+ * Get an array of all matching elements in the DOM
+ * (c) 2019 Chris Ferdinandi, MIT License, https://gomakethings.com
+ * @param  {String} selector The element selector
+ * @param  {Node}   parent   The parent to search in [optional]
+ * @return {Array}           Th elements
+ */
+const $$ = function (selector, parent) {
+    return Array.prototype.slice.call((parent ? parent : document).querySelectorAll(selector));
+};
+
+
+/*!
+ * Emit a custom event
+ * (c) 2019 Chris Ferdinandi, MIT License, https://gomakethings.com
+ * @param  {String} type   The event type
+ * @param  {Node}   elem   The element to attach the event to
+ * @param  {Object} detail Any details to pass along with the event
+ */
+const emitEvent = function (type, elem, detail) {
+
+    // Make sure there's an event type
+    if (!type) return;
+
+    // Variables
+    elem = elem || window;
+    detail = detail || {};
+
+    // Create a new event
+    var event = new CustomEvent(type, {
+        bubbles: true,
+        cancelable: true,
+        detail: detail
+    });
+
+    // Dispatch the event
+    elem.dispatchEvent(event);
+
+};
+
+
+/**
+ * Get the URL parameters
+ * source: https://css-tricks.com/snippets/javascript/get-url-variables/
+ * @param  {String} url The URL
+ * @return {Object}     The URL parameters
+ */
+const getParams = function (url) {
+    var params = {};
+    var parser = document.createElement('a');
+    parser.href = url ? url : window.location.href;
+    var query = parser.search.substring(1);
+    var vars = query.split('&');
+    if (vars.length < 1 || vars[0].length < 1) return params;
+    for (var i = 0; i < vars.length; i++) {
+        var pair = vars[i].split('=');
+        params[decodeURIComponent(pair[0])] = decodeURIComponent(pair[1]);
+    }
+    return params;
+};
+
+
+/*!
+ * Check if two objects or arrays are equal
+ * (c) 2017 Chris Ferdinandi, MIT License, https://gomakethings.com
+ * @param  {Object|Array}  value  The first object or array to compare
+ * @param  {Object|Array}  other  The second object or array to compare
+ * @return {Boolean}              Returns true if they're equal
+ */
+const isEqual = function (value, other) {
+
+    // Get the value type
+    var type = Object.prototype.toString.call(value);
+
+    // If the two objects are not the same type, return false
+    if (type !== Object.prototype.toString.call(other)) return false;
+
+    // If items are not an object or array, return false
+    if (['[object Array]', '[object Object]'].indexOf(type) < 0) return false;
+
+    // Compare the length of the length of the two items
+    var valueLen = type === '[object Array]' ? value.length : Object.keys(value).length;
+    var otherLen = type === '[object Array]' ? other.length : Object.keys(other).length;
+    if (valueLen !== otherLen) return false;
+
+    // Compare two items
+    var compare = function (item1, item2) {
+
+        // Get the object type
+        var itemType = Object.prototype.toString.call(item1);
+
+        // If an object or array, compare recursively
+        if (['[object Array]', '[object Object]'].indexOf(itemType) >= 0) {
+            if (!isEqual(item1, item2)) return false;
+        }
+
+        // Otherwise, do a simple comparison
+        else {
+
+            // If the two items are not the same type, return false
+            if (itemType !== Object.prototype.toString.call(item2)) return false;
+
+            // Else if it's a function, convert to a string and compare
+            // Otherwise, just compare
+            if (itemType === '[object Function]') {
+                if (item1.toString() !== item2.toString()) return false;
+            } else {
+                if (item1 !== item2) return false;
+            }
+
+        }
+    };
+
+    // Compare properties
+    if (type === '[object Array]') {
+        for (var i = 0; i < valueLen; i++) {
+            if (compare(value[i], other[i]) === false) return false;
+        }
+    } else {
+        for (var key in value) {
+            if (value.hasOwnProperty(key)) {
+                if (compare(value[key], other[key]) === false) return false;
+            }
+        }
+    }
+
+    // If nothing failed, return true
+    return true;
+
+};
+
+
+/*!
+ * Run event after the DOM is ready
+ * (c) 2017 Chris Ferdinandi, MIT License, https://gomakethings.com
+ * @param  {Function} fn Callback function
+ */
+const ready = function (fn) {
+
+    // Sanity check
+    if (typeof fn !== 'function') return;
+
+    // If document is already loaded, run method
+    if (document.readyState === 'interactive' || document.readyState === 'complete') {
+        return fn();
+    }
+
+    // Otherwise, wait until document is loaded
+    document.addEventListener('DOMContentLoaded', fn, false);
+
+};
+
+
+/**
+ * Randomly shuffle an array
+ * https://stackoverflow.com/a/2450976/1293256
+ * @param  {Array} array The array to shuffle
+ * @return {String}      The first item in the shuffled array
+ */
+const shuffle = function (array) {
+
+    var currentIndex = array.length;
+    var temporaryValue, randomIndex;
+
+    // While there remain elements to shuffle...
+    while (0 !== currentIndex) {
+        // Pick a remaining element...
+        randomIndex = Math.floor(Math.random() * currentIndex);
+        currentIndex -= 1;
+
+        // And swap it with the current element.
+        temporaryValue = array[currentIndex];
+        array[currentIndex] = array[randomIndex];
+        array[randomIndex] = temporaryValue;
+    }
+
+    return array;
+
+};
+
+
+
+/*!
+ * Apply a CSS animation to an element
+ * (c) 2018 Chris Ferdinandi, MIT License, https://gomakethings.com
+ * @param  {Node}    elem      The element to animate
+ * @param  {String}  animation The type of animation to apply
+ * @param  {Function}  callback  Get a callback the when animation ends
+ * @param  {Boolean} hide      If true, apply the [hidden] attribute after the animation is done
+ */
+const animate = function (elem, animation, callback, hide) {
+
+    // If there's no element or animation, do nothing
+    if (!elem || !animation) return;
+
+    // Remove the [hidden] attribute
+    elem.removeAttribute('hidden');
+
+    // Apply the animation
+    elem.classList.add(animation);
+
+    // Detect when the animation ends
+    elem.addEventListener('animationend', function endAnimation (event) {
+
+        // If the element should be hidden, hide it
+        if (hide) {
+            // Remove the animation class
+            elem.classList.remove(animation);
+            elem.setAttribute('hidden', 'true');
+        }
+
+        // Add callback when animation ends
+        if(callback && typeof callback === "function"){
+            callback();
+        }
+
+        // Remove this event listener
+        elem.removeEventListener('animationend', endAnimation, false);
+
+    }, false);
+};
+
+const transition = function (elem, animation, callback, hide) {
+    // If there's no element or animation, do nothing
+    if (!elem || !animation) return;
+
+    // Remove the [hidden] attribute
+    elem.removeAttribute('hidden');
+
+    // Apply the animation
+    elem.classList.add(animation);
+
+    // Detect when the animation ends
+    elem.addEventListener('transitionend', function endAnimation (event) {
+
+        // If the element should be hidden, hide it
+        if (hide) {
+            // Remove the animation class
+            elem.classList.remove(animation);
+            elem.setAttribute('hidden', 'true');
+        }
+
+        // Add callback when animation ends
+        if(callback && typeof callback === "function"){
+            callback();
+        }
+
+        // Remove this event listener
+        elem.removeEventListener('transitionend', endAnimation, false);
+
+    }, false);
+};
+
+
+
+/**
+ * Debounce functions for better performance
+ * (c) 2018 Chris Ferdinandi, MIT License, https://gomakethings.com
+ * @param  {Function} fn The function to debounce
+ */
+const debounce = function (fn) {
+
+    // Setup a timer
+    var timeout;
+
+    // Return a function to run debounced
+    return function () {
+
+        // Setup the arguments
+        var context = this;
+        var args = arguments;
+
+        // If there's a timer, cancel it
+        if (timeout) {
+            window.cancelAnimationFrame(timeout);
+        }
+
+        // Setup the new requestAnimationFrame()
+        timeout = window.requestAnimationFrame(function () {
+            fn.apply(context, args);
+        });
+
+    }
+
+};
+
+/*!
+ * Create an immutable clone of an array or object
+ * (c) 2019 Chris Ferdinandi, MIT License, https://gomakethings.com
+ * @param  {Array|Object} obj The array or object to copy
+ * @return {Array|Object}     The clone of the array or object
+ */
+const copy = function (obj) {
+
+    //
+    // Methods
+    //
+
+    /**
+     * Create an immutable copy of an object
+     * @return {Object}
+     */
+    var cloneObj = function () {
+
+        // Create new object
+        var clone = {};
+
+        // Loop through each item in the original
+        // Recursively copy it's value and add to the clone
+        for (var key in obj) {
+            if (obj.hasOwnProperty(key)) {
+                clone[key] = copy(obj[key]);
+            }
+        }
+
+        return clone;
+
+
+    };
+
+    /**
+     * Create an immutable copy of an array
+     * @return {Array}
+     */
+    var cloneArr = function () {
+        return obj.map(function (item) {
+            return copy(item);
+        });
+    };
+
+
+    //
+    // Inits
+    //
+
+    // Get object type
+    var type = Object.prototype.toString.call(obj).slice(8, -1).toLowerCase();
+
+    // If an object
+    if (type === 'object') {
+        return cloneObj();
+    }
+
+    // If an array
+    if (type === 'array') {
+        return cloneArr();
+    }
+
+    // Otherwise, return it as-is
+    return obj;
+
+};
+
+
+/*!
+ * Build a query string from an object of data
+ * (c) 2018 Chris Ferdinandi, MIT License, https://gomakethings.com
+ * @param  {Object} data The data to turn into a query string
+ * @return {String}      The query string
+ */
+const buildQuery = function (data) {
+    if (typeof (data) === 'string') return data;
+    var query = [];
+    for (var key in data) {
+        if (data.hasOwnProperty(key)) {
+            query.push(encodeURIComponent(key) + '=' + encodeURIComponent(data[key]));
+        }
+    }
+    return query.join('&');
+};
+
+
+const updateURL = function(key, value, push=false) {
+    if (history.pushState) {
+        const obj = value ? key + '=' + value : key;
+        const newurl = window.location.protocol + "//" + window.location.host + window.location.pathname + '?' + obj + window.location.hash;
+        if(push){
+            window.history.pushState({path:newurl},'', newurl);
+        }
+        else{
+            window.history.replaceState({path:newurl},'', newurl);
+        }
+    }
+};
+
+const findIndex = function (array, value, key) {
+    if(array && array.length && value) {
+        if(key){
+            return array.findIndex((el) => {
+                return el[key] === value;
+            });
+        }
+        else{
+            return array.indexOf(value);
+        }
+    }
+    return null;
+};
+
+
+const find = function (array, value, key, all=false) {
+    if(array && array.length && value && key) {
+        if(!all){
+            return array.find((el) => {
+                return el[key] === value;
+            });
+        }
+        else{
+            return array.filter((el) => {
+                return el[key] === value;
+            });
+        }
+    }
+    return null;
+};
+
+
+/*!
+ * Determine if an element is in the viewport
+ * (c) 2017 Chris Ferdinandi, MIT License, https://gomakethings.com
+ * @param  {Node}    elem The element
+ * @return {Boolean}      Returns true if element is in the viewport
+ */
+const isInViewport = function (elem) {
+    var distance = elem.getBoundingClientRect();
+    return (
+        distance.top >= 0 &&
+        distance.left >= 0 &&
+        distance.bottom <= (window.innerHeight || document.documentElement.clientHeight) &&
+        distance.right <= (window.innerWidth || document.documentElement.clientWidth)
+    );
+};
+
+/*!
+ * Remove duplicate items from an array
+ * (c) 2019 Chris Ferdinandi, MIT License, https://gomakethings.com
+ * @param  {Array} arr The array
+ * @return {Array}     A new array with duplicates removed
+ */
+const dedupe = function (arr) {
+    return arr.filter(function (item, index) {
+        return arr.indexOf(item) === index;
+    });
+};
+
+/*!
+ * Get an element's distance from the top of the Document.
+ * (c) 2017 Chris Ferdinandi, MIT License, https://gomakethings.com
+ * @param  {Node} elem The element
+ * @return {Number}    Distance from the top in pixels
+ */
+const getOffsetTop = function (elem) {
+    var location = 0;
+    if (elem.offsetParent) {
+        while (elem) {
+            location += elem.offsetTop;
+            elem = elem.offsetParent;
+        }
+    }
+    return location >= 0 ? location : 0;
+};
+
+/***/ })
+/******/ ]);
+});
