@@ -11,10 +11,13 @@ module.exports = {
         libraryTarget: "umd",
     },
     optimization: {
+        namedChunks: true,
         namedModules: true,
         minimize: true,
         minimizer: [new TerserPlugin({
             terserOptions: {
+                mangle: true,
+                module: true,
                 keep_classnames: true,
                 keep_fnames: true,
                 output: {
