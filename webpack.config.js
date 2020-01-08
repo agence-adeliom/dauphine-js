@@ -14,6 +14,7 @@ module.exports = {
         minimize: true,
         minimizer: [new TerserPlugin({
             terserOptions: {
+                keep_fnames: true,
                 output: {
                     comments: false,
                 },
