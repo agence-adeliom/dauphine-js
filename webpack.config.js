@@ -5,8 +5,8 @@ module.exports = {
     mode: "production",
     entry: "./src/utils",
     output: {
-        path: path.resolve(__dirname, "dist"),
-        filename: "utils.js",
+        path: path.resolve(__dirname, "./"),
+        filename: "index.js",
         library: "Dauphine JS",
         libraryTarget: "umd",
     },
@@ -14,6 +14,7 @@ module.exports = {
         minimize: true,
         minimizer: [new TerserPlugin({
             terserOptions: {
+                keep_classnames: true,
                 keep_fnames: true,
                 output: {
                     comments: false,
