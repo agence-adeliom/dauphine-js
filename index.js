@@ -207,6 +207,7 @@ export const mergeObjects = function() {
     return resObj;
 };
 
+
 /*!
  * Deep merge two or more objects into the first.
  * (c) 2019 Chris Ferdinandi, MIT License, https://gomakethings.com
@@ -536,6 +537,7 @@ export const debounce = function (fn) {
 
 };
 
+
 /*!
  * Create an immutable clone of an array or object
  * (c) 2019 Chris Ferdinandi, MIT License, https://gomakethings.com
@@ -710,4 +712,20 @@ export const getOffsetTop = function (elem) {
         }
     }
     return location >= 0 ? location : 0;
+};
+
+export const getStyle = function (elem, property, number=false, index=1) {
+    const style = window.getComputedStyle(elem, null).getPropertyValue(property);
+    if(number){
+        const numbers = style.split(' ');
+        if(numbers.length >= 2){
+            return parseInt(numbers[index - 1], 10);
+        }
+        else{
+            return parseInt(style, 10);
+        }
+    }
+    else{
+        return style;
+    }
 };
