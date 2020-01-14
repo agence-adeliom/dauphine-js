@@ -714,9 +714,14 @@ export const getOffsetTop = function (elem) {
     return location >= 0 ? location : 0;
 };
 
-export const getStyle = function (elem, property, number=false, index=1) {
+export const hasNumbers = function(string) {
+    var regex = /\d/g;
+    return regex.test(string);
+};
+
+export const getStyle = function (elem, property, index=1) {
     const style = window.getComputedStyle(elem, null).getPropertyValue(property);
-    if(number){
+    if(hasNumbers(style)){
         const numbers = style.split(' ');
         if(numbers.length >= 2){
             return parseInt(numbers[index - 1], 10);
