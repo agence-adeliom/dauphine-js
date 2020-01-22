@@ -734,3 +734,9 @@ export const getStyle = function (elem, property, index=1) {
         return style;
     }
 };
+
+export const truncate = (string, maxLength = 50) => {
+    if (!string) return null;
+    if (string.length <= maxLength) return string;
+    return `${string.substring(0, maxLength)}...`;
+};
