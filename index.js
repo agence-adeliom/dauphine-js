@@ -743,5 +743,16 @@ export const truncate = (string, maxLength = 50) => {
     return `${string.substring(0, maxLength)}...`;
 };
 
-export const animation = easing;
+export const effect = easing;
+
+export const animation = (start, end, duration, easing, callback) => {
+    const timeStart = new Date().getTime();
+    const timer = setInterval(function() {
+        const time = new Date().getTime() - timeStart;
+        const x = effect[easing](time/duration, time, start, end - start, duration);
+        callback(x);
+        if (time >= duration) clearInterval(timer);
+    }, 1000 / 60);
+};
+
 
