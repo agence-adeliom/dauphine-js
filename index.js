@@ -1,3 +1,5 @@
+import {easing} from "./partials/easing";
+
 /*!
  * Add Event Listener
  */
@@ -740,3 +742,6 @@ export const truncate = (string, maxLength = 50) => {
     if (string.length <= maxLength) return string;
     return `${string.substring(0, maxLength)}...`;
 };
+
+export const animation = easing;
+
