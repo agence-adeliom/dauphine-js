@@ -7,9 +7,6 @@
                     "browsers": ["last 2 versions", "ie >= 11", "safari >= 7"],
                     "esmodules": true
                 }
-            },
-            {
-                "useBuiltIns": "entry"
             }
         ]
     ],

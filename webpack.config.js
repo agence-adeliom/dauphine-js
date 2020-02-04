@@ -13,6 +13,9 @@ const webpackOption = {
         library: "Dauphine JS",
         libraryTarget: "umd",
     },
+    module: {
+        rules: webpack_rules
+    },
     optimization: {
         minimize: true,
         minimizer: [new TerserPlugin({
