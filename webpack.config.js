@@ -8,7 +8,7 @@ const webpackOption = {
     mode: "production",
     entry: "./src/utils",
     output: {
-        path: path.resolve(__dirname, "./"),
+        path: path.resolve(__dirname, "./dist"),
         filename: "index.js",
         library: "Dauphine JS",
         libraryTarget: "umd",
@@ -28,7 +28,7 @@ const webpackOption = {
             },
             extractComments: false
         })]
-    },
+    }
 };
 
 let babelLoader = {
