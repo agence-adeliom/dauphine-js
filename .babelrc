@@ -16,6 +16,11 @@
         ]
     ],
     "plugins": [
-        "@babel/plugin-proposal-object-rest-spread"
+        "@babel/plugin-proposal-class-properties",
+        "@babel/plugin-transform-async-to-generator",
+        "@babel/plugin-proposal-object-rest-spread",
+        "@babel/plugin-proposal-export-default-from",
+        "@babel/plugin-syntax-export-default-from",
+        "@babel/plugin-proposal-export-namespace-from"
     ]
 }
