@@ -16,13 +16,6 @@
         ]
     ],
     "plugins": [
-        "@babel/plugin-proposal-object-rest-spread",
-        ["module-resolver", {
-            "root": ["./src"],
-            "alias": {
-                "dist": "./dist",
-                "underscore": "lodash"
-            }
-        }]
+        "@babel/plugin-proposal-object-rest-spread"
     ]
 }
