@@ -737,7 +737,7 @@ export const getStyle = function (elem, property, index=1) {
     }
 };
 
-export const truncate = (string, maxLength = 50) => {
+export const truncate = function (string, maxLength = 50) {
     if (!string) return null;
     if (string.length <= maxLength) return string;
     return `${string.substring(0, maxLength)}...`;
@@ -745,7 +745,7 @@ export const truncate = (string, maxLength = 50) => {
 
 export const effect = easing;
 
-export const animation = (start, end, duration, easing, callback) => {
+export const animation = function (start, end, duration, easing, callback) {
     const timeStart = new Date().getTime();
     const timer = setInterval(function() {
         const time = new Date().getTime() - timeStart;
