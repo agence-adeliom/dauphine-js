@@ -1,1 +1,1 @@
-import './build/utils';
+require('./build/utils');
