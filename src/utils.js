@@ -754,3 +754,13 @@ export const animation = (start, end, duration, easing, callback) => {
         if (time >= duration) clearInterval(timer);
     }, 1000 / 60);
 };
+
+
+const refreshHard = function refreshHard() {
+    return 'test';
+};
+
+
+module.exports = {
+    refreshHard
+};
