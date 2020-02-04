@@ -1,3 +1,5 @@
+import {easing} from "../partials/easing";
+
 /*!
  * Add Event Listener
  */
@@ -206,6 +208,7 @@ export const mergeObjects = function() {
     }
     return resObj;
 };
+
 
 /*!
  * Deep merge two or more objects into the first.
@@ -536,6 +539,7 @@ export const debounce = function (fn) {
 
 };
 
+
 /*!
  * Create an immutable clone of an array or object
  * (c) 2019 Chris Ferdinandi, MIT License, https://gomakethings.com
@@ -710,4 +714,43 @@ export const getOffsetTop = function (elem) {
         }
     }
     return location >= 0 ? location : 0;
+};
+
+export const hasNumbers = function(string) {
+    var regex = /\d/g;
+    return regex.test(string);
+};
+
+export const getStyle = function (elem, property, index=1) {
+    const style = window.getComputedStyle(elem, null).getPropertyValue(property);
+    if(hasNumbers(style)){
+        const numbers = style.split(' ');
+        if(numbers.length >= 2){
+            return parseInt(numbers[index - 1], 10);
+        }
+        else{
+            return parseInt(style, 10);
+        }
+    }
+    else{
+        return style;
+    }
+};
+
+export const truncate = (string, maxLength = 50) => {
+    if (!string) return null;
+    if (string.length <= maxLength) return string;
+    return `${string.substring(0, maxLength)}...`;
+};
+
+export const effect = easing;
+
+export const animation = (start, end, duration, easing, callback) => {
+    const timeStart = new Date().getTime();
+    const timer = setInterval(function() {
+        const time = new Date().getTime() - timeStart;
+        const x = effect[easing](time/duration, time, start, end - start, duration);
+        callback(x);
+        if (time >= duration) clearInterval(timer);
+    }, 1000 / 60);
 };
