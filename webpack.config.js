@@ -18,19 +18,6 @@ const webpackOption = {
     },
     module: {
         rules: webpack_rules
-    },
-    optimization: {
-        minimize: true,
-        minimizer: [new TerserPlugin({
-            terserOptions: {
-                keep_classnames: true,
-                keep_fnames: true,
-                output: {
-                    comments: false,
-                },
-            },
-            extractComments: false
-        })]
     }
 };
 
