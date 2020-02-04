@@ -6,10 +6,13 @@ const webpack_rules = [];
 
 const webpackOption = {
     mode: "production",
-    entry: "./src/utils",
+    entry: {
+        index: './src/utils.js',
+        emitter: './src/emitter.js'
+    },
     output: {
         path: path.resolve(__dirname, "./dist"),
-        filename: "index.js",
+        filename: '[name].js',
         library: "Dauphine JS",
         libraryTarget: "umd",
     },
