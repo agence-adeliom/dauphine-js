@@ -10,12 +10,13 @@
                         "safari >= 7"
                     ],
                     "esmodules": true
-                },
-                "useBuiltIns": "entry"
+                }
             }
         ]
     ],
     "plugins": [
-        "@babel/plugin-proposal-object-rest-spread"
+        "@babel/plugin-proposal-object-rest-spread",
+        "@babel/plugin-syntax-dynamic-import",
+        "@babel/plugin-transform-function-name"
     ]
 }

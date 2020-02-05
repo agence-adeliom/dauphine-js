@@ -90,4 +90,3 @@ return function(e){// webpackBootstrap
 function(){function Emitter(){!function _classCallCheck(e,r){if(!(e instanceof r))throw new TypeError("Cannot call a class as a function")}(this,Emitter),this.events={}}return function _createClass(e,r,t){return r&&_defineProperties(e.prototype,r),t&&_defineProperties(e,t),e}(Emitter,[{key:"on",value:function on(e,r){this.events[e]||(this.events[e]=[]),this.events[e].push(r)}},{key:"emit",value:function emit(e,r){var t=this.events[e];t&&t.forEach((function(e){e.call(null,r)}))}}]),Emitter}();
 /***/}
 /******/])}));
-//# sourceMappingURL=emitter.js.map
