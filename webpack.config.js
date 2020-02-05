@@ -26,7 +26,7 @@ const webpackOption = {
                 keep_classnames: true,
                 keep_fnames: true,
                 output: {
-                    comments: true,
+                    comments: false,
                 },
             },
             extractComments: false
