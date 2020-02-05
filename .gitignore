@@ -5,6 +5,8 @@
 
 /.idea
 
+/test
+
 # testing
 /coverage
 
