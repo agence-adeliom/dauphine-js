@@ -625,7 +625,6 @@ export const buildQuery = function (data) {
     return query.join('&');
 };
 
-
 export const updateURL = function(key, value, push=false) {
     if (history.pushState) {
         const obj = value ? key + '=' + value : key;
@@ -653,7 +652,6 @@ export const findIndex = function (array, value, key) {
     return null;
 };
 
-
 export const find = function (array, value, key, all=false) {
     if(array && array.length && value && key) {
         if(!all){
@@ -670,6 +668,15 @@ export const find = function (array, value, key, all=false) {
     return null;
 };
 
+export const removeFromArray = function(array, value, key){
+    var i = array.length;
+    while(i--){
+        if(array[i] && array[i].hasOwnProperty(key) && (arguments.length > 2 && array[i][key] === value)) {
+            array.splice(i,1);
+        }
+    }
+    return array;
+};
 
 /*!
  * Determine if an element is in the viewport
@@ -745,33 +752,6 @@ export const truncate = function (string, maxLength = 50) {
 
 export const effect = easing;
 
-
-
-
-
-/**
- * Iterates over elements of `array`, returning an array of all elements
- * `predicate` returns truthy for. The predicate is invoked with three
- * arguments: (value, index, array).
- *
- * **Note:** Unlike `remove`, this method returns a new array.
- *
- * @since 5.0.0
- * @category Array
- * @param {Array} array The array to iterate over.
- * @param {Function} predicate The function invoked per iteration.
- * @returns {Array} Returns the new filtered array.
- * @see pull, pullAll, pullAllBy, pullAllWith, pullAt, remove, reject
- * @example
- *
- * const users = [
- *   { 'user': 'barney', 'active': true },
- *   { 'user': 'fred',   'active': false }
- * ]
- *
- * filter(users, ({ active }) => active)
- * // => objects for ['barney']
- */
 export const animation = function (start, end, duration, easing, callback) {
     const timeStart = new Date().getTime();
     const timer = setInterval(function() {
