@@ -14,7 +14,7 @@ const webpackOption = {
         path: path.resolve(__dirname, "./dist"),
         filename: '[name].js',
         library: "Dauphine JS",
-        libraryTarget: "umd",
+        libraryTarget: "amd",
     },
     module: {
         rules: webpack_rules
