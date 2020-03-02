@@ -1,15 +1,304 @@
+(function webpackUniversalModuleDefinition(root, factory) {
+	if(typeof exports === 'object' && typeof module === 'object')
+		module.exports = factory();
+	else if(typeof define === 'function' && define.amd)
+		define([], factory);
+	else if(typeof exports === 'object')
+		exports["Dauphine JS"] = factory();
+	else
+		root["Dauphine JS"] = factory();
+})(window, function() {
+return /******/ (function(modules) { // webpackBootstrap
+/******/ 	// The module cache
+/******/ 	var installedModules = {};
+/******/
+/******/ 	// The require function
+/******/ 	function __webpack_require__(moduleId) {
+/******/
+/******/ 		// Check if module is in cache
+/******/ 		if(installedModules[moduleId]) {
+/******/ 			return installedModules[moduleId].exports;
+/******/ 		}
+/******/ 		// Create a new module (and put it into the cache)
+/******/ 		var module = installedModules[moduleId] = {
+/******/ 			i: moduleId,
+/******/ 			l: false,
+/******/ 			exports: {}
+/******/ 		};
+/******/
+/******/ 		// Execute the module function
+/******/ 		modules[moduleId].call(module.exports, module, module.exports, __webpack_require__);
+/******/
+/******/ 		// Flag the module as loaded
+/******/ 		module.l = true;
+/******/
+/******/ 		// Return the exports of the module
+/******/ 		return module.exports;
+/******/ 	}
+/******/
+/******/
+/******/ 	// expose the modules object (__webpack_modules__)
+/******/ 	__webpack_require__.m = modules;
+/******/
+/******/ 	// expose the module cache
+/******/ 	__webpack_require__.c = installedModules;
+/******/
+/******/ 	// define getter function for harmony exports
+/******/ 	__webpack_require__.d = function(exports, name, getter) {
+/******/ 		if(!__webpack_require__.o(exports, name)) {
+/******/ 			Object.defineProperty(exports, name, { enumerable: true, get: getter });
+/******/ 		}
+/******/ 	};
+/******/
+/******/ 	// define __esModule on exports
+/******/ 	__webpack_require__.r = function(exports) {
+/******/ 		if(typeof Symbol !== 'undefined' && Symbol.toStringTag) {
+/******/ 			Object.defineProperty(exports, Symbol.toStringTag, { value: 'Module' });
+/******/ 		}
+/******/ 		Object.defineProperty(exports, '__esModule', { value: true });
+/******/ 	};
+/******/
+/******/ 	// create a fake namespace object
+/******/ 	// mode & 1: value is a module id, require it
+/******/ 	// mode & 2: merge all properties of value into the ns
+/******/ 	// mode & 4: return value when already ns object
+/******/ 	// mode & 8|1: behave like require
+/******/ 	__webpack_require__.t = function(value, mode) {
+/******/ 		if(mode & 1) value = __webpack_require__(value);
+/******/ 		if(mode & 8) return value;
+/******/ 		if((mode & 4) && typeof value === 'object' && value && value.__esModule) return value;
+/******/ 		var ns = Object.create(null);
+/******/ 		__webpack_require__.r(ns);
+/******/ 		Object.defineProperty(ns, 'default', { enumerable: true, value: value });
+/******/ 		if(mode & 2 && typeof value != 'string') for(var key in value) __webpack_require__.d(ns, key, function(key) { return value[key]; }.bind(null, key));
+/******/ 		return ns;
+/******/ 	};
+/******/
+/******/ 	// getDefaultExport function for compatibility with non-harmony modules
+/******/ 	__webpack_require__.n = function(module) {
+/******/ 		var getter = module && module.__esModule ?
+/******/ 			function getDefault() { return module['default']; } :
+/******/ 			function getModuleExports() { return module; };
+/******/ 		__webpack_require__.d(getter, 'a', getter);
+/******/ 		return getter;
+/******/ 	};
+/******/
+/******/ 	// Object.prototype.hasOwnProperty.call
+/******/ 	__webpack_require__.o = function(object, property) { return Object.prototype.hasOwnProperty.call(object, property); };
+/******/
+/******/ 	// __webpack_public_path__
+/******/ 	__webpack_require__.p = "";
+/******/
+/******/
+/******/ 	// Load entry module and return exports
+/******/ 	return __webpack_require__(__webpack_require__.s = 1);
+/******/ })
+/************************************************************************/
+/******/ ([
+/* 0 */,
+/* 1 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
 "use strict";
+__webpack_require__.r(__webpack_exports__);
 
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-exports.animation = exports.effect = exports.truncate = exports.getStyle = exports.hasNumbers = exports.getOffsetTop = exports.dedupe = exports.isInViewport = exports.removeFromArray = exports.find = exports.findIndex = exports.updateURL = exports.buildQuery = exports.copy = exports.debounce = exports.transition = exports.animate = exports.shuffle = exports.ready = exports.isEqual = exports.getParams = exports.emitEvent = exports.$$ = exports.$ = exports.deepMerge = exports.mergeObjects = exports.getNextSibling = exports.getPreviousSibling = exports.getChildren = exports.getClosest = exports.removeEvent = exports.addEvent = void 0;
+// CONCATENATED MODULE: ./partials/easing.js
+var easing = {
+  linear: function linear(x, t, b, c, d) {
+    return b + c * x;
+  },
+  def: 'easeOutQuad',
+  swing: function swing(x, t, b, c, d) {
+    //alert($.easing.default);
+    return easing[easing.def](x, t, b, c, d);
+  },
+  easeInQuad: function easeInQuad(x, t, b, c, d) {
+    return c * (t /= d) * t + b;
+  },
+  easeOutQuad: function easeOutQuad(x, t, b, c, d) {
+    return -c * (t /= d) * (t - 2) + b;
+  },
+  easeInOutQuad: function easeInOutQuad(x, t, b, c, d) {
+    if ((t /= d / 2) < 1) return c / 2 * t * t + b;
+    return -c / 2 * (--t * (t - 2) - 1) + b;
+  },
+  easeInCubic: function easeInCubic(x, t, b, c, d) {
+    return c * (t /= d) * t * t + b;
+  },
+  easeOutCubic: function easeOutCubic(x, t, b, c, d) {
+    return c * ((t = t / d - 1) * t * t + 1) + b;
+  },
+  easeInOutCubic: function easeInOutCubic(x, t, b, c, d) {
+    if ((t /= d / 2) < 1) return c / 2 * t * t * t + b;
+    return c / 2 * ((t -= 2) * t * t + 2) + b;
+  },
+  easeInQuart: function easeInQuart(x, t, b, c, d) {
+    return c * (t /= d) * t * t * t + b;
+  },
+  easeOutQuart: function easeOutQuart(x, t, b, c, d) {
+    return -c * ((t = t / d - 1) * t * t * t - 1) + b;
+  },
+  easeInOutQuart: function easeInOutQuart(x, t, b, c, d) {
+    if ((t /= d / 2) < 1) return c / 2 * t * t * t * t + b;
+    return -c / 2 * ((t -= 2) * t * t * t - 2) + b;
+  },
+  easeInQuint: function easeInQuint(x, t, b, c, d) {
+    return c * (t /= d) * t * t * t * t + b;
+  },
+  easeOutQuint: function easeOutQuint(x, t, b, c, d) {
+    return c * ((t = t / d - 1) * t * t * t * t + 1) + b;
+  },
+  easeInOutQuint: function easeInOutQuint(x, t, b, c, d) {
+    if ((t /= d / 2) < 1) return c / 2 * t * t * t * t * t + b;
+    return c / 2 * ((t -= 2) * t * t * t * t + 2) + b;
+  },
+  easeInSine: function easeInSine(x, t, b, c, d) {
+    return -c * Math.cos(t / d * (Math.PI / 2)) + c + b;
+  },
+  easeOutSine: function easeOutSine(x, t, b, c, d) {
+    return c * Math.sin(t / d * (Math.PI / 2)) + b;
+  },
+  easeInOutSine: function easeInOutSine(x, t, b, c, d) {
+    return -c / 2 * (Math.cos(Math.PI * t / d) - 1) + b;
+  },
+  easeInExpo: function easeInExpo(x, t, b, c, d) {
+    return t == 0 ? b : c * Math.pow(2, 10 * (t / d - 1)) + b;
+  },
+  easeOutExpo: function easeOutExpo(x, t, b, c, d) {
+    return t == d ? b + c : c * (-Math.pow(2, -10 * t / d) + 1) + b;
+  },
+  easeInOutExpo: function easeInOutExpo(x, t, b, c, d) {
+    if (t == 0) return b;
+    if (t == d) return b + c;
+    if ((t /= d / 2) < 1) return c / 2 * Math.pow(2, 10 * (t - 1)) + b;
+    return c / 2 * (-Math.pow(2, -10 * --t) + 2) + b;
+  },
+  easeInCirc: function easeInCirc(x, t, b, c, d) {
+    return -c * (Math.sqrt(1 - (t /= d) * t) - 1) + b;
+  },
+  easeOutCirc: function easeOutCirc(x, t, b, c, d) {
+    return c * Math.sqrt(1 - (t = t / d - 1) * t) + b;
+  },
+  easeInOutCirc: function easeInOutCirc(x, t, b, c, d) {
+    if ((t /= d / 2) < 1) return -c / 2 * (Math.sqrt(1 - t * t) - 1) + b;
+    return c / 2 * (Math.sqrt(1 - (t -= 2) * t) + 1) + b;
+  },
+  easeInElastic: function easeInElastic(x, t, b, c, d) {
+    var s = 1.70158;
+    var p = 0;
+    var a = c;
+    if (t == 0) return b;
+    if ((t /= d) == 1) return b + c;
+    if (!p) p = d * .3;
 
-var _easing = require("../partials/easing");
+    if (a < Math.abs(c)) {
+      a = c;
+      var s = p / 4;
+    } else var s = p / (2 * Math.PI) * Math.asin(c / a);
+
+    return -(a * Math.pow(2, 10 * (t -= 1)) * Math.sin((t * d - s) * (2 * Math.PI) / p)) + b;
+  },
+  easeOutElastic: function easeOutElastic(x, t, b, c, d) {
+    var s = 1.70158;
+    var p = 0;
+    var a = c;
+    if (t == 0) return b;
+    if ((t /= d) == 1) return b + c;
+    if (!p) p = d * .3;
+
+    if (a < Math.abs(c)) {
+      a = c;
+      var s = p / 4;
+    } else var s = p / (2 * Math.PI) * Math.asin(c / a);
+
+    return a * Math.pow(2, -10 * t) * Math.sin((t * d - s) * (2 * Math.PI) / p) + c + b;
+  },
+  easeInOutElastic: function easeInOutElastic(x, t, b, c, d) {
+    var s = 1.70158;
+    var p = 0;
+    var a = c;
+    if (t == 0) return b;
+    if ((t /= d / 2) == 2) return b + c;
+    if (!p) p = d * (.3 * 1.5);
+
+    if (a < Math.abs(c)) {
+      a = c;
+      var s = p / 4;
+    } else var s = p / (2 * Math.PI) * Math.asin(c / a);
+
+    if (t < 1) return -.5 * (a * Math.pow(2, 10 * (t -= 1)) * Math.sin((t * d - s) * (2 * Math.PI) / p)) + b;
+    return a * Math.pow(2, -10 * (t -= 1)) * Math.sin((t * d - s) * (2 * Math.PI) / p) * .5 + c + b;
+  },
+  easeInBack: function easeInBack(x, t, b, c, d, s) {
+    if (s == undefined) s = 1.70158;
+    return c * (t /= d) * t * ((s + 1) * t - s) + b;
+  },
+  easeOutBack: function easeOutBack(x, t, b, c, d, s) {
+    if (s == undefined) s = 1.70158;
+    return c * ((t = t / d - 1) * t * ((s + 1) * t + s) + 1) + b;
+  },
+  easeInOutBack: function easeInOutBack(x, t, b, c, d, s) {
+    if (s == undefined) s = 1.70158;
+    if ((t /= d / 2) < 1) return c / 2 * (t * t * (((s *= 1.525) + 1) * t - s)) + b;
+    return c / 2 * ((t -= 2) * t * (((s *= 1.525) + 1) * t + s) + 2) + b;
+  },
+  easeInBounce: function easeInBounce(x, t, b, c, d) {
+    return c - $.easing.easeOutBounce(x, d - t, 0, c, d) + b;
+  },
+  easeOutBounce: function easeOutBounce(x, t, b, c, d) {
+    if ((t /= d) < 1 / 2.75) {
+      return c * (7.5625 * t * t) + b;
+    } else if (t < 2 / 2.75) {
+      return c * (7.5625 * (t -= 1.5 / 2.75) * t + .75) + b;
+    } else if (t < 2.5 / 2.75) {
+      return c * (7.5625 * (t -= 2.25 / 2.75) * t + .9375) + b;
+    } else {
+      return c * (7.5625 * (t -= 2.625 / 2.75) * t + .984375) + b;
+    }
+  },
+  easeInOutBounce: function easeInOutBounce(x, t, b, c, d) {
+    if (t < d / 2) return $.easing.easeInBounce(x, t * 2, 0, c, d) * .5 + b;
+    return $.easing.easeOutBounce(x, t * 2 - d, 0, c, d) * .5 + c * .5 + b;
+  }
+};
+// CONCATENATED MODULE: ./src/utils.js
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "addEvent", function() { return addEvent; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "removeEvent", function() { return removeEvent; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "getClosest", function() { return getClosest; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "getChildren", function() { return getChildren; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "getPreviousSibling", function() { return getPreviousSibling; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "getNextSibling", function() { return getNextSibling; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "mergeObjects", function() { return mergeObjects; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "deepMerge", function() { return deepMerge; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "$", function() { return utils_$; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "$$", function() { return $$; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "emitEvent", function() { return emitEvent; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "getParams", function() { return getParams; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "isEqual", function() { return isEqual; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "ready", function() { return ready; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "shuffle", function() { return shuffle; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "animate", function() { return animate; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "transition", function() { return transition; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "debounce", function() { return debounce; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "copy", function() { return copy; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "buildQuery", function() { return buildQuery; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "updateURL", function() { return updateURL; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "findIndex", function() { return findIndex; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "find", function() { return find; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "removeFromArray", function() { return removeFromArray; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "isInViewport", function() { return isInViewport; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "dedupe", function() { return dedupe; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "getOffsetTop", function() { return getOffsetTop; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "hasNumbers", function() { return hasNumbers; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "getStyle", function() { return getStyle; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "truncate", function() { return truncate; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "effect", function() { return effect; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "animation", function() { return animation; });
 
 /*!
  * Add Event Listener
  */
+
 var addEvent = function addEvent(event, selector, callback) {
   var options = arguments.length > 3 && arguments[3] !== undefined ? arguments[3] : false;
 
@@ -48,9 +337,6 @@ var addEvent = function addEvent(event, selector, callback) {
  * Remove Event Listener
  */
 
-
-exports.addEvent = addEvent;
-
 var removeEvent = function removeEvent(event, selector, callback) {
   var options = arguments.length > 3 && arguments[3] !== undefined ? arguments[3] : false;
 
@@ -71,9 +357,6 @@ var removeEvent = function removeEvent(event, selector, callback) {
 /*!
  * Get closest parent
  */
-
-
-exports.removeEvent = removeEvent;
 
 var getClosest = function getClosest(el, selector) {
   var matchesFn; // find vendor prefix
@@ -109,9 +392,6 @@ var getClosest = function getClosest(el, selector) {
  * @return {Array}           The matching direct descendants
  */
 
-
-exports.getClosest = getClosest;
-
 var getChildren = function getChildren(elem, selector) {
   var matchesFn; // find vendor prefix
 
@@ -134,9 +414,6 @@ var getChildren = function getChildren(elem, selector) {
  * @param  {String} selector The selector to match against
  * @return {Node}            The sibling
  */
-
-
-exports.getChildren = getChildren;
 
 var getPreviousSibling = function getPreviousSibling(elem, selector) {
   var matchesFn; // find vendor prefix
@@ -168,9 +445,6 @@ var getPreviousSibling = function getPreviousSibling(elem, selector) {
  * @return {Node}            The sibling
  */
 
-
-exports.getPreviousSibling = getPreviousSibling;
-
 var getNextSibling = function getNextSibling(elem, selector) {
   var matchesFn; // find vendor prefix
 
@@ -197,9 +471,6 @@ var getNextSibling = function getNextSibling(elem, selector) {
  * Merge Object
  */
 
-
-exports.getNextSibling = getNextSibling;
-
 var mergeObjects = function mergeObjects() {
   var resObj = {};
 
@@ -220,9 +491,6 @@ var mergeObjects = function mergeObjects() {
  * @param   {Object} objects  The objects to merge together
  * @returns {Object}          Merged values of defaults and options
  */
-
-
-exports.mergeObjects = mergeObjects;
 
 var deepMerge = function deepMerge() {
   // Make sure there are objects to merge
@@ -252,10 +520,7 @@ var deepMerge = function deepMerge() {
  * @return {Node}            The element
  */
 
-
-exports.deepMerge = deepMerge;
-
-var $ = function $(selector, parent) {
+var utils_$ = function $(selector, parent) {
   return (parent ? parent : document).querySelector(selector);
 };
 /*!
@@ -265,9 +530,6 @@ var $ = function $(selector, parent) {
  * @param  {Node}   parent   The parent to search in [optional]
  * @return {Array}           Th elements
  */
-
-
-exports.$ = $;
 
 var $$ = function $$(selector, parent) {
   return Array.prototype.slice.call((parent ? parent : document).querySelectorAll(selector));
@@ -279,9 +541,6 @@ var $$ = function $$(selector, parent) {
  * @param  {Node}   elem   The element to attach the event to
  * @param  {Object} detail Any details to pass along with the event
  */
-
-
-exports.$$ = $$;
 
 var emitEvent = function emitEvent(type, elem, detail) {
   // Make sure there's an event type
@@ -305,9 +564,6 @@ var emitEvent = function emitEvent(type, elem, detail) {
  * @return {Object}     The URL parameters
  */
 
-
-exports.emitEvent = emitEvent;
-
 var getParams = function getParams(url) {
   var params = {};
   var parser = document.createElement('a');
@@ -330,9 +586,6 @@ var getParams = function getParams(url) {
  * @param  {Object|Array}  other  The second object or array to compare
  * @return {Boolean}              Returns true if they're equal
  */
-
-
-exports.getParams = getParams;
 
 var isEqual = function isEqual(value, other) {
   // Get the value type
@@ -388,9 +641,6 @@ var isEqual = function isEqual(value, other) {
  * @param  {Function} fn Callback function
  */
 
-
-exports.isEqual = isEqual;
-
 var ready = function ready(fn) {
   // Sanity check
   if (typeof fn !== 'function') return; // If document is already loaded, run method
@@ -408,9 +658,6 @@ var ready = function ready(fn) {
  * @param  {Array} array The array to shuffle
  * @return {String}      The first item in the shuffled array
  */
-
-
-exports.ready = ready;
 
 var shuffle = function shuffle(array) {
   var currentIndex = array.length;
@@ -437,9 +684,6 @@ var shuffle = function shuffle(array) {
  * @param  {Boolean} hide      If true, apply the [hidden] attribute after the animation is done
  */
 
-
-exports.shuffle = shuffle;
-
 var animate = function animate(elem, animation, callback, hide) {
   // If there's no element or animation, do nothing
   if (!elem || !animation) return; // Remove the [hidden] attribute
@@ -465,9 +709,6 @@ var animate = function animate(elem, animation, callback, hide) {
     elem.removeEventListener('animationend', endAnimation, false);
   }, false);
 };
-
-exports.animate = animate;
-
 var transition = function transition(elem, animation, callback, hide) {
   // If there's no element or animation, do nothing
   if (!elem || !animation) return; // Remove the [hidden] attribute
@@ -499,9 +740,6 @@ var transition = function transition(elem, animation, callback, hide) {
  * @param  {Function} fn The function to debounce
  */
 
-
-exports.transition = transition;
-
 var debounce = function debounce(fn) {
   // Setup a timer
   var timeout; // Return a function to run debounced
@@ -527,9 +765,6 @@ var debounce = function debounce(fn) {
  * @param  {Array|Object} obj The array or object to copy
  * @return {Array|Object}     The clone of the array or object
  */
-
-
-exports.debounce = debounce;
 
 var copy = function copy(obj) {
   //
@@ -590,9 +825,6 @@ var copy = function copy(obj) {
  * @return {String}      The query string
  */
 
-
-exports.copy = copy;
-
 var buildQuery = function buildQuery(data) {
   if (typeof data === 'string') return data;
   var query = [];
@@ -605,9 +837,6 @@ var buildQuery = function buildQuery(data) {
 
   return query.join('&');
 };
-
-exports.buildQuery = buildQuery;
-
 var updateURL = function updateURL(key, value) {
   var push = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : false;
 
@@ -626,9 +855,6 @@ var updateURL = function updateURL(key, value) {
     }
   }
 };
-
-exports.updateURL = updateURL;
-
 var findIndex = function findIndex(array, value, key) {
   if (array && array.length && value) {
     if (key) {
@@ -642,9 +868,6 @@ var findIndex = function findIndex(array, value, key) {
 
   return null;
 };
-
-exports.findIndex = findIndex;
-
 var find = function find(array, value, key) {
   var all = arguments.length > 3 && arguments[3] !== undefined ? arguments[3] : false;
 
@@ -662,9 +885,6 @@ var find = function find(array, value, key) {
 
   return null;
 };
-
-exports.find = find;
-
 var removeFromArray = function removeFromArray(array, value, key) {
   var i = array.length;
 
@@ -683,9 +903,6 @@ var removeFromArray = function removeFromArray(array, value, key) {
  * @return {Boolean}      Returns true if element is in the viewport
  */
 
-
-exports.removeFromArray = removeFromArray;
-
 var isInViewport = function isInViewport(elem) {
   var distance = elem.getBoundingClientRect();
   return distance.top >= 0 && distance.left >= 0 && distance.bottom <= (window.innerHeight || document.documentElement.clientHeight) && distance.right <= (window.innerWidth || document.documentElement.clientWidth);
@@ -696,9 +913,6 @@ var isInViewport = function isInViewport(elem) {
  * @param  {Array} arr The array
  * @return {Array}     A new array with duplicates removed
  */
-
-
-exports.isInViewport = isInViewport;
 
 var dedupe = function dedupe(arr) {
   return arr.filter(function (item, index) {
@@ -712,9 +926,6 @@ var dedupe = function dedupe(arr) {
  * @return {Number}    Distance from the top in pixels
  */
 
-
-exports.dedupe = dedupe;
-
 var getOffsetTop = function getOffsetTop(elem) {
   var location = 0;
 
@@ -727,16 +938,10 @@ var getOffsetTop = function getOffsetTop(elem) {
 
   return location >= 0 ? location : 0;
 };
-
-exports.getOffsetTop = getOffsetTop;
-
 var hasNumbers = function hasNumbers(string) {
   var regex = /\d/g;
   return regex.test(string);
 };
-
-exports.hasNumbers = hasNumbers;
-
 var getStyle = function getStyle(elem, property) {
   var index = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : 1;
   var style = window.getComputedStyle(elem, null).getPropertyValue(property);
@@ -753,20 +958,13 @@ var getStyle = function getStyle(elem, property) {
     return style;
   }
 };
-
-exports.getStyle = getStyle;
-
 var truncate = function truncate(string) {
   var maxLength = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : 50;
   if (!string) return null;
   if (string.length <= maxLength) return string;
   return "".concat(string.substring(0, maxLength), "...");
 };
-
-exports.truncate = truncate;
-var effect = _easing.easing;
-exports.effect = effect;
-
+var effect = easing;
 var animation = function animation(start, end, duration, easing, callback) {
   var timeStart = new Date().getTime();
   var timer = setInterval(function () {
@@ -777,4 +975,6 @@ var animation = function animation(start, end, duration, easing, callback) {
   }, 1000 / 60);
 };
 
-exports.animation = animation;
+/***/ })
+/******/ ]);
+});

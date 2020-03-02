@@ -20,7 +20,7 @@ const webpackOption = {
         rules: webpack_rules
     },
     optimization: {
-        minimize: true,
+        minimize: false,
         minimizer: [new TerserPlugin({
             terserOptions: {
                 keep_classnames: true,
