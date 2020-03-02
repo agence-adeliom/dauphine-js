@@ -13,7 +13,7 @@ const webpackOption = {
     output: {
         path: path.resolve(__dirname, "./dist"),
         filename: '[name].js',
-        library: "Dauphine JS",
+        library: "DauphineJS",
         libraryTarget: "umd"
     },
     module: {
@@ -21,8 +21,6 @@ const webpackOption = {
     },
     optimization: {
         minimize: false,
-        namedModules: true,
-        usedExports: true,
         minimizer: [new TerserPlugin({
             terserOptions: {
                 keep_classnames: true,
