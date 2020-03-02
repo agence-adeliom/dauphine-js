@@ -14,13 +14,15 @@ const webpackOption = {
         path: path.resolve(__dirname, "./dist"),
         filename: '[name].js',
         library: "Dauphine JS",
-        libraryTarget: "amd",
+        libraryTarget: "umd"
     },
     module: {
         rules: webpack_rules
     },
     optimization: {
         minimize: false,
+        namedModules: true,
+        usedExports: true,
         minimizer: [new TerserPlugin({
             terserOptions: {
                 keep_classnames: true,
