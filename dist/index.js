@@ -1,1 +1,780 @@
-!function webpackUniversalModuleDefinition(e,t){"object"==typeof exports&&"object"==typeof module?module.exports=t():"function"==typeof define&&define.amd?define([],t):"object"==typeof exports?exports["Dauphine JS"]=t():e["Dauphine JS"]=t()}(window,(function(){return function(e){var t={};function __webpack_require__(n){if(t[n])return t[n].exports;var r=t[n]={i:n,l:!1,exports:{}};return e[n].call(r.exports,r,r.exports,__webpack_require__),r.l=!0,r.exports}return __webpack_require__.m=e,__webpack_require__.c=t,__webpack_require__.d=function(e,t,n){__webpack_require__.o(e,t)||Object.defineProperty(e,t,{enumerable:!0,get:n})},__webpack_require__.r=function(e){"undefined"!=typeof Symbol&&Symbol.toStringTag&&Object.defineProperty(e,Symbol.toStringTag,{value:"Module"}),Object.defineProperty(e,"__esModule",{value:!0})},__webpack_require__.t=function(e,t){if(1&t&&(e=__webpack_require__(e)),8&t)return e;if(4&t&&"object"==typeof e&&e&&e.__esModule)return e;var n=Object.create(null);if(__webpack_require__.r(n),Object.defineProperty(n,"default",{enumerable:!0,value:e}),2&t&&"string"!=typeof e)for(var r in e)__webpack_require__.d(n,r,function(t){return e[t]}.bind(null,r));return n},__webpack_require__.n=function(e){var t=e&&e.__esModule?function getDefault(){return e.default}:function getModuleExports(){return e};return __webpack_require__.d(t,"a",t),t},__webpack_require__.o=function(e,t){return Object.prototype.hasOwnProperty.call(e,t)},__webpack_require__.p="",__webpack_require__(__webpack_require__.s=1)}([,function(e,t,n){"use strict";n.r(t);var r={linear:function linear(e,t,n,r,o){return n+r*e},def:"easeOutQuad",swing:function swing(e,t,n,o,u){return r[r.def](e,t,n,o,u)},easeInQuad:function easeInQuad(e,t,n,r,o){return r*(t/=o)*t+n},easeOutQuad:function easeOutQuad(e,t,n,r,o){return-r*(t/=o)*(t-2)+n},easeInOutQuad:function easeInOutQuad(e,t,n,r,o){return(t/=o/2)<1?r/2*t*t+n:-r/2*(--t*(t-2)-1)+n},easeInCubic:function easeInCubic(e,t,n,r,o){return r*(t/=o)*t*t+n},easeOutCubic:function easeOutCubic(e,t,n,r,o){return r*((t=t/o-1)*t*t+1)+n},easeInOutCubic:function easeInOutCubic(e,t,n,r,o){return(t/=o/2)<1?r/2*t*t*t+n:r/2*((t-=2)*t*t+2)+n},easeInQuart:function easeInQuart(e,t,n,r,o){return r*(t/=o)*t*t*t+n},easeOutQuart:function easeOutQuart(e,t,n,r,o){return-r*((t=t/o-1)*t*t*t-1)+n},easeInOutQuart:function easeInOutQuart(e,t,n,r,o){return(t/=o/2)<1?r/2*t*t*t*t+n:-r/2*((t-=2)*t*t*t-2)+n},easeInQuint:function easeInQuint(e,t,n,r,o){return r*(t/=o)*t*t*t*t+n},easeOutQuint:function easeOutQuint(e,t,n,r,o){return r*((t=t/o-1)*t*t*t*t+1)+n},easeInOutQuint:function easeInOutQuint(e,t,n,r,o){return(t/=o/2)<1?r/2*t*t*t*t*t+n:r/2*((t-=2)*t*t*t*t+2)+n},easeInSine:function easeInSine(e,t,n,r,o){return-r*Math.cos(t/o*(Math.PI/2))+r+n},easeOutSine:function easeOutSine(e,t,n,r,o){return r*Math.sin(t/o*(Math.PI/2))+n},easeInOutSine:function easeInOutSine(e,t,n,r,o){return-r/2*(Math.cos(Math.PI*t/o)-1)+n},easeInExpo:function easeInExpo(e,t,n,r,o){return 0==t?n:r*Math.pow(2,10*(t/o-1))+n},easeOutExpo:function easeOutExpo(e,t,n,r,o){return t==o?n+r:r*(1-Math.pow(2,-10*t/o))+n},easeInOutExpo:function easeInOutExpo(e,t,n,r,o){return 0==t?n:t==o?n+r:(t/=o/2)<1?r/2*Math.pow(2,10*(t-1))+n:r/2*(2-Math.pow(2,-10*--t))+n},easeInCirc:function easeInCirc(e,t,n,r,o){return-r*(Math.sqrt(1-(t/=o)*t)-1)+n},easeOutCirc:function easeOutCirc(e,t,n,r,o){return r*Math.sqrt(1-(t=t/o-1)*t)+n},easeInOutCirc:function easeInOutCirc(e,t,n,r,o){return(t/=o/2)<1?-r/2*(Math.sqrt(1-t*t)-1)+n:r/2*(Math.sqrt(1-(t-=2)*t)+1)+n},easeInElastic:function easeInElastic(e,t,n,r,o){var u=1.70158,i=0,a=r;if(0==t)return n;if(1==(t/=o))return n+r;if(i||(i=.3*o),a<Math.abs(r)){a=r;u=i/4}else u=i/(2*Math.PI)*Math.asin(r/a);return-a*Math.pow(2,10*(t-=1))*Math.sin((t*o-u)*(2*Math.PI)/i)+n},easeOutElastic:function easeOutElastic(e,t,n,r,o){var u=1.70158,i=0,a=r;if(0==t)return n;if(1==(t/=o))return n+r;if(i||(i=.3*o),a<Math.abs(r)){a=r;u=i/4}else u=i/(2*Math.PI)*Math.asin(r/a);return a*Math.pow(2,-10*t)*Math.sin((t*o-u)*(2*Math.PI)/i)+r+n},easeInOutElastic:function easeInOutElastic(e,t,n,r,o){var u=1.70158,i=0,a=r;if(0==t)return n;if(2==(t/=o/2))return n+r;if(i||(i=o*(.3*1.5)),a<Math.abs(r)){a=r;u=i/4}else u=i/(2*Math.PI)*Math.asin(r/a);return t<1?a*Math.pow(2,10*(t-=1))*Math.sin((t*o-u)*(2*Math.PI)/i)*-.5+n:a*Math.pow(2,-10*(t-=1))*Math.sin((t*o-u)*(2*Math.PI)/i)*.5+r+n},easeInBack:function easeInBack(e,t,n,r,o,u){return null==u&&(u=1.70158),r*(t/=o)*t*((u+1)*t-u)+n},easeOutBack:function easeOutBack(e,t,n,r,o,u){return null==u&&(u=1.70158),r*((t=t/o-1)*t*((u+1)*t+u)+1)+n},easeInOutBack:function easeInOutBack(e,t,n,r,o,u){return null==u&&(u=1.70158),(t/=o/2)<1?r/2*(t*t*((1+(u*=1.525))*t-u))+n:r/2*((t-=2)*t*((1+(u*=1.525))*t+u)+2)+n},easeInBounce:function easeInBounce(e,t,n,r,o){return r-$.easing.easeOutBounce(e,o-t,0,r,o)+n},easeOutBounce:function easeOutBounce(e,t,n,r,o){return(t/=o)<1/2.75?r*(7.5625*t*t)+n:t<2/2.75?r*(7.5625*(t-=1.5/2.75)*t+.75)+n:t<2.5/2.75?r*(7.5625*(t-=2.25/2.75)*t+.9375)+n:r*(7.5625*(t-=2.625/2.75)*t+.984375)+n},easeInOutBounce:function easeInOutBounce(e,t,n,r,o){return t<o/2?.5*$.easing.easeInBounce(e,2*t,0,r,o)+n:.5*$.easing.easeOutBounce(e,2*t-o,0,r,o)+.5*r+n}};n.d(t,"addEvent",(function(){return o})),n.d(t,"removeEvent",(function(){return u})),n.d(t,"getClosest",(function(){return i})),n.d(t,"getChildren",(function(){return a})),n.d(t,"getPreviousSibling",(function(){return c})),n.d(t,"getNextSibling",(function(){return f})),n.d(t,"mergeObjects",(function(){return s})),n.d(t,"deepMerge",(function(){return d})),n.d(t,"$",(function(){return l})),n.d(t,"$$",(function(){return p})),n.d(t,"emitEvent",(function(){return h})),n.d(t,"getParams",(function(){return b})),n.d(t,"isEqual",(function(){return m})),n.d(t,"ready",(function(){return v})),n.d(t,"shuffle",(function(){return _})),n.d(t,"animate",(function(){return g})),n.d(t,"transition",(function(){return y})),n.d(t,"debounce",(function(){return w})),n.d(t,"copy",(function(){return O})),n.d(t,"buildQuery",(function(){return M})),n.d(t,"updateURL",(function(){return I})),n.d(t,"findIndex",(function(){return S})),n.d(t,"find",(function(){return E})),n.d(t,"removeFromArray",(function(){return j})),n.d(t,"isInViewport",(function(){return k})),n.d(t,"dedupe",(function(){return q})),n.d(t,"getOffsetTop",(function(){return x})),n.d(t,"hasNumbers",(function(){return P})),n.d(t,"getStyle",(function(){return A})),n.d(t,"truncate",(function(){return C})),n.d(t,"effect",(function(){return Q})),n.d(t,"animation",(function(){return L}));var o=function addEvent(e,t,n){var r,o=arguments.length>3&&void 0!==arguments[3]&&arguments[3];if(!t)throw"A selector is needed";if(!n||"function"!=typeof n)throw"A function callback is needed";["matches","webkitMatchesSelector","mozMatchesSelector","msMatchesSelector","oMatchesSelector"].some((function(e){return"function"==typeof document.body[e]&&(r=e,!0)})),"string"==typeof t?document.addEventListener(e,(function(e){e.target[r](t)&&n(e,e.target)}),o):t.addEventListener(e,(function(e){n(e,e.target)}),o)},u=function removeEvent(e,t,n){var r=arguments.length>3&&void 0!==arguments[3]&&arguments[3];if(!t)throw"A selector is needed";if(!n||"function"!=typeof n)throw"A function callback is needed";"string"==typeof t?document.removeEventListener(e,n,r):t.removeEventListener(e,n,r)},i=function getClosest(e,t){var n,r;for(["matches","webkitMatchesSelector","mozMatchesSelector","msMatchesSelector","oMatchesSelector"].some((function(e){return"function"==typeof document.body[e]&&(n=e,!0)}));e;){if((r=e.parentElement)&&r[n](t))return r;e=r}return null},a=function getChildren(e,t){var n;return["matches","webkitMatchesSelector","mozMatchesSelector","msMatchesSelector","oMatchesSelector"].some((function(e){return"function"==typeof document.body[e]&&(n=e,!0)})),Array.prototype.filter.call(e.children,(function(e){return e[n](t)}))},c=function getPreviousSibling(e,t){var n;["matches","webkitMatchesSelector","mozMatchesSelector","msMatchesSelector","oMatchesSelector"].some((function(e){return"function"==typeof document.body[e]&&(n=e,!0)}));var r=e.previousElementSibling;if(!t)return r;for(;r;){if(r[n](t))return r;r=r.previousElementSibling}},f=function getNextSibling(e,t){var n;["matches","webkitMatchesSelector","mozMatchesSelector","msMatchesSelector","oMatchesSelector"].some((function(e){return"function"==typeof document.body[e]&&(n=e,!0)}));var r=e.nextElementSibling;if(!t)return r;for(;r;){if(r[n](t))return r;r=r.nextElementSibling}},s=function mergeObjects(){for(var e={},t=0;t<arguments.length;t+=1)for(var n=arguments[t],r=Object.keys(n),o=0;o<r.length;o+=1)e[r[o]]=n[r[o]];return e},d=function deepMerge(){var e=arguments.length;if(!(e<1)){if(e<2)return arguments[0];for(var t=1;t<e;t++)for(var n in arguments[t])"[object Object]"===Object.prototype.toString.call(arguments[t][n])?arguments[0][n]=deepMerge(arguments[0][n]||{},arguments[t][n]):arguments[0][n]=arguments[t][n];return arguments[0]}},l=function $(e,t){return(t||document).querySelector(e)},p=function $$(e,t){return Array.prototype.slice.call((t||document).querySelectorAll(e))},h=function emitEvent(e,t,n){if(e){t=t||window,n=n||{};var r=new CustomEvent(e,{bubbles:!0,cancelable:!0,detail:n});t.dispatchEvent(r)}},b=function getParams(e){var t={},n=document.createElement("a");n.href=e||window.location.href;var r=n.search.substring(1).split("&");if(r.length<1||r[0].length<1)return t;for(var o=0;o<r.length;o++){var u=r[o].split("=");t[decodeURIComponent(u[0])]=decodeURIComponent(u[1])}return t},m=function isEqual(e,t){var n=Object.prototype.toString.call(e);if(n!==Object.prototype.toString.call(t))return!1;if(["[object Array]","[object Object]"].indexOf(n)<0)return!1;var r="[object Array]"===n?e.length:Object.keys(e).length;if(r!==("[object Array]"===n?t.length:Object.keys(t).length))return!1;var o=function compare(e,t){var n=Object.prototype.toString.call(e);if(["[object Array]","[object Object]"].indexOf(n)>=0){if(!isEqual(e,t))return!1}else{if(n!==Object.prototype.toString.call(t))return!1;if("[object Function]"===n){if(e.toString()!==t.toString())return!1}else if(e!==t)return!1}};if("[object Array]"===n){for(var u=0;u<r;u++)if(!1===o(e[u],t[u]))return!1}else for(var i in e)if(e.hasOwnProperty(i)&&!1===o(e[i],t[i]))return!1;return!0},v=function ready(e){if("function"==typeof e)return"interactive"===document.readyState||"complete"===document.readyState?e():void document.addEventListener("DOMContentLoaded",e,!1)},_=function shuffle(e){for(var t,n,r=e.length;0!==r;)n=Math.floor(Math.random()*r),t=e[r-=1],e[r]=e[n],e[n]=t;return e},g=function animate(e,t,n,r){e&&t&&(e.removeAttribute("hidden"),e.classList.add(t),e.addEventListener("animationend",(function endAnimation(o){r&&(e.classList.remove(t),e.setAttribute("hidden","true")),n&&"function"==typeof n&&n(),e.removeEventListener("animationend",endAnimation,!1)}),!1))},y=function transition(e,t,n,r){e&&t&&(e.removeAttribute("hidden"),e.classList.add(t),e.addEventListener("transitionend",(function endAnimation(o){r&&(e.classList.remove(t),e.setAttribute("hidden","true")),n&&"function"==typeof n&&n(),e.removeEventListener("transitionend",endAnimation,!1)}),!1))},w=function debounce(e){var t;return function(){var n=this,r=arguments;t&&window.cancelAnimationFrame(t),t=window.requestAnimationFrame((function(){e.apply(n,r)}))}},O=function copy(e){var t=Object.prototype.toString.call(e).slice(8,-1).toLowerCase();return"object"===t?function cloneObj(){var t={};for(var n in e)e.hasOwnProperty(n)&&(t[n]=copy(e[n]));return t}():"array"===t?function cloneArr(){return e.map((function(e){return copy(e)}))}():e},M=function buildQuery(e){if("string"==typeof e)return e;var t=[];for(var n in e)e.hasOwnProperty(n)&&t.push(encodeURIComponent(n)+"="+encodeURIComponent(e[n]));return t.join("&")},I=function updateURL(e,t){var n=arguments.length>2&&void 0!==arguments[2]&&arguments[2];if(history.pushState){var r=t?e+"="+t:e,o=window.location.protocol+"//"+window.location.host+window.location.pathname+"?"+r+window.location.hash;n?window.history.pushState({path:o},"",o):window.history.replaceState({path:o},"",o)}},S=function findIndex(e,t,n){return e&&e.length&&t?n?e.findIndex((function(e){return e[n]===t})):e.indexOf(t):null},E=function find(e,t,n){var r=arguments.length>3&&void 0!==arguments[3]&&arguments[3];return e&&e.length&&t&&n?r?e.filter((function(e){return e[n]===t})):e.find((function(e){return e[n]===t})):null},j=function removeFromArray(e,t,n){for(var r=e.length;r--;)e[r]&&e[r].hasOwnProperty(n)&&arguments.length>2&&e[r][n]===t&&e.splice(r,1);return e},k=function isInViewport(e){var t=e.getBoundingClientRect();return t.top>=0&&t.left>=0&&t.bottom<=(window.innerHeight||document.documentElement.clientHeight)&&t.right<=(window.innerWidth||document.documentElement.clientWidth)},q=function dedupe(e){return e.filter((function(t,n){return e.indexOf(t)===n}))},x=function getOffsetTop(e){var t=0;if(e.offsetParent)for(;e;)t+=e.offsetTop,e=e.offsetParent;return t>=0?t:0},P=function hasNumbers(e){return/\d/g.test(e)},A=function getStyle(e,t){var n=arguments.length>2&&void 0!==arguments[2]?arguments[2]:1,r=window.getComputedStyle(e,null).getPropertyValue(t);if(P(r)){var o=r.split(" ");return o.length>=2?parseInt(o[n-1],10):parseInt(r,10)}return r},C=function truncate(e){var t=arguments.length>1&&void 0!==arguments[1]?arguments[1]:50;return e?e.length<=t?e:"".concat(e.substring(0,t),"..."):null},Q=r,L=function animation(e,t,n,r,o){var u=(new Date).getTime(),i=setInterval((function(){var a=(new Date).getTime()-u,c=Q[r](a/n,a,e,t-e,n);o(c),a>=n&&clearInterval(i)}),1e3/60)}}])}));
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.animation = exports.effect = exports.truncate = exports.getStyle = exports.hasNumbers = exports.getOffsetTop = exports.dedupe = exports.isInViewport = exports.removeFromArray = exports.find = exports.findIndex = exports.updateURL = exports.buildQuery = exports.copy = exports.debounce = exports.transition = exports.animate = exports.shuffle = exports.ready = exports.isEqual = exports.getParams = exports.emitEvent = exports.$$ = exports.$ = exports.deepMerge = exports.mergeObjects = exports.getNextSibling = exports.getPreviousSibling = exports.getChildren = exports.getClosest = exports.removeEvent = exports.addEvent = void 0;
+
+var _easing = require("../partials/easing");
+
+/*!
+ * Add Event Listener
+ */
+var addEvent = function addEvent(event, selector, callback) {
+  var options = arguments.length > 3 && arguments[3] !== undefined ? arguments[3] : false;
+
+  if (!selector) {
+    throw 'A selector is needed';
+  }
+
+  if (!callback || typeof callback !== "function") {
+    throw 'A function callback is needed';
+  }
+
+  var matchesFn; // find vendor prefix
+
+  ['matches', 'webkitMatchesSelector', 'mozMatchesSelector', 'msMatchesSelector', 'oMatchesSelector'].some(function (fn) {
+    if (typeof document.body[fn] == 'function') {
+      matchesFn = fn;
+      return true;
+    }
+
+    return false;
+  });
+
+  if (typeof selector == 'string') {
+    document.addEventListener(event, function (event) {
+      if (event.target[matchesFn](selector)) {
+        callback(event, event.target);
+      }
+    }, options);
+  } else {
+    selector.addEventListener(event, function (event) {
+      callback(event, event.target);
+    }, options);
+  }
+};
+/*!
+ * Remove Event Listener
+ */
+
+
+exports.addEvent = addEvent;
+
+var removeEvent = function removeEvent(event, selector, callback) {
+  var options = arguments.length > 3 && arguments[3] !== undefined ? arguments[3] : false;
+
+  if (!selector) {
+    throw 'A selector is needed';
+  }
+
+  if (!callback || typeof callback !== "function") {
+    throw 'A function callback is needed';
+  }
+
+  if (typeof selector == 'string') {
+    document.removeEventListener(event, callback, options);
+  } else {
+    selector.removeEventListener(event, callback, options);
+  }
+};
+/*!
+ * Get closest parent
+ */
+
+
+exports.removeEvent = removeEvent;
+
+var getClosest = function getClosest(el, selector) {
+  var matchesFn; // find vendor prefix
+
+  ['matches', 'webkitMatchesSelector', 'mozMatchesSelector', 'msMatchesSelector', 'oMatchesSelector'].some(function (fn) {
+    if (typeof document.body[fn] == 'function') {
+      matchesFn = fn;
+      return true;
+    }
+
+    return false;
+  });
+  var parent; // traverse parents
+
+  while (el) {
+    parent = el.parentElement;
+
+    if (parent && parent[matchesFn](selector)) {
+      return parent;
+    }
+
+    el = parent;
+  }
+
+  return null;
+};
+/*!
+ * Get all direct descendant elements that match a selector
+ * Dependency: the matches() polyfill: https://vanillajstoolkit.com/polyfills/matches/
+ * (c) 2018 Chris Ferdinandi, MIT License, https://gomakethings.com
+ * @param  {Node}   elem     The element to get direct descendants for
+ * @param  {String} selector The selector to match against
+ * @return {Array}           The matching direct descendants
+ */
+
+
+exports.getClosest = getClosest;
+
+var getChildren = function getChildren(elem, selector) {
+  var matchesFn; // find vendor prefix
+
+  ['matches', 'webkitMatchesSelector', 'mozMatchesSelector', 'msMatchesSelector', 'oMatchesSelector'].some(function (fn) {
+    if (typeof document.body[fn] == 'function') {
+      matchesFn = fn;
+      return true;
+    }
+
+    return false;
+  });
+  return Array.prototype.filter.call(elem.children, function (child) {
+    return child[matchesFn](selector);
+  });
+};
+/*!
+ * Get previous sibling of an element that matches selector
+ * (c) 2018 Chris Ferdinandi, MIT License, https://gomakethings.com
+ * @param  {Node}   elem     The element
+ * @param  {String} selector The selector to match against
+ * @return {Node}            The sibling
+ */
+
+
+exports.getChildren = getChildren;
+
+var getPreviousSibling = function getPreviousSibling(elem, selector) {
+  var matchesFn; // find vendor prefix
+
+  ['matches', 'webkitMatchesSelector', 'mozMatchesSelector', 'msMatchesSelector', 'oMatchesSelector'].some(function (fn) {
+    if (typeof document.body[fn] == 'function') {
+      matchesFn = fn;
+      return true;
+    }
+
+    return false;
+  }); // Get the next sibling element
+
+  var sibling = elem.previousElementSibling; // If there's no selector, return the first sibling
+
+  if (!selector) return sibling; // If the sibling matches our selector, use it
+  // If not, jump to the next sibling and continue the loop
+
+  while (sibling) {
+    if (sibling[matchesFn](selector)) return sibling;
+    sibling = sibling.previousElementSibling;
+  }
+};
+/*!
+ * Get next sibling of an element that matches selector
+ * (c) 2018 Chris Ferdinandi, MIT License, https://gomakethings.com
+ * @param  {Node}   elem     The element
+ * @param  {String} selector The selector to match against
+ * @return {Node}            The sibling
+ */
+
+
+exports.getPreviousSibling = getPreviousSibling;
+
+var getNextSibling = function getNextSibling(elem, selector) {
+  var matchesFn; // find vendor prefix
+
+  ['matches', 'webkitMatchesSelector', 'mozMatchesSelector', 'msMatchesSelector', 'oMatchesSelector'].some(function (fn) {
+    if (typeof document.body[fn] == 'function') {
+      matchesFn = fn;
+      return true;
+    }
+
+    return false;
+  }); // Get the next sibling element
+
+  var sibling = elem.nextElementSibling; // If there's no selector, return the first sibling
+
+  if (!selector) return sibling; // If the sibling matches our selector, use it
+  // If not, jump to the next sibling and continue the loop
+
+  while (sibling) {
+    if (sibling[matchesFn](selector)) return sibling;
+    sibling = sibling.nextElementSibling;
+  }
+};
+/*!
+ * Merge Object
+ */
+
+
+exports.getNextSibling = getNextSibling;
+
+var mergeObjects = function mergeObjects() {
+  var resObj = {};
+
+  for (var i = 0; i < arguments.length; i += 1) {
+    var obj = arguments[i],
+        keys = Object.keys(obj);
+
+    for (var j = 0; j < keys.length; j += 1) {
+      resObj[keys[j]] = obj[keys[j]];
+    }
+  }
+
+  return resObj;
+};
+/*!
+ * Deep merge two or more objects into the first.
+ * (c) 2019 Chris Ferdinandi, MIT License, https://gomakethings.com
+ * @param   {Object} objects  The objects to merge together
+ * @returns {Object}          Merged values of defaults and options
+ */
+
+
+exports.mergeObjects = mergeObjects;
+
+var deepMerge = function deepMerge() {
+  // Make sure there are objects to merge
+  var len = arguments.length;
+  if (len < 1) return;
+  if (len < 2) return arguments[0]; // Merge all objects into first
+
+  for (var i = 1; i < len; i++) {
+    for (var key in arguments[i]) {
+      // If it's an object, recursively merge
+      // Otherwise, push to key
+      if (Object.prototype.toString.call(arguments[i][key]) === '[object Object]') {
+        arguments[0][key] = deepMerge(arguments[0][key] || {}, arguments[i][key]);
+      } else {
+        arguments[0][key] = arguments[i][key];
+      }
+    }
+  }
+
+  return arguments[0];
+};
+/*!
+ * Get the first matching element in the DOM
+ * (c) 2019 Chris Ferdinandi, MIT License, https://gomakethings.com
+ * @param  {String} selector The element selector
+ * @param  {Node}   parent   The parent to search in [optional]
+ * @return {Node}            The element
+ */
+
+
+exports.deepMerge = deepMerge;
+
+var $ = function $(selector, parent) {
+  return (parent ? parent : document).querySelector(selector);
+};
+/*!
+ * Get an array of all matching elements in the DOM
+ * (c) 2019 Chris Ferdinandi, MIT License, https://gomakethings.com
+ * @param  {String} selector The element selector
+ * @param  {Node}   parent   The parent to search in [optional]
+ * @return {Array}           Th elements
+ */
+
+
+exports.$ = $;
+
+var $$ = function $$(selector, parent) {
+  return Array.prototype.slice.call((parent ? parent : document).querySelectorAll(selector));
+};
+/*!
+ * Emit a custom event
+ * (c) 2019 Chris Ferdinandi, MIT License, https://gomakethings.com
+ * @param  {String} type   The event type
+ * @param  {Node}   elem   The element to attach the event to
+ * @param  {Object} detail Any details to pass along with the event
+ */
+
+
+exports.$$ = $$;
+
+var emitEvent = function emitEvent(type, elem, detail) {
+  // Make sure there's an event type
+  if (!type) return; // Variables
+
+  elem = elem || window;
+  detail = detail || {}; // Create a new event
+
+  var event = new CustomEvent(type, {
+    bubbles: true,
+    cancelable: true,
+    detail: detail
+  }); // Dispatch the event
+
+  elem.dispatchEvent(event);
+};
+/**
+ * Get the URL parameters
+ * source: https://css-tricks.com/snippets/javascript/get-url-variables/
+ * @param  {String} url The URL
+ * @return {Object}     The URL parameters
+ */
+
+
+exports.emitEvent = emitEvent;
+
+var getParams = function getParams(url) {
+  var params = {};
+  var parser = document.createElement('a');
+  parser.href = url ? url : window.location.href;
+  var query = parser.search.substring(1);
+  var vars = query.split('&');
+  if (vars.length < 1 || vars[0].length < 1) return params;
+
+  for (var i = 0; i < vars.length; i++) {
+    var pair = vars[i].split('=');
+    params[decodeURIComponent(pair[0])] = decodeURIComponent(pair[1]);
+  }
+
+  return params;
+};
+/*!
+ * Check if two objects or arrays are equal
+ * (c) 2017 Chris Ferdinandi, MIT License, https://gomakethings.com
+ * @param  {Object|Array}  value  The first object or array to compare
+ * @param  {Object|Array}  other  The second object or array to compare
+ * @return {Boolean}              Returns true if they're equal
+ */
+
+
+exports.getParams = getParams;
+
+var isEqual = function isEqual(value, other) {
+  // Get the value type
+  var type = Object.prototype.toString.call(value); // If the two objects are not the same type, return false
+
+  if (type !== Object.prototype.toString.call(other)) return false; // If items are not an object or array, return false
+
+  if (['[object Array]', '[object Object]'].indexOf(type) < 0) return false; // Compare the length of the length of the two items
+
+  var valueLen = type === '[object Array]' ? value.length : Object.keys(value).length;
+  var otherLen = type === '[object Array]' ? other.length : Object.keys(other).length;
+  if (valueLen !== otherLen) return false; // Compare two items
+
+  var compare = function compare(item1, item2) {
+    // Get the object type
+    var itemType = Object.prototype.toString.call(item1); // If an object or array, compare recursively
+
+    if (['[object Array]', '[object Object]'].indexOf(itemType) >= 0) {
+      if (!isEqual(item1, item2)) return false;
+    } // Otherwise, do a simple comparison
+    else {
+        // If the two items are not the same type, return false
+        if (itemType !== Object.prototype.toString.call(item2)) return false; // Else if it's a function, convert to a string and compare
+        // Otherwise, just compare
+
+        if (itemType === '[object Function]') {
+          if (item1.toString() !== item2.toString()) return false;
+        } else {
+          if (item1 !== item2) return false;
+        }
+      }
+  }; // Compare properties
+
+
+  if (type === '[object Array]') {
+    for (var i = 0; i < valueLen; i++) {
+      if (compare(value[i], other[i]) === false) return false;
+    }
+  } else {
+    for (var key in value) {
+      if (value.hasOwnProperty(key)) {
+        if (compare(value[key], other[key]) === false) return false;
+      }
+    }
+  } // If nothing failed, return true
+
+
+  return true;
+};
+/*!
+ * Run event after the DOM is ready
+ * (c) 2017 Chris Ferdinandi, MIT License, https://gomakethings.com
+ * @param  {Function} fn Callback function
+ */
+
+
+exports.isEqual = isEqual;
+
+var ready = function ready(fn) {
+  // Sanity check
+  if (typeof fn !== 'function') return; // If document is already loaded, run method
+
+  if (document.readyState === 'interactive' || document.readyState === 'complete') {
+    return fn();
+  } // Otherwise, wait until document is loaded
+
+
+  document.addEventListener('DOMContentLoaded', fn, false);
+};
+/**
+ * Randomly shuffle an array
+ * https://stackoverflow.com/a/2450976/1293256
+ * @param  {Array} array The array to shuffle
+ * @return {String}      The first item in the shuffled array
+ */
+
+
+exports.ready = ready;
+
+var shuffle = function shuffle(array) {
+  var currentIndex = array.length;
+  var temporaryValue, randomIndex; // While there remain elements to shuffle...
+
+  while (0 !== currentIndex) {
+    // Pick a remaining element...
+    randomIndex = Math.floor(Math.random() * currentIndex);
+    currentIndex -= 1; // And swap it with the current element.
+
+    temporaryValue = array[currentIndex];
+    array[currentIndex] = array[randomIndex];
+    array[randomIndex] = temporaryValue;
+  }
+
+  return array;
+};
+/*!
+ * Apply a CSS animation to an element
+ * (c) 2018 Chris Ferdinandi, MIT License, https://gomakethings.com
+ * @param  {Node}    elem      The element to animate
+ * @param  {String}  animation The type of animation to apply
+ * @param  {Function}  callback  Get a callback the when animation ends
+ * @param  {Boolean} hide      If true, apply the [hidden] attribute after the animation is done
+ */
+
+
+exports.shuffle = shuffle;
+
+var animate = function animate(elem, animation, callback, hide) {
+  // If there's no element or animation, do nothing
+  if (!elem || !animation) return; // Remove the [hidden] attribute
+
+  elem.removeAttribute('hidden'); // Apply the animation
+
+  elem.classList.add(animation); // Detect when the animation ends
+
+  elem.addEventListener('animationend', function endAnimation(event) {
+    // If the element should be hidden, hide it
+    if (hide) {
+      // Remove the animation class
+      elem.classList.remove(animation);
+      elem.setAttribute('hidden', 'true');
+    } // Add callback when animation ends
+
+
+    if (callback && typeof callback === "function") {
+      callback();
+    } // Remove this event listener
+
+
+    elem.removeEventListener('animationend', endAnimation, false);
+  }, false);
+};
+
+exports.animate = animate;
+
+var transition = function transition(elem, animation, callback, hide) {
+  // If there's no element or animation, do nothing
+  if (!elem || !animation) return; // Remove the [hidden] attribute
+
+  elem.removeAttribute('hidden'); // Apply the animation
+
+  elem.classList.add(animation); // Detect when the animation ends
+
+  elem.addEventListener('transitionend', function endAnimation(event) {
+    // If the element should be hidden, hide it
+    if (hide) {
+      // Remove the animation class
+      elem.classList.remove(animation);
+      elem.setAttribute('hidden', 'true');
+    } // Add callback when animation ends
+
+
+    if (callback && typeof callback === "function") {
+      callback();
+    } // Remove this event listener
+
+
+    elem.removeEventListener('transitionend', endAnimation, false);
+  }, false);
+};
+/**
+ * Debounce functions for better performance
+ * (c) 2018 Chris Ferdinandi, MIT License, https://gomakethings.com
+ * @param  {Function} fn The function to debounce
+ */
+
+
+exports.transition = transition;
+
+var debounce = function debounce(fn) {
+  // Setup a timer
+  var timeout; // Return a function to run debounced
+
+  return function () {
+    // Setup the arguments
+    var context = this;
+    var args = arguments; // If there's a timer, cancel it
+
+    if (timeout) {
+      window.cancelAnimationFrame(timeout);
+    } // Setup the new requestAnimationFrame()
+
+
+    timeout = window.requestAnimationFrame(function () {
+      fn.apply(context, args);
+    });
+  };
+};
+/*!
+ * Create an immutable clone of an array or object
+ * (c) 2019 Chris Ferdinandi, MIT License, https://gomakethings.com
+ * @param  {Array|Object} obj The array or object to copy
+ * @return {Array|Object}     The clone of the array or object
+ */
+
+
+exports.debounce = debounce;
+
+var copy = function copy(obj) {
+  //
+  // Methods
+  //
+
+  /**
+   * Create an immutable copy of an object
+   * @return {Object}
+   */
+  var cloneObj = function cloneObj() {
+    // Create new object
+    var clone = {}; // Loop through each item in the original
+    // Recursively copy it's value and add to the clone
+
+    for (var key in obj) {
+      if (obj.hasOwnProperty(key)) {
+        clone[key] = copy(obj[key]);
+      }
+    }
+
+    return clone;
+  };
+  /**
+   * Create an immutable copy of an array
+   * @return {Array}
+   */
+
+
+  var cloneArr = function cloneArr() {
+    return obj.map(function (item) {
+      return copy(item);
+    });
+  }; //
+  // Inits
+  //
+  // Get object type
+
+
+  var type = Object.prototype.toString.call(obj).slice(8, -1).toLowerCase(); // If an object
+
+  if (type === 'object') {
+    return cloneObj();
+  } // If an array
+
+
+  if (type === 'array') {
+    return cloneArr();
+  } // Otherwise, return it as-is
+
+
+  return obj;
+};
+/*!
+ * Build a query string from an object of data
+ * (c) 2018 Chris Ferdinandi, MIT License, https://gomakethings.com
+ * @param  {Object} data The data to turn into a query string
+ * @return {String}      The query string
+ */
+
+
+exports.copy = copy;
+
+var buildQuery = function buildQuery(data) {
+  if (typeof data === 'string') return data;
+  var query = [];
+
+  for (var key in data) {
+    if (data.hasOwnProperty(key)) {
+      query.push(encodeURIComponent(key) + '=' + encodeURIComponent(data[key]));
+    }
+  }
+
+  return query.join('&');
+};
+
+exports.buildQuery = buildQuery;
+
+var updateURL = function updateURL(key, value) {
+  var push = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : false;
+
+  if (history.pushState) {
+    var obj = value ? key + '=' + value : key;
+    var newurl = window.location.protocol + "//" + window.location.host + window.location.pathname + '?' + obj + window.location.hash;
+
+    if (push) {
+      window.history.pushState({
+        path: newurl
+      }, '', newurl);
+    } else {
+      window.history.replaceState({
+        path: newurl
+      }, '', newurl);
+    }
+  }
+};
+
+exports.updateURL = updateURL;
+
+var findIndex = function findIndex(array, value, key) {
+  if (array && array.length && value) {
+    if (key) {
+      return array.findIndex(function (el) {
+        return el[key] === value;
+      });
+    } else {
+      return array.indexOf(value);
+    }
+  }
+
+  return null;
+};
+
+exports.findIndex = findIndex;
+
+var find = function find(array, value, key) {
+  var all = arguments.length > 3 && arguments[3] !== undefined ? arguments[3] : false;
+
+  if (array && array.length && value && key) {
+    if (!all) {
+      return array.find(function (el) {
+        return el[key] === value;
+      });
+    } else {
+      return array.filter(function (el) {
+        return el[key] === value;
+      });
+    }
+  }
+
+  return null;
+};
+
+exports.find = find;
+
+var removeFromArray = function removeFromArray(array, value, key) {
+  var i = array.length;
+
+  while (i--) {
+    if (array[i] && array[i].hasOwnProperty(key) && arguments.length > 2 && array[i][key] === value) {
+      array.splice(i, 1);
+    }
+  }
+
+  return array;
+};
+/*!
+ * Determine if an element is in the viewport
+ * (c) 2017 Chris Ferdinandi, MIT License, https://gomakethings.com
+ * @param  {Node}    elem The element
+ * @return {Boolean}      Returns true if element is in the viewport
+ */
+
+
+exports.removeFromArray = removeFromArray;
+
+var isInViewport = function isInViewport(elem) {
+  var distance = elem.getBoundingClientRect();
+  return distance.top >= 0 && distance.left >= 0 && distance.bottom <= (window.innerHeight || document.documentElement.clientHeight) && distance.right <= (window.innerWidth || document.documentElement.clientWidth);
+};
+/*!
+ * Remove duplicate items from an array
+ * (c) 2019 Chris Ferdinandi, MIT License, https://gomakethings.com
+ * @param  {Array} arr The array
+ * @return {Array}     A new array with duplicates removed
+ */
+
+
+exports.isInViewport = isInViewport;
+
+var dedupe = function dedupe(arr) {
+  return arr.filter(function (item, index) {
+    return arr.indexOf(item) === index;
+  });
+};
+/*!
+ * Get an element's distance from the top of the Document.
+ * (c) 2017 Chris Ferdinandi, MIT License, https://gomakethings.com
+ * @param  {Node} elem The element
+ * @return {Number}    Distance from the top in pixels
+ */
+
+
+exports.dedupe = dedupe;
+
+var getOffsetTop = function getOffsetTop(elem) {
+  var location = 0;
+
+  if (elem.offsetParent) {
+    while (elem) {
+      location += elem.offsetTop;
+      elem = elem.offsetParent;
+    }
+  }
+
+  return location >= 0 ? location : 0;
+};
+
+exports.getOffsetTop = getOffsetTop;
+
+var hasNumbers = function hasNumbers(string) {
+  var regex = /\d/g;
+  return regex.test(string);
+};
+
+exports.hasNumbers = hasNumbers;
+
+var getStyle = function getStyle(elem, property) {
+  var index = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : 1;
+  var style = window.getComputedStyle(elem, null).getPropertyValue(property);
+
+  if (hasNumbers(style)) {
+    var numbers = style.split(' ');
+
+    if (numbers.length >= 2) {
+      return parseInt(numbers[index - 1], 10);
+    } else {
+      return parseInt(style, 10);
+    }
+  } else {
+    return style;
+  }
+};
+
+exports.getStyle = getStyle;
+
+var truncate = function truncate(string) {
+  var maxLength = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : 50;
+  if (!string) return null;
+  if (string.length <= maxLength) return string;
+  return "".concat(string.substring(0, maxLength), "...");
+};
+
+exports.truncate = truncate;
+var effect = _easing.easing;
+exports.effect = effect;
+
+var animation = function animation(start, end, duration, easing, callback) {
+  var timeStart = new Date().getTime();
+  var timer = setInterval(function () {
+    var time = new Date().getTime() - timeStart;
+    var x = effect[easing](time / duration, time, start, end - start, duration);
+    callback(x);
+    if (time >= duration) clearInterval(timer);
+  }, 1000 / 60);
+};
+
+exports.animation = animation;
