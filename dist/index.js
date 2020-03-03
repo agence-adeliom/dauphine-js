@@ -684,7 +684,7 @@ var shuffle = function shuffle(array) {
  * @param  {Boolean} hide      If true, apply the [hidden] attribute after the animation is done
  */
 
-var animate = function animate(elem, animation, callback, hide) {
+var animate = function animate(elem, animation, callback, hide, removeClass) {
   // If there's no element or animation, do nothing
   if (!elem || !animation) return; // Remove the [hidden] attribute
 
@@ -698,6 +698,11 @@ var animate = function animate(elem, animation, callback, hide) {
       // Remove the animation class
       elem.classList.remove(animation);
       elem.setAttribute('hidden', 'true');
+    }
+
+    if (removeClass) {
+      // Remove the animation class
+      elem.classList.remove(animation);
     } // Add callback when animation ends
 
 
@@ -709,7 +714,7 @@ var animate = function animate(elem, animation, callback, hide) {
     elem.removeEventListener('animationend', endAnimation, false);
   }, false);
 };
-var transition = function transition(elem, animation, callback, hide) {
+var transition = function transition(elem, animation, callback, hide, removeClass) {
   // If there's no element or animation, do nothing
   if (!elem || !animation) return; // Remove the [hidden] attribute
 
@@ -723,6 +728,11 @@ var transition = function transition(elem, animation, callback, hide) {
       // Remove the animation class
       elem.classList.remove(animation);
       elem.setAttribute('hidden', 'true');
+    }
+
+    if (removeClass) {
+      // Remove the animation class
+      elem.classList.remove(animation);
     } // Add callback when animation ends
 
 

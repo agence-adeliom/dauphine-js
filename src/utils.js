@@ -443,7 +443,7 @@ export const shuffle = function (array) {
  * @param  {Function}  callback  Get a callback the when animation ends
  * @param  {Boolean} hide      If true, apply the [hidden] attribute after the animation is done
  */
-export const animate = function (elem, animation, callback, hide) {
+export const animate = function (elem, animation, callback, hide, removeClass) {
 
     // If there's no element or animation, do nothing
     if (!elem || !animation) return;
@@ -464,6 +464,11 @@ export const animate = function (elem, animation, callback, hide) {
             elem.setAttribute('hidden', 'true');
         }
 
+        if(removeClass){
+            // Remove the animation class
+            elem.classList.remove(animation);
+        }
+
         // Add callback when animation ends
         if(callback && typeof callback === "function"){
             callback();
@@ -475,7 +480,7 @@ export const animate = function (elem, animation, callback, hide) {
     }, false);
 };
 
-export const transition = function (elem, animation, callback, hide) {
+export const transition = function (elem, animation, callback, hide, removeClass) {
     // If there's no element or animation, do nothing
     if (!elem || !animation) return;
 
@@ -493,6 +498,11 @@ export const transition = function (elem, animation, callback, hide) {
             // Remove the animation class
             elem.classList.remove(animation);
             elem.setAttribute('hidden', 'true');
+        }
+
+        if(removeClass){
+            // Remove the animation class
+            elem.classList.remove(animation);
         }
 
         // Add callback when animation ends
