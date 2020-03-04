@@ -389,6 +389,7 @@ var easing = {
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "truncate", function() { return truncate; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "effect", function() { return effect; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "animation", function() { return animation; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "isIE", function() { return isIE; });
 
 
 /*!
@@ -1084,6 +1085,18 @@ var animation = function animation(start, end, duration, easing, callback) {
     callback(x);
     if (time >= duration) clearInterval(timer);
   }, 1000 / 60);
+};
+var isIE = function isIE() {
+  var ua = window.navigator.userAgent;
+  var msie = ua.indexOf("MSIE ");
+
+  if (msie > 0 || !!navigator.userAgent.match(/Trident.*rv\:11\./)) {
+    return true;
+  } else {
+    return false;
+  }
+
+  return false;
 };
 
 /***/ })

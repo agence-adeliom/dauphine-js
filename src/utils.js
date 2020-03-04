@@ -777,3 +777,17 @@ export const animation = function (start, end, duration, easing, callback) {
         if (time >= duration) clearInterval(timer);
     }, 1000 / 60);
 };
+
+export const isIE = function() {
+    const ua = window.navigator.userAgent;
+    const msie = ua.indexOf("MSIE ");
+
+    if (msie > 0 || !!navigator.userAgent.match(/Trident.*rv\:11\./)) {
+        return true;
+    }
+    else {
+        return false;
+    }
+
+    return false;
+}
