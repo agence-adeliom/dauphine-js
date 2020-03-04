@@ -1,3 +1,4 @@
+import './polyfill.js';
 import {easing} from "../partials/easing";
 
 /*!
