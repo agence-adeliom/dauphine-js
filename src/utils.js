@@ -624,12 +624,17 @@ export const copy = function (obj) {
  * @param  {Object} data The data to turn into a query string
  * @return {String}      The query string
  */
-export const buildQuery = function (data) {
+export const buildQuery = function (data, encode=true) {
     if (typeof (data) === 'string') return data;
     var query = [];
     for (var key in data) {
         if (data.hasOwnProperty(key)) {
-            query.push(encodeURIComponent(key) + '=' + encodeURIComponent(data[key]));
+            if(encode){
+                query.push(encodeURIComponent(key) + '=' + encodeURIComponent(data[key]));
+            }
+            else{
+                query.push(key + '=' + data[key]);
+            }
         }
     }
     return query.join('&');

@@ -836,12 +836,17 @@ var copy = function copy(obj) {
  */
 
 var buildQuery = function buildQuery(data) {
+  var encode = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : true;
   if (typeof data === 'string') return data;
   var query = [];
 
   for (var key in data) {
     if (data.hasOwnProperty(key)) {
-      query.push(encodeURIComponent(key) + '=' + encodeURIComponent(data[key]));
+      if (encode) {
+        query.push(encodeURIComponent(key) + '=' + encodeURIComponent(data[key]));
+      } else {
+        query.push(key + '=' + data[key]);
+      }
     }
   }
 
