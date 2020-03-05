@@ -496,13 +496,7 @@ export const transition = function (elem, animation, callback, hide, removeClass
 
     // Apply the animation
     elem.classList.add(animation);
-
-    // test if transition name exist
-    if(getStyle(elem, "transition-duration") === 0){
-        elem.classList.remove(animation);
-        callback();
-    }
-
+    
     // Detect when the animation ends
     elem.addEventListener('transitionend', function endAnimation (event) {
 
