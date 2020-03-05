@@ -455,6 +455,12 @@ export const animate = function (elem, animation, callback, hide, removeClass) {
     // Apply the animation
     elem.classList.add(animation);
 
+    // test if animation name exist
+    if(getStyle(elem, "animation-name") === "none"){
+        elem.classList.remove(animation);
+        callback();
+    }
+
     // Detect when the animation ends
     elem.addEventListener('animationend', function endAnimation (event) {
 
@@ -490,6 +496,12 @@ export const transition = function (elem, animation, callback, hide, removeClass
 
     // Apply the animation
     elem.classList.add(animation);
+
+    // test if transition name exist
+    if(getStyle(elem, "transition-duration") === 0){
+        elem.classList.remove(animation);
+        callback();
+    }
 
     // Detect when the animation ends
     elem.addEventListener('transitionend', function endAnimation (event) {
@@ -790,4 +802,4 @@ export const isIE = function() {
     }
 
     return false;
-}
+};

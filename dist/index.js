@@ -787,7 +787,13 @@ var animate = function animate(elem, animation, callback, hide, removeClass) {
 
   elem.removeAttribute('hidden'); // Apply the animation
 
-  elem.classList.add(animation); // Detect when the animation ends
+  elem.classList.add(animation); // test if animation name exist
+
+  if (getStyle(elem, "animation-name") === "none") {
+    elem.classList.remove(animation);
+    callback();
+  } // Detect when the animation ends
+
 
   elem.addEventListener('animationend', function endAnimation(event) {
     // If the element should be hidden, hide it
@@ -817,7 +823,13 @@ var transition = function transition(elem, animation, callback, hide, removeClas
 
   elem.removeAttribute('hidden'); // Apply the animation
 
-  elem.classList.add(animation); // Detect when the animation ends
+  elem.classList.add(animation); // test if transition name exist
+
+  if (getStyle(elem, "transition-duration") === 0) {
+    elem.classList.remove(animation);
+    callback();
+  } // Detect when the animation ends
+
 
   elem.addEventListener('transitionend', function endAnimation(event) {
     // If the element should be hidden, hide it
