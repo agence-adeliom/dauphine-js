@@ -33,9 +33,18 @@ export const addEvent = function(event, selector, callback, options=false) {
         }, options);
     }
     else{
-        selector.addEventListener(event, (event) => {
-            callback(event, event.target);
-        }, options);
+        if(selector.length){
+            selector.forEach((el) => {
+                el.addEventListener(event, (event) => {
+                    callback(event, event.target);
+                }, options);
+            }); 
+        }
+        else{
+            selector.addEventListener(event, (event) => {
+                callback(event, event.target);
+            }, options);
+        }
     }
 
 };
@@ -58,7 +67,14 @@ export const removeEvent = function(event, selector, callback, options=false) {
         document.removeEventListener(event, callback, options);
     }
     else{
-        selector.removeEventListener(event, callback, options);
+        if(selector.length){
+            selector.forEach((el) => {
+                el.removeEventListener(event, callback, options);
+            }); 
+        }
+        else{
+            selector.removeEventListener(event, callback, options);
+        }
     }
 
 };
