@@ -425,9 +425,17 @@ var addEvent = function addEvent(event, selector, callback) {
       }
     }, options);
   } else {
-    selector.addEventListener(event, function (event) {
-      callback(event, event.target);
-    }, options);
+    if (selector.length) {
+      selector.forEach(function (el) {
+        el.addEventListener(event, function (event) {
+          callback(event, event.target);
+        }, options);
+      });
+    } else {
+      selector.addEventListener(event, function (event) {
+        callback(event, event.target);
+      }, options);
+    }
   }
 };
 /*!
@@ -448,7 +456,13 @@ var removeEvent = function removeEvent(event, selector, callback) {
   if (typeof selector == 'string') {
     document.removeEventListener(event, callback, options);
   } else {
-    selector.removeEventListener(event, callback, options);
+    if (selector.length) {
+      selector.forEach(function (el) {
+        el.removeEventListener(event, callback, options);
+      });
+    } else {
+      selector.removeEventListener(event, callback, options);
+    }
   }
 };
 /*!
