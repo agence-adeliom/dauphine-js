@@ -1,4 +1,5 @@
 import './polyfill.js';
+import './regex.js';
 import {easing} from "../partials/easing";
 
 /*!
@@ -496,7 +497,7 @@ export const transition = function (elem, animation, callback, hide, removeClass
 
     // Apply the animation
     elem.classList.add(animation);
-    
+
     // Detect when the animation ends
     elem.addEventListener('transitionend', function endAnimation (event) {
 

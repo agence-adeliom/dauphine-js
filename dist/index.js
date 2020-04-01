@@ -197,6 +197,21 @@ __webpack_require__.r(__webpack_exports__);
 // EXTERNAL MODULE: ./src/polyfill.js
 var polyfill = __webpack_require__(0);
 
+// CONCATENATED MODULE: ./src/regex.js
+var regPhoneFrench = /^((\+)33|0|0033)[1-9](\d{2}){4}$/g;
+var regZipcodeFrench = /^(?:(?:(?:0[1-9]|[1-8]\d|9[0-4])(?:\d{3})?)|97[1-8]|98[4-9]|‌​‌​2[abAB])/;
+var isValidPhone = function isValidPhone(phone) {
+  var lng = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : "fr";
+  return regPhoneFrench.test(phone);
+};
+var isValidZipcode = function isValidZipcode(zipcode) {
+  var lng = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : "fr";
+  return regZipcodeFrench.test(zipcode);
+};
+var isValidEmail = function isValidEmail(email) {
+  var re = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+  return re.test(String(email).toLowerCase());
+};
 // CONCATENATED MODULE: ./partials/easing.js
 var easing = {
   linear: function linear(x, t, b, c, d) {
@@ -390,6 +405,7 @@ var easing = {
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "effect", function() { return effect; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "animation", function() { return animation; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "isIE", function() { return isIE; });
+
 
 
 /*!
