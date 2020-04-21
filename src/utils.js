@@ -39,7 +39,7 @@ export const addEvent = function(event, selector, callback, options=false) {
                 el.addEventListener(event, (event) => {
                     callback(event, event.target);
                 }, options);
-            }); 
+            });
         }
         else{
             selector.addEventListener(event, (event) => {
@@ -71,7 +71,7 @@ export const removeEvent = function(event, selector, callback, options=false) {
         if(selector.length){
             selector.forEach((el) => {
                 el.removeEventListener(event, callback, options);
-            }); 
+            });
         }
         else{
             selector.removeEventListener(event, callback, options);
@@ -814,3 +814,46 @@ export const isIE = function() {
 
     return false;
 };
+
+export const getAjaxRequest = function (callback, url="") {
+
+    let s_ajaxListener = new Object();
+    s_ajaxListener.tempOpen = XMLHttpRequest.prototype.open;
+    s_ajaxListener.tempSend = XMLHttpRequest.prototype.send;
+    s_ajaxListener.callback = function () {
+        if(typeof callback === "function"){
+            if(url){
+                if(this.url.includes(url)){
+                    callback(this);
+                }
+            }
+            else{
+                callback(this);
+            }
+        }
+    };
+
+    XMLHttpRequest.prototype.open = function(a,b) {
+        if (!a) var a='';
+        if (!b) var b='';
+        s_ajaxListener.tempOpen.apply(this, arguments);
+        s_ajaxListener.method = a;
+        s_ajaxListener.url = b;
+        if (a.toLowerCase() == 'get') {
+            s_ajaxListener.data = b.split('?');
+            s_ajaxListener.data = s_ajaxListener.data[1];
+        }
+    };
+
+    XMLHttpRequest.prototype.send = function(a,b) {
+        if (!a) var a='';
+        if (!b) var b='';
+        s_ajaxListener.tempSend.apply(this, arguments);
+        s_ajaxListener.request = this;
+        if(s_ajaxListener.method.toLowerCase() == 'post') {
+            s_ajaxListener.data = a;
+        }
+        s_ajaxListener.callback();
+    };
+
+}

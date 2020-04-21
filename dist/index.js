@@ -405,6 +405,7 @@ var easing = {
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "effect", function() { return effect; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "animation", function() { return animation; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "isIE", function() { return isIE; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "getAjaxRequest", function() { return getAjaxRequest; });
 
 
 
@@ -1133,6 +1134,50 @@ var isIE = function isIE() {
   }
 
   return false;
+};
+var getAjaxRequest = function getAjaxRequest(callback) {
+  var url = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : "";
+  var s_ajaxListener = new Object();
+  s_ajaxListener.tempOpen = XMLHttpRequest.prototype.open;
+  s_ajaxListener.tempSend = XMLHttpRequest.prototype.send;
+
+  s_ajaxListener.callback = function () {
+    if (typeof callback === "function") {
+      if (url) {
+        if (this.url.includes(url)) {
+          callback(this);
+        }
+      } else {
+        callback(this);
+      }
+    }
+  };
+
+  XMLHttpRequest.prototype.open = function (a, b) {
+    if (!a) var a = '';
+    if (!b) var b = '';
+    s_ajaxListener.tempOpen.apply(this, arguments);
+    s_ajaxListener.method = a;
+    s_ajaxListener.url = b;
+
+    if (a.toLowerCase() == 'get') {
+      s_ajaxListener.data = b.split('?');
+      s_ajaxListener.data = s_ajaxListener.data[1];
+    }
+  };
+
+  XMLHttpRequest.prototype.send = function (a, b) {
+    if (!a) var a = '';
+    if (!b) var b = '';
+    s_ajaxListener.tempSend.apply(this, arguments);
+    s_ajaxListener.request = this;
+
+    if (s_ajaxListener.method.toLowerCase() == 'post') {
+      s_ajaxListener.data = a;
+    }
+
+    s_ajaxListener.callback();
+  };
 };
 
 /***/ })
