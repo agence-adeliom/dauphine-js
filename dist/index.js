@@ -375,9 +375,13 @@ var easing = {
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "addEvent", function() { return addEvent; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "removeEvent", function() { return removeEvent; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "getClosest", function() { return getClosest; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "getParents", function() { return getParents; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "getParentsUntil", function() { return getParentsUntil; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "getChildren", function() { return getChildren; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "getPreviousSibling", function() { return getPreviousSibling; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "getPreviousUntil", function() { return getPreviousUntil; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "getNextSibling", function() { return getNextSibling; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "getNextUntil", function() { return getNextUntil; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "mergeObjects", function() { return mergeObjects; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "deepMerge", function() { return deepMerge; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "$", function() { return utils_$; });
@@ -512,6 +516,90 @@ var getClosest = function getClosest(el, selector) {
   return null;
 };
 /*!
+ * Get all of an element's parent elements up the DOM tree
+ * (c) 2019 Chris Ferdinandi, MIT License, https://gomakethings.com
+ * @param  {Node}   elem     The element
+ * @param  {String} selector Selector to match against [optional]
+ * @return {Array}           The parent elements
+ */
+
+var getParents = function getParents(elem, selector) {
+  var matchesFn; // find vendor prefix
+
+  ['matches', 'webkitMatchesSelector', 'mozMatchesSelector', 'msMatchesSelector', 'oMatchesSelector'].some(function (fn) {
+    if (typeof document.body[fn] == 'function') {
+      matchesFn = fn;
+      return true;
+    }
+
+    return false;
+  }); // Setup parents array
+
+  var parents = []; // Get matching parent elements
+
+  while (elem && elem !== document) {
+    // If using a selector, add matching parents to array
+    // Otherwise, add all parents
+    if (selector) {
+      if (elem[matchesFn](selector)) {
+        parents.push(elem);
+      }
+    } else {
+      parents.push(elem);
+    } // Jump to the next parent node
+
+
+    elem = elem.parentNode;
+  }
+
+  return parents;
+};
+/*!
+ * Get all of an element's parent elements up the DOM tree until a matching parent is found
+ * (c) 2019 Chris Ferdinandi, MIT License, https://gomakethings.com
+ * @param  {Node}   elem     The element
+ * @param  {String} parent   The selector for the parent to stop at
+ * @param  {String} filter   The selector to filter against [optional]
+ * @return {Array}           The parent elements
+ */
+
+var getParentsUntil = function getParentsUntil(elem, parent, filter) {
+  var matchesFn; // find vendor prefix
+
+  ['matches', 'webkitMatchesSelector', 'mozMatchesSelector', 'msMatchesSelector', 'oMatchesSelector'].some(function (fn) {
+    if (typeof document.body[fn] == 'function') {
+      matchesFn = fn;
+      return true;
+    }
+
+    return false;
+  }); // Setup parents array
+
+  var parents = []; // Get matching parent elements
+
+  while (elem && elem !== document) {
+    // If there's a parent and the element matches, break
+    if (parent) {
+      if (elem[matchesFn](parent)) break;
+    } // If there's a filter and the element matches, push it to the array
+
+
+    if (filter) {
+      if (elem[matchesFn](filter)) {
+        parents.push(elem);
+      }
+
+      continue;
+    } // Otherwise, just add it to the array
+
+
+    parents.push(elem);
+    elem = elem.parentNode;
+  }
+
+  return parents;
+};
+/*!
  * Get all direct descendant elements that match a selector
  * Dependency: the matches() polyfill: https://vanillajstoolkit.com/polyfills/matches/
  * (c) 2018 Chris Ferdinandi, MIT License, https://gomakethings.com
@@ -566,6 +654,40 @@ var getPreviousSibling = function getPreviousSibling(elem, selector) {
   }
 };
 /*!
+ * Get previous siblings of an element until a selector is found
+ * (c) 2018 Chris Ferdinandi, MIT License, https://gomakethings.com
+ * @param  {Node}   elem     The element
+ * @param  {String} selector The selector to match against
+ * @return {Array}           The siblings
+ */
+
+var getPreviousUntil = function getPreviousUntil(elem, selector) {
+  var matchesFn; // find vendor prefix
+
+  ['matches', 'webkitMatchesSelector', 'mozMatchesSelector', 'msMatchesSelector', 'oMatchesSelector'].some(function (fn) {
+    if (typeof document.body[fn] == 'function') {
+      matchesFn = fn;
+      return true;
+    }
+
+    return false;
+  }); // Setup siblings array and get previous sibling
+
+  var siblings = [];
+  var prev = elem.previousElementSibling; // Loop through all siblings
+
+  while (prev) {
+    // If the matching item is found, quit
+    if (selector && prev[matchesFn](selector)) break; // Otherwise, push to array
+
+    siblings.push(prev); // Get the previous sibling
+
+    prev = prev.previousElementSibling;
+  }
+
+  return siblings;
+};
+/*!
  * Get next sibling of an element that matches selector
  * (c) 2018 Chris Ferdinandi, MIT License, https://gomakethings.com
  * @param  {Node}   elem     The element
@@ -594,6 +716,40 @@ var getNextSibling = function getNextSibling(elem, selector) {
     if (sibling[matchesFn](selector)) return sibling;
     sibling = sibling.nextElementSibling;
   }
+};
+/*!
+ * Get next siblings of an element until selector
+ * (c) 2018 Chris Ferdinandi, MIT License, https://gomakethings.com
+ * @param  {Node}   elem     The element
+ * @param  {String} selector The selector to match against
+ * @return {Array}           The siblings
+ */
+
+var getNextUntil = function getNextUntil(elem, selector) {
+  var matchesFn; // find vendor prefix
+
+  ['matches', 'webkitMatchesSelector', 'mozMatchesSelector', 'msMatchesSelector', 'oMatchesSelector'].some(function (fn) {
+    if (typeof document.body[fn] == 'function') {
+      matchesFn = fn;
+      return true;
+    }
+
+    return false;
+  }); // Setup siblings array and get next sibling
+
+  var siblings = [];
+  var next = elem.nextElementSibling; // Loop through all siblings
+
+  while (next) {
+    // If the matching item is found, quit
+    if (selector && next[matchesFn](selector)) break; // Otherwise, push to array
+
+    siblings.push(next); // Get the next sibling
+
+    next = next.nextElementSibling;
+  }
+
+  return siblings;
 };
 /*!
  * Merge Object

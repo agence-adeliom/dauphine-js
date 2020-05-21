@@ -95,7 +95,7 @@ export const getClosest = function(el, selector) {
             return true;
         }
         return false;
-    })
+    });
 
     var parent;
 
@@ -111,6 +111,102 @@ export const getClosest = function(el, selector) {
     return null;
 };
 
+/*!
+ * Get all of an element's parent elements up the DOM tree
+ * (c) 2019 Chris Ferdinandi, MIT License, https://gomakethings.com
+ * @param  {Node}   elem     The element
+ * @param  {String} selector Selector to match against [optional]
+ * @return {Array}           The parent elements
+ */
+export const getParents = function (elem, selector) {
+
+    var matchesFn;
+
+    // find vendor prefix
+    ['matches','webkitMatchesSelector','mozMatchesSelector','msMatchesSelector','oMatchesSelector'].some(function(fn) {
+        if (typeof document.body[fn] == 'function') {
+            matchesFn = fn;
+            return true;
+        }
+        return false;
+    });
+
+    // Setup parents array
+    var parents = [];
+
+    // Get matching parent elements
+    while (elem && elem !== document) {
+
+        // If using a selector, add matching parents to array
+        // Otherwise, add all parents
+        if (selector) {
+            if (elem[matchesFn](selector)) {
+                parents.push(elem);
+            }
+        } else {
+            parents.push(elem);
+        }
+
+        // Jump to the next parent node
+        elem = elem.parentNode;
+
+    }
+
+    return parents;
+
+};
+
+
+/*!
+ * Get all of an element's parent elements up the DOM tree until a matching parent is found
+ * (c) 2019 Chris Ferdinandi, MIT License, https://gomakethings.com
+ * @param  {Node}   elem     The element
+ * @param  {String} parent   The selector for the parent to stop at
+ * @param  {String} filter   The selector to filter against [optional]
+ * @return {Array}           The parent elements
+ */
+export const getParentsUntil = function (elem, parent, filter) {
+
+    var matchesFn;
+
+    // find vendor prefix
+    ['matches','webkitMatchesSelector','mozMatchesSelector','msMatchesSelector','oMatchesSelector'].some(function(fn) {
+        if (typeof document.body[fn] == 'function') {
+            matchesFn = fn;
+            return true;
+        }
+        return false;
+    });
+
+    // Setup parents array
+    var parents = [];
+
+    // Get matching parent elements
+    while (elem && elem !== document) {
+
+        // If there's a parent and the element matches, break
+        if (parent) {
+            if (elem[matchesFn](parent)) break;
+        }
+
+        // If there's a filter and the element matches, push it to the array
+        if (filter) {
+            if (elem[matchesFn](filter)) {
+                parents.push(elem);
+            }
+            continue;
+        }
+
+        // Otherwise, just add it to the array
+        parents.push(elem);
+
+        elem = elem.parentNode;
+
+    }
+
+    return parents;
+
+};
 
 /*!
  * Get all direct descendant elements that match a selector
@@ -131,7 +227,7 @@ export const getChildren = function (elem, selector) {
             return true;
         }
         return false;
-    })
+    });
 
     return Array.prototype.filter.call(elem.children, function (child) {
         return child[matchesFn](selector);
@@ -157,7 +253,7 @@ export const getPreviousSibling = function (elem, selector) {
             return true;
         }
         return false;
-    })
+    });
 
     // Get the next sibling element
     var sibling = elem.previousElementSibling;
@@ -174,6 +270,47 @@ export const getPreviousSibling = function (elem, selector) {
 
 };
 
+/*!
+ * Get previous siblings of an element until a selector is found
+ * (c) 2018 Chris Ferdinandi, MIT License, https://gomakethings.com
+ * @param  {Node}   elem     The element
+ * @param  {String} selector The selector to match against
+ * @return {Array}           The siblings
+ */
+export const getPreviousUntil = function (elem, selector) {
+
+    var matchesFn;
+
+    // find vendor prefix
+    ['matches','webkitMatchesSelector','mozMatchesSelector','msMatchesSelector','oMatchesSelector'].some(function(fn) {
+        if (typeof document.body[fn] == 'function') {
+            matchesFn = fn;
+            return true;
+        }
+        return false;
+    });
+
+    // Setup siblings array and get previous sibling
+    var siblings = [];
+    var prev = elem.previousElementSibling;
+
+    // Loop through all siblings
+    while (prev) {
+
+        // If the matching item is found, quit
+        if (selector && prev[matchesFn](selector)) break;
+
+        // Otherwise, push to array
+        siblings.push(prev);
+
+        // Get the previous sibling
+        prev = prev.previousElementSibling
+
+    }
+
+    return siblings;
+
+};
 
 /*!
  * Get next sibling of an element that matches selector
@@ -193,7 +330,7 @@ export const getNextSibling = function (elem, selector) {
             return true;
         }
         return false;
-    })
+    });
 
 
     // Get the next sibling element
@@ -211,6 +348,47 @@ export const getNextSibling = function (elem, selector) {
 
 };
 
+/*!
+ * Get next siblings of an element until selector
+ * (c) 2018 Chris Ferdinandi, MIT License, https://gomakethings.com
+ * @param  {Node}   elem     The element
+ * @param  {String} selector The selector to match against
+ * @return {Array}           The siblings
+ */
+export const getNextUntil = function (elem, selector) {
+
+    var matchesFn;
+
+    // find vendor prefix
+    ['matches','webkitMatchesSelector','mozMatchesSelector','msMatchesSelector','oMatchesSelector'].some(function(fn) {
+        if (typeof document.body[fn] == 'function') {
+            matchesFn = fn;
+            return true;
+        }
+        return false;
+    });
+
+    // Setup siblings array and get next sibling
+    var siblings = [];
+    var next = elem.nextElementSibling;
+
+    // Loop through all siblings
+    while (next) {
+
+        // If the matching item is found, quit
+        if (selector && next[matchesFn](selector)) break;
+
+        // Otherwise, push to array
+        siblings.push(next);
+
+        // Get the next sibling
+        next = next.nextElementSibling
+
+    }
+
+    return siblings;
+
+};
 
 /*!
  * Merge Object
