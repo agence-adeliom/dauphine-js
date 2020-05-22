@@ -964,4 +964,20 @@ export const getAjaxRequest = function (callback, url="") {
         s_ajaxListener.callback();
     };
 
-}
+};
+
+/**
+ * *******************************************************
+ * Return heighest element from an array of DOM elements
+ * *******************************************************
+ */
+export const getHeighestElement = function (elements = []) {
+    if(elements.length){
+        let heighest = null;
+        elements.forEach((el) => {
+            const elHeight = el.offsetHeight;
+            heighest = elHeight > heighest ? elHeight : heighest;
+        });
+        return heighest;
+    }
+};

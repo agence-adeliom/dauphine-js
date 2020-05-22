@@ -411,6 +411,7 @@ var easing = {
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "animation", function() { return animation; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "isIE", function() { return isIE; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "getAjaxRequest", function() { return getAjaxRequest; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "getHeighestElement", function() { return getHeighestElement; });
 
 
 
@@ -1270,6 +1271,24 @@ var getAjaxRequest = function getAjaxRequest(callback) {
 
     s_ajaxListener.callback();
   };
+};
+/**
+ * *******************************************************
+ * Return heighest element from an array of DOM elements
+ * *******************************************************
+ */
+
+var getHeighestElement = function getHeighestElement() {
+  var elements = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : [];
+
+  if (elements.length) {
+    var heighest = null;
+    elements.forEach(function (el) {
+      var elHeight = el.offsetHeight;
+      heighest = elHeight > heighest ? elHeight : heighest;
+    });
+    return heighest;
+  }
 };
 
 /***/ })
