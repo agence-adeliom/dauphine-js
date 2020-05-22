@@ -378,6 +378,7 @@ var easing = {
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "getParents", function() { return getParents; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "getParentsUntil", function() { return getParentsUntil; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "getChildren", function() { return getChildren; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "getClosestChildren", function() { return getClosestChildren; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "getPreviousSibling", function() { return getPreviousSibling; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "getPreviousUntil", function() { return getPreviousUntil; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "getNextSibling", function() { return getNextSibling; });
@@ -413,6 +414,16 @@ var easing = {
 
 
 
+var matchesFn; // find vendor prefix
+
+['matches', 'webkitMatchesSelector', 'mozMatchesSelector', 'msMatchesSelector', 'oMatchesSelector'].some(function (fn) {
+  if (typeof document.body[fn] == 'function') {
+    matchesFn = fn;
+    return true;
+  }
+
+  return false;
+});
 /*!
  * Add Event Listener
  */
@@ -427,17 +438,6 @@ var addEvent = function addEvent(event, selector, callback) {
   if (!callback || typeof callback !== "function") {
     throw 'A function callback is needed';
   }
-
-  var matchesFn; // find vendor prefix
-
-  ['matches', 'webkitMatchesSelector', 'mozMatchesSelector', 'msMatchesSelector', 'oMatchesSelector'].some(function (fn) {
-    if (typeof document.body[fn] == 'function') {
-      matchesFn = fn;
-      return true;
-    }
-
-    return false;
-  });
 
   if (typeof selector == 'string') {
     document.addEventListener(event, function (event) {
@@ -491,16 +491,6 @@ var removeEvent = function removeEvent(event, selector, callback) {
  */
 
 var getClosest = function getClosest(el, selector) {
-  var matchesFn; // find vendor prefix
-
-  ['matches', 'webkitMatchesSelector', 'mozMatchesSelector', 'msMatchesSelector', 'oMatchesSelector'].some(function (fn) {
-    if (typeof document.body[fn] == 'function') {
-      matchesFn = fn;
-      return true;
-    }
-
-    return false;
-  });
   var parent; // traverse parents
 
   while (el) {
@@ -524,17 +514,7 @@ var getClosest = function getClosest(el, selector) {
  */
 
 var getParents = function getParents(elem, selector) {
-  var matchesFn; // find vendor prefix
-
-  ['matches', 'webkitMatchesSelector', 'mozMatchesSelector', 'msMatchesSelector', 'oMatchesSelector'].some(function (fn) {
-    if (typeof document.body[fn] == 'function') {
-      matchesFn = fn;
-      return true;
-    }
-
-    return false;
-  }); // Setup parents array
-
+  // Setup parents array
   var parents = []; // Get matching parent elements
 
   while (elem && elem !== document) {
@@ -564,17 +544,7 @@ var getParents = function getParents(elem, selector) {
  */
 
 var getParentsUntil = function getParentsUntil(elem, parent, filter) {
-  var matchesFn; // find vendor prefix
-
-  ['matches', 'webkitMatchesSelector', 'mozMatchesSelector', 'msMatchesSelector', 'oMatchesSelector'].some(function (fn) {
-    if (typeof document.body[fn] == 'function') {
-      matchesFn = fn;
-      return true;
-    }
-
-    return false;
-  }); // Setup parents array
-
+  // Setup parents array
   var parents = []; // Get matching parent elements
 
   while (elem && elem !== document) {
@@ -609,19 +579,25 @@ var getParentsUntil = function getParentsUntil(elem, parent, filter) {
  */
 
 var getChildren = function getChildren(elem, selector) {
-  var matchesFn; // find vendor prefix
-
-  ['matches', 'webkitMatchesSelector', 'mozMatchesSelector', 'msMatchesSelector', 'oMatchesSelector'].some(function (fn) {
-    if (typeof document.body[fn] == 'function') {
-      matchesFn = fn;
-      return true;
-    }
-
-    return false;
-  });
   return Array.prototype.filter.call(elem.children, function (child) {
     return child[matchesFn](selector);
   });
+};
+/*!
+ * Get closest children
+ */
+
+var getClosestChildren = function getClosestChildren(elem, selector) {
+  var children = [];
+  var childElements = [].slice.call(elem.children);
+  childElements.forEach(function (child) {
+    if (child[matchesFn](selector)) {
+      children.push(child);
+    } else {
+      children = children.concat(getClosestChildren(child, selector));
+    }
+  });
+  return children;
 };
 /*!
  * Get previous sibling of an element that matches selector
@@ -632,17 +608,7 @@ var getChildren = function getChildren(elem, selector) {
  */
 
 var getPreviousSibling = function getPreviousSibling(elem, selector) {
-  var matchesFn; // find vendor prefix
-
-  ['matches', 'webkitMatchesSelector', 'mozMatchesSelector', 'msMatchesSelector', 'oMatchesSelector'].some(function (fn) {
-    if (typeof document.body[fn] == 'function') {
-      matchesFn = fn;
-      return true;
-    }
-
-    return false;
-  }); // Get the next sibling element
-
+  // Get the next sibling element
   var sibling = elem.previousElementSibling; // If there's no selector, return the first sibling
 
   if (!selector) return sibling; // If the sibling matches our selector, use it
@@ -662,17 +628,7 @@ var getPreviousSibling = function getPreviousSibling(elem, selector) {
  */
 
 var getPreviousUntil = function getPreviousUntil(elem, selector) {
-  var matchesFn; // find vendor prefix
-
-  ['matches', 'webkitMatchesSelector', 'mozMatchesSelector', 'msMatchesSelector', 'oMatchesSelector'].some(function (fn) {
-    if (typeof document.body[fn] == 'function') {
-      matchesFn = fn;
-      return true;
-    }
-
-    return false;
-  }); // Setup siblings array and get previous sibling
-
+  // Setup siblings array and get previous sibling
   var siblings = [];
   var prev = elem.previousElementSibling; // Loop through all siblings
 
@@ -696,17 +652,7 @@ var getPreviousUntil = function getPreviousUntil(elem, selector) {
  */
 
 var getNextSibling = function getNextSibling(elem, selector) {
-  var matchesFn; // find vendor prefix
-
-  ['matches', 'webkitMatchesSelector', 'mozMatchesSelector', 'msMatchesSelector', 'oMatchesSelector'].some(function (fn) {
-    if (typeof document.body[fn] == 'function') {
-      matchesFn = fn;
-      return true;
-    }
-
-    return false;
-  }); // Get the next sibling element
-
+  // Get the next sibling element
   var sibling = elem.nextElementSibling; // If there's no selector, return the first sibling
 
   if (!selector) return sibling; // If the sibling matches our selector, use it
@@ -726,17 +672,7 @@ var getNextSibling = function getNextSibling(elem, selector) {
  */
 
 var getNextUntil = function getNextUntil(elem, selector) {
-  var matchesFn; // find vendor prefix
-
-  ['matches', 'webkitMatchesSelector', 'mozMatchesSelector', 'msMatchesSelector', 'oMatchesSelector'].some(function (fn) {
-    if (typeof document.body[fn] == 'function') {
-      matchesFn = fn;
-      return true;
-    }
-
-    return false;
-  }); // Setup siblings array and get next sibling
-
+  // Setup siblings array and get next sibling
   var siblings = [];
   var next = elem.nextElementSibling; // Loop through all siblings
 
