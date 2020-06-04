@@ -2,21 +2,21 @@ import './polyfill.js';
 import './regex.js';
 import {easing} from "../partials/easing";
 
-var matchesFn;
-
-// find vendor prefix
-['matches','webkitMatchesSelector','mozMatchesSelector','msMatchesSelector','oMatchesSelector'].some(function(fn) {
-    if (typeof document.body[fn] == 'function') {
-        matchesFn = fn;
-        return true;
-    }
-    return false;
-});
-
 /*!
  * Add Event Listener
  */
 export const addEvent = function(event, selector, callback, options=false) {
+
+    var matchesFn;
+
+    // find vendor prefix
+    ['matches','webkitMatchesSelector','mozMatchesSelector','msMatchesSelector','oMatchesSelector'].some(function(fn) {
+        if (typeof document.body[fn] == 'function') {
+            matchesFn = fn;
+            return true;
+        }
+        return false;
+    });
 
     if(!selector){
         throw 'A selector is needed';
@@ -86,6 +86,17 @@ export const removeEvent = function(event, selector, callback, options=false) {
  */
 export const getClosest = function(el, selector) {
 
+    var matchesFn;
+
+    // find vendor prefix
+    ['matches','webkitMatchesSelector','mozMatchesSelector','msMatchesSelector','oMatchesSelector'].some(function(fn) {
+        if (typeof document.body[fn] == 'function') {
+            matchesFn = fn;
+            return true;
+        }
+        return false;
+    });
+
     var parent;
 
     // traverse parents
@@ -108,6 +119,17 @@ export const getClosest = function(el, selector) {
  * @return {Array}           The parent elements
  */
 export const getParents = function (elem, selector) {
+
+    var matchesFn;
+
+    // find vendor prefix
+    ['matches','webkitMatchesSelector','mozMatchesSelector','msMatchesSelector','oMatchesSelector'].some(function(fn) {
+        if (typeof document.body[fn] == 'function') {
+            matchesFn = fn;
+            return true;
+        }
+        return false;
+    });
 
     // Setup parents array
     var parents = [];
@@ -144,6 +166,17 @@ export const getParents = function (elem, selector) {
  * @return {Array}           The parent elements
  */
 export const getParentsUntil = function (elem, parent, filter) {
+
+    var matchesFn;
+
+    // find vendor prefix
+    ['matches','webkitMatchesSelector','mozMatchesSelector','msMatchesSelector','oMatchesSelector'].some(function(fn) {
+        if (typeof document.body[fn] == 'function') {
+            matchesFn = fn;
+            return true;
+        }
+        return false;
+    });
 
     // Setup parents array
     var parents = [];
@@ -184,6 +217,18 @@ export const getParentsUntil = function (elem, parent, filter) {
  * @return {Array}           The matching direct descendants
  */
 export const getChildren = function (elem, selector) {
+
+    var matchesFn;
+
+    // find vendor prefix
+    ['matches','webkitMatchesSelector','mozMatchesSelector','msMatchesSelector','oMatchesSelector'].some(function(fn) {
+        if (typeof document.body[fn] == 'function') {
+            matchesFn = fn;
+            return true;
+        }
+        return false;
+    });
+
     return Array.prototype.filter.call(elem.children, function (child) {
         return child[matchesFn](selector);
     });
@@ -193,6 +238,17 @@ export const getChildren = function (elem, selector) {
  * Get closest children
  */
 export const getClosestChildren = function (elem, selector) {
+
+    var matchesFn;
+
+    // find vendor prefix
+    ['matches','webkitMatchesSelector','mozMatchesSelector','msMatchesSelector','oMatchesSelector'].some(function(fn) {
+        if (typeof document.body[fn] == 'function') {
+            matchesFn = fn;
+            return true;
+        }
+        return false;
+    });
 
     let children = [];
 
@@ -219,6 +275,18 @@ export const getClosestChildren = function (elem, selector) {
  * @return {Node}            The sibling
  */
 export const getPreviousSibling = function (elem, selector) {
+
+    var matchesFn;
+
+    // find vendor prefix
+    ['matches','webkitMatchesSelector','mozMatchesSelector','msMatchesSelector','oMatchesSelector'].some(function(fn) {
+        if (typeof document.body[fn] == 'function') {
+            matchesFn = fn;
+            return true;
+        }
+        return false;
+    });
+
     // Get the next sibling element
     var sibling = elem.previousElementSibling;
 
@@ -242,6 +310,17 @@ export const getPreviousSibling = function (elem, selector) {
  * @return {Array}           The siblings
  */
 export const getPreviousUntil = function (elem, selector) {
+
+    var matchesFn;
+
+    // find vendor prefix
+    ['matches','webkitMatchesSelector','mozMatchesSelector','msMatchesSelector','oMatchesSelector'].some(function(fn) {
+        if (typeof document.body[fn] == 'function') {
+            matchesFn = fn;
+            return true;
+        }
+        return false;
+    });
 
     // Setup siblings array and get previous sibling
     var siblings = [];
@@ -274,6 +353,17 @@ export const getPreviousUntil = function (elem, selector) {
  */
 export const getNextSibling = function (elem, selector) {
 
+    var matchesFn;
+
+    // find vendor prefix
+    ['matches','webkitMatchesSelector','mozMatchesSelector','msMatchesSelector','oMatchesSelector'].some(function(fn) {
+        if (typeof document.body[fn] == 'function') {
+            matchesFn = fn;
+            return true;
+        }
+        return false;
+    });
+
     // Get the next sibling element
     var sibling = elem.nextElementSibling;
 
@@ -297,6 +387,17 @@ export const getNextSibling = function (elem, selector) {
  * @return {Array}           The siblings
  */
 export const getNextUntil = function (elem, selector) {
+
+    var matchesFn;
+
+    // find vendor prefix
+    ['matches','webkitMatchesSelector','mozMatchesSelector','msMatchesSelector','oMatchesSelector'].some(function(fn) {
+        if (typeof document.body[fn] == 'function') {
+            matchesFn = fn;
+            return true;
+        }
+        return false;
+    });
 
     // Setup siblings array and get next sibling
     var siblings = [];

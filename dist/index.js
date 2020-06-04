@@ -415,22 +415,22 @@ var easing = {
 
 
 
-var matchesFn; // find vendor prefix
-
-['matches', 'webkitMatchesSelector', 'mozMatchesSelector', 'msMatchesSelector', 'oMatchesSelector'].some(function (fn) {
-  if (typeof document.body[fn] == 'function') {
-    matchesFn = fn;
-    return true;
-  }
-
-  return false;
-});
 /*!
  * Add Event Listener
  */
 
 var addEvent = function addEvent(event, selector, callback) {
   var options = arguments.length > 3 && arguments[3] !== undefined ? arguments[3] : false;
+  var matchesFn; // find vendor prefix
+
+  ['matches', 'webkitMatchesSelector', 'mozMatchesSelector', 'msMatchesSelector', 'oMatchesSelector'].some(function (fn) {
+    if (typeof document.body[fn] == 'function') {
+      matchesFn = fn;
+      return true;
+    }
+
+    return false;
+  });
 
   if (!selector) {
     throw 'A selector is needed';
@@ -492,6 +492,16 @@ var removeEvent = function removeEvent(event, selector, callback) {
  */
 
 var getClosest = function getClosest(el, selector) {
+  var matchesFn; // find vendor prefix
+
+  ['matches', 'webkitMatchesSelector', 'mozMatchesSelector', 'msMatchesSelector', 'oMatchesSelector'].some(function (fn) {
+    if (typeof document.body[fn] == 'function') {
+      matchesFn = fn;
+      return true;
+    }
+
+    return false;
+  });
   var parent; // traverse parents
 
   while (el) {
@@ -515,7 +525,17 @@ var getClosest = function getClosest(el, selector) {
  */
 
 var getParents = function getParents(elem, selector) {
-  // Setup parents array
+  var matchesFn; // find vendor prefix
+
+  ['matches', 'webkitMatchesSelector', 'mozMatchesSelector', 'msMatchesSelector', 'oMatchesSelector'].some(function (fn) {
+    if (typeof document.body[fn] == 'function') {
+      matchesFn = fn;
+      return true;
+    }
+
+    return false;
+  }); // Setup parents array
+
   var parents = []; // Get matching parent elements
 
   while (elem && elem !== document) {
@@ -545,7 +565,17 @@ var getParents = function getParents(elem, selector) {
  */
 
 var getParentsUntil = function getParentsUntil(elem, parent, filter) {
-  // Setup parents array
+  var matchesFn; // find vendor prefix
+
+  ['matches', 'webkitMatchesSelector', 'mozMatchesSelector', 'msMatchesSelector', 'oMatchesSelector'].some(function (fn) {
+    if (typeof document.body[fn] == 'function') {
+      matchesFn = fn;
+      return true;
+    }
+
+    return false;
+  }); // Setup parents array
+
   var parents = []; // Get matching parent elements
 
   while (elem && elem !== document) {
@@ -580,6 +610,16 @@ var getParentsUntil = function getParentsUntil(elem, parent, filter) {
  */
 
 var getChildren = function getChildren(elem, selector) {
+  var matchesFn; // find vendor prefix
+
+  ['matches', 'webkitMatchesSelector', 'mozMatchesSelector', 'msMatchesSelector', 'oMatchesSelector'].some(function (fn) {
+    if (typeof document.body[fn] == 'function') {
+      matchesFn = fn;
+      return true;
+    }
+
+    return false;
+  });
   return Array.prototype.filter.call(elem.children, function (child) {
     return child[matchesFn](selector);
   });
@@ -589,6 +629,16 @@ var getChildren = function getChildren(elem, selector) {
  */
 
 var getClosestChildren = function getClosestChildren(elem, selector) {
+  var matchesFn; // find vendor prefix
+
+  ['matches', 'webkitMatchesSelector', 'mozMatchesSelector', 'msMatchesSelector', 'oMatchesSelector'].some(function (fn) {
+    if (typeof document.body[fn] == 'function') {
+      matchesFn = fn;
+      return true;
+    }
+
+    return false;
+  });
   var children = [];
   var childElements = [].slice.call(elem.children);
   childElements.forEach(function (child) {
@@ -609,7 +659,17 @@ var getClosestChildren = function getClosestChildren(elem, selector) {
  */
 
 var getPreviousSibling = function getPreviousSibling(elem, selector) {
-  // Get the next sibling element
+  var matchesFn; // find vendor prefix
+
+  ['matches', 'webkitMatchesSelector', 'mozMatchesSelector', 'msMatchesSelector', 'oMatchesSelector'].some(function (fn) {
+    if (typeof document.body[fn] == 'function') {
+      matchesFn = fn;
+      return true;
+    }
+
+    return false;
+  }); // Get the next sibling element
+
   var sibling = elem.previousElementSibling; // If there's no selector, return the first sibling
 
   if (!selector) return sibling; // If the sibling matches our selector, use it
@@ -629,7 +689,17 @@ var getPreviousSibling = function getPreviousSibling(elem, selector) {
  */
 
 var getPreviousUntil = function getPreviousUntil(elem, selector) {
-  // Setup siblings array and get previous sibling
+  var matchesFn; // find vendor prefix
+
+  ['matches', 'webkitMatchesSelector', 'mozMatchesSelector', 'msMatchesSelector', 'oMatchesSelector'].some(function (fn) {
+    if (typeof document.body[fn] == 'function') {
+      matchesFn = fn;
+      return true;
+    }
+
+    return false;
+  }); // Setup siblings array and get previous sibling
+
   var siblings = [];
   var prev = elem.previousElementSibling; // Loop through all siblings
 
@@ -653,7 +723,17 @@ var getPreviousUntil = function getPreviousUntil(elem, selector) {
  */
 
 var getNextSibling = function getNextSibling(elem, selector) {
-  // Get the next sibling element
+  var matchesFn; // find vendor prefix
+
+  ['matches', 'webkitMatchesSelector', 'mozMatchesSelector', 'msMatchesSelector', 'oMatchesSelector'].some(function (fn) {
+    if (typeof document.body[fn] == 'function') {
+      matchesFn = fn;
+      return true;
+    }
+
+    return false;
+  }); // Get the next sibling element
+
   var sibling = elem.nextElementSibling; // If there's no selector, return the first sibling
 
   if (!selector) return sibling; // If the sibling matches our selector, use it
@@ -673,7 +753,17 @@ var getNextSibling = function getNextSibling(elem, selector) {
  */
 
 var getNextUntil = function getNextUntil(elem, selector) {
-  // Setup siblings array and get next sibling
+  var matchesFn; // find vendor prefix
+
+  ['matches', 'webkitMatchesSelector', 'mozMatchesSelector', 'msMatchesSelector', 'oMatchesSelector'].some(function (fn) {
+    if (typeof document.body[fn] == 'function') {
+      matchesFn = fn;
+      return true;
+    }
+
+    return false;
+  }); // Setup siblings array and get next sibling
+
   var siblings = [];
   var next = elem.nextElementSibling; // Loop through all siblings
 
