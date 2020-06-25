@@ -1,4 +1,4 @@
-export const polyfill = function() {
+export const foreach = function() {
     if ('NodeList' in window && !NodeList.prototype.forEach) {
         NodeList.prototype.forEach = function (callback, thisArg) {
             thisArg = thisArg || window;
