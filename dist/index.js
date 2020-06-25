@@ -186,6 +186,16 @@ if (!Array.prototype.find) {
   });
 }
 
+if ('NodeList' in window && !NodeList.prototype.forEach) {
+  NodeList.prototype.forEach = function (callback, thisArg) {
+    thisArg = thisArg || window;
+
+    for (var i = 0; i < this.length; i++) {
+      callback.call(thisArg, this[i], i, this);
+    }
+  };
+}
+
 /***/ }),
 /* 1 */,
 /* 2 */
@@ -371,6 +381,18 @@ var easing = {
     return $.easing.easeOutBounce(x, t * 2 - d, 0, c, d) * .5 + c * .5 + b;
   }
 };
+// CONCATENATED MODULE: ./partials/polyfill-foreach.js
+var polyfillForEach = function polyfillForEach() {
+  if ('NodeList' in window && !NodeList.prototype.forEach) {
+    NodeList.prototype.forEach = function (callback, thisArg) {
+      thisArg = thisArg || window;
+
+      for (var i = 0; i < this.length; i++) {
+        callback.call(thisArg, this[i], i, this);
+      }
+    };
+  }
+};
 // CONCATENATED MODULE: ./src/utils.js
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "addEvent", function() { return addEvent; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "removeEvent", function() { return removeEvent; });
@@ -412,6 +434,7 @@ var easing = {
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "isIE", function() { return isIE; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "getAjaxRequest", function() { return getAjaxRequest; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "getHeighestElement", function() { return getHeighestElement; });
+
 
 
 
