@@ -1,7 +1,5 @@
-import './polyfill.js';
-import './regex.js';
+import '../partials/polyfill.js';
 import {easing} from "../partials/easing";
-import {polyfillForEach} from "../partials/polyfill-foreach";
 
 /*!
  * Add Event Listener

@@ -8,7 +8,9 @@ const webpackOption = {
     mode: "production",
     entry: {
         index: './src/utils.js',
-        emitter: './src/emitter.js'
+        emitter: './src/emitter.js',
+        regex: './src/regex.js',
+        polyfill: './src/polyfill.js'
     },
     output: {
         path: path.resolve(__dirname, "./dist"),
