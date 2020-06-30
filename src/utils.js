@@ -1023,7 +1023,7 @@ export const isIE = function() {
     return false;
 };
 
-export const getAjaxRequest = function (callback, url="") {
+export const getAjaxRequest = function (callback, url="", exclude = "") {
 
     let s_ajaxListener = new Object();
     s_ajaxListener.tempOpen = XMLHttpRequest.prototype.open;
@@ -1031,7 +1031,7 @@ export const getAjaxRequest = function (callback, url="") {
     s_ajaxListener.callback = function () {
         if(typeof callback === "function"){
             if(url){
-                if(this.url.includes(url)){
+                if(this.url.includes(url) && ((exclude && !this.url.includes(exclude)) || !exclude)){
                     callback(this);
                 }
             }

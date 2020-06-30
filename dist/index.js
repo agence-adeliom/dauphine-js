@@ -1316,6 +1316,7 @@ var isIE = function isIE() {
 };
 var getAjaxRequest = function getAjaxRequest(callback) {
   var url = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : "";
+  var exclude = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : "";
   var s_ajaxListener = new Object();
   s_ajaxListener.tempOpen = XMLHttpRequest.prototype.open;
   s_ajaxListener.tempSend = XMLHttpRequest.prototype.send;
@@ -1323,7 +1324,7 @@ var getAjaxRequest = function getAjaxRequest(callback) {
   s_ajaxListener.callback = function () {
     if (typeof callback === "function") {
       if (url) {
-        if (this.url.includes(url)) {
+        if (this.url.includes(url) && (exclude && !this.url.includes(exclude) || !exclude)) {
           callback(this);
         }
       } else {
