@@ -107,7 +107,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "isValidZipcode", function() { return isValidZipcode; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "isValidEmail", function() { return isValidEmail; });
 var regPhoneFrench = /^((\+)33|0|0033)[1-9](\d{2}){4}$/g;
-var regZipcodeFrench = /^(?:(?:(?:0[1-9]|[1-8]\d|9[0-4])(?:\d{3})?)|97[1-8]|98[4-9]|‌​‌​2[abAB])/;
+var regZipcodeFrench = /(^\d{5}$)|(^\d{5}-\d{4}$)/;
 var isValidPhone = function isValidPhone(phone) {
   var lng = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : "fr";
   return regPhoneFrench.test(phone);

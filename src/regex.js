@@ -1,5 +1,5 @@
 export const regPhoneFrench = /^((\+)33|0|0033)[1-9](\d{2}){4}$/g;
-export const regZipcodeFrench = /^(?:(?:(?:0[1-9]|[1-8]\d|9[0-4])(?:\d{3})?)|97[1-8]|98[4-9]|‌​‌​2[abAB])/;
+export const regZipcodeFrench = /(^\d{5}$)|(^\d{5}-\d{4}$)/;
 
 export const isValidPhone = function(phone, lng="fr") {
     return regPhoneFrench.test(phone);
