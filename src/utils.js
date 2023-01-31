@@ -856,19 +856,37 @@ export const copy = function (obj) {
  * @param  {Object} data The data to turn into a query string
  * @return {String}      The query string
  */
-export const buildQuery = function (data, encode=true) {
+export const buildQuery = function (data, encode = true, nativeArrays = false) {
     if (typeof (data) === 'string') return data;
     var query = [];
+
     for (var key in data) {
+        // if key ends by []
         if (data.hasOwnProperty(key)) {
-            if(encode){
-                query.push(encodeURIComponent(key) + '=' + encodeURIComponent(data[key]));
-            }
-            else{
-                query.push(key + '=' + data[key]);
+            if (nativeArrays && key.substr(-2) === '[]' && Array.isArray(data[key])) {
+                var toPush = '';
+
+                data[key].forEach((value) => {
+                    if(toPush !== '') toPush = toPush + '&';
+
+                    if(encode){
+                        toPush = toPush + encodeURIComponent(key) + '=' + encodeURIComponent(value);
+                    }else {
+                        toPush = toPush + key + '=' + value;
+                    }
+                });
+
+                query.push(toPush);
+            } else {
+                if (encode) {
+                    query.push(encodeURIComponent(key) + '=' + encodeURIComponent(data[key]));
+                } else {
+                    query.push(key + '=' + data[key]);
+                }
             }
         }
     }
+
     return query.join('&');
 };
 

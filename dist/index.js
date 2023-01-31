@@ -1150,15 +1150,31 @@ var copy = function copy(obj) {
 
 var buildQuery = function buildQuery(data) {
   var encode = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : true;
+  var nativeArrays = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : false;
   if (typeof data === 'string') return data;
   var query = [];
 
   for (var key in data) {
+    // if key ends by []
     if (data.hasOwnProperty(key)) {
-      if (encode) {
-        query.push(encodeURIComponent(key) + '=' + encodeURIComponent(data[key]));
+      if (nativeArrays && key.substr(-2) === '[]' && Array.isArray(data[key])) {
+        var toPush = '';
+        data[key].forEach(function (value) {
+          if (toPush !== '') toPush = toPush + '&';
+
+          if (encode) {
+            toPush = toPush + encodeURIComponent(key) + '=' + encodeURIComponent(value);
+          } else {
+            toPush = toPush + key + '=' + value;
+          }
+        });
+        query.push(toPush);
       } else {
-        query.push(key + '=' + data[key]);
+        if (encode) {
+          query.push(encodeURIComponent(key) + '=' + encodeURIComponent(data[key]));
+        } else {
+          query.push(key + '=' + data[key]);
+        }
       }
     }
   }
