@@ -872,6 +872,7 @@ var emitEvent = function emitEvent(type, elem, detail) {
  */
 
 var getParams = function getParams(url) {
+  var nativeArrays = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : false;
   var params = {};
   var parser = document.createElement('a');
   parser.href = url ? url : window.location.href;
@@ -881,7 +882,18 @@ var getParams = function getParams(url) {
 
   for (var i = 0; i < vars.length; i++) {
     var pair = vars[i].split('=');
-    params[decodeURIComponent(pair[0])] = decodeURIComponent(pair[1]);
+    var key = decodeURIComponent(pair[0]);
+    var value = decodeURIComponent(pair[1]);
+
+    if (nativeArrays && key.slice(-2) === '[]') {
+      if (params[key] === undefined) {
+        params[key] = [];
+      }
+
+      params[key].push(value);
+    } else {
+      params[key] = value;
+    }
   }
 
   return params;

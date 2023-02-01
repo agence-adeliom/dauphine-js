@@ -4,12 +4,12 @@ import {easing} from "../partials/easing";
 /*!
  * Add Event Listener
  */
-export const addEvent = function(event, selector, callback, options=false) {
+export const addEvent = function (event, selector, callback, options = false) {
 
     var matchesFn;
 
     // find vendor prefix
-    ['matches','webkitMatchesSelector','mozMatchesSelector','msMatchesSelector','oMatchesSelector'].some(function(fn) {
+    ['matches', 'webkitMatchesSelector', 'mozMatchesSelector', 'msMatchesSelector', 'oMatchesSelector'].some(function (fn) {
         if (typeof document.body[fn] == 'function') {
             matchesFn = fn;
             return true;
@@ -17,30 +17,28 @@ export const addEvent = function(event, selector, callback, options=false) {
         return false;
     });
 
-    if(!selector){
+    if (!selector) {
         throw 'A selector is needed';
     }
 
-    if(!callback || typeof callback !== "function"){
+    if (!callback || typeof callback !== "function") {
         throw 'A function callback is needed';
     }
 
-    if(typeof selector == 'string'){
+    if (typeof selector == 'string') {
         document.addEventListener(event, (event) => {
             if (event.target[matchesFn](selector)) {
                 callback(event, event.target);
             }
         }, options);
-    }
-    else{
-        if(selector.length){
+    } else {
+        if (selector.length) {
             selector.forEach((el) => {
                 el.addEventListener(event, (event) => {
                     callback(event, event.target);
                 }, options);
             });
-        }
-        else{
+        } else {
             selector.addEventListener(event, (event) => {
                 callback(event, event.target);
             }, options);
@@ -53,26 +51,24 @@ export const addEvent = function(event, selector, callback, options=false) {
 /*!
  * Remove Event Listener
  */
-export const removeEvent = function(event, selector, callback, options=false) {
+export const removeEvent = function (event, selector, callback, options = false) {
 
-    if(!selector){
+    if (!selector) {
         throw 'A selector is needed';
     }
 
-    if(!callback || typeof callback !== "function"){
+    if (!callback || typeof callback !== "function") {
         throw 'A function callback is needed';
     }
 
-    if(typeof selector == 'string'){
+    if (typeof selector == 'string') {
         document.removeEventListener(event, callback, options);
-    }
-    else{
-        if(selector.length){
+    } else {
+        if (selector.length) {
             selector.forEach((el) => {
                 el.removeEventListener(event, callback, options);
             });
-        }
-        else{
+        } else {
             selector.removeEventListener(event, callback, options);
         }
     }
@@ -83,12 +79,12 @@ export const removeEvent = function(event, selector, callback, options=false) {
 /*!
  * Get closest parent
  */
-export const getClosest = function(el, selector) {
+export const getClosest = function (el, selector) {
 
     var matchesFn;
 
     // find vendor prefix
-    ['matches','webkitMatchesSelector','mozMatchesSelector','msMatchesSelector','oMatchesSelector'].some(function(fn) {
+    ['matches', 'webkitMatchesSelector', 'mozMatchesSelector', 'msMatchesSelector', 'oMatchesSelector'].some(function (fn) {
         if (typeof document.body[fn] == 'function') {
             matchesFn = fn;
             return true;
@@ -122,7 +118,7 @@ export const getParents = function (elem, selector) {
     var matchesFn;
 
     // find vendor prefix
-    ['matches','webkitMatchesSelector','mozMatchesSelector','msMatchesSelector','oMatchesSelector'].some(function(fn) {
+    ['matches', 'webkitMatchesSelector', 'mozMatchesSelector', 'msMatchesSelector', 'oMatchesSelector'].some(function (fn) {
         if (typeof document.body[fn] == 'function') {
             matchesFn = fn;
             return true;
@@ -169,7 +165,7 @@ export const getParentsUntil = function (elem, parent, filter) {
     var matchesFn;
 
     // find vendor prefix
-    ['matches','webkitMatchesSelector','mozMatchesSelector','msMatchesSelector','oMatchesSelector'].some(function(fn) {
+    ['matches', 'webkitMatchesSelector', 'mozMatchesSelector', 'msMatchesSelector', 'oMatchesSelector'].some(function (fn) {
         if (typeof document.body[fn] == 'function') {
             matchesFn = fn;
             return true;
@@ -220,7 +216,7 @@ export const getChildren = function (elem, selector) {
     var matchesFn;
 
     // find vendor prefix
-    ['matches','webkitMatchesSelector','mozMatchesSelector','msMatchesSelector','oMatchesSelector'].some(function(fn) {
+    ['matches', 'webkitMatchesSelector', 'mozMatchesSelector', 'msMatchesSelector', 'oMatchesSelector'].some(function (fn) {
         if (typeof document.body[fn] == 'function') {
             matchesFn = fn;
             return true;
@@ -241,7 +237,7 @@ export const getClosestChildren = function (elem, selector) {
     var matchesFn;
 
     // find vendor prefix
-    ['matches','webkitMatchesSelector','mozMatchesSelector','msMatchesSelector','oMatchesSelector'].some(function(fn) {
+    ['matches', 'webkitMatchesSelector', 'mozMatchesSelector', 'msMatchesSelector', 'oMatchesSelector'].some(function (fn) {
         if (typeof document.body[fn] == 'function') {
             matchesFn = fn;
             return true;
@@ -254,10 +250,9 @@ export const getClosestChildren = function (elem, selector) {
     const childElements = [].slice.call(elem.children);
 
     childElements.forEach((child) => {
-        if (child[matchesFn](selector)){
+        if (child[matchesFn](selector)) {
             children.push(child);
-        }
-        else{
+        } else {
             children = children.concat(getClosestChildren(child, selector));
         }
     });
@@ -278,7 +273,7 @@ export const getPreviousSibling = function (elem, selector) {
     var matchesFn;
 
     // find vendor prefix
-    ['matches','webkitMatchesSelector','mozMatchesSelector','msMatchesSelector','oMatchesSelector'].some(function(fn) {
+    ['matches', 'webkitMatchesSelector', 'mozMatchesSelector', 'msMatchesSelector', 'oMatchesSelector'].some(function (fn) {
         if (typeof document.body[fn] == 'function') {
             matchesFn = fn;
             return true;
@@ -313,7 +308,7 @@ export const getPreviousUntil = function (elem, selector) {
     var matchesFn;
 
     // find vendor prefix
-    ['matches','webkitMatchesSelector','mozMatchesSelector','msMatchesSelector','oMatchesSelector'].some(function(fn) {
+    ['matches', 'webkitMatchesSelector', 'mozMatchesSelector', 'msMatchesSelector', 'oMatchesSelector'].some(function (fn) {
         if (typeof document.body[fn] == 'function') {
             matchesFn = fn;
             return true;
@@ -355,7 +350,7 @@ export const getNextSibling = function (elem, selector) {
     var matchesFn;
 
     // find vendor prefix
-    ['matches','webkitMatchesSelector','mozMatchesSelector','msMatchesSelector','oMatchesSelector'].some(function(fn) {
+    ['matches', 'webkitMatchesSelector', 'mozMatchesSelector', 'msMatchesSelector', 'oMatchesSelector'].some(function (fn) {
         if (typeof document.body[fn] == 'function') {
             matchesFn = fn;
             return true;
@@ -390,7 +385,7 @@ export const getNextUntil = function (elem, selector) {
     var matchesFn;
 
     // find vendor prefix
-    ['matches','webkitMatchesSelector','mozMatchesSelector','msMatchesSelector','oMatchesSelector'].some(function(fn) {
+    ['matches', 'webkitMatchesSelector', 'mozMatchesSelector', 'msMatchesSelector', 'oMatchesSelector'].some(function (fn) {
         if (typeof document.body[fn] == 'function') {
             matchesFn = fn;
             return true;
@@ -423,12 +418,12 @@ export const getNextUntil = function (elem, selector) {
 /*!
  * Merge Object
  */
-export const mergeObjects = function() {
+export const mergeObjects = function () {
     var resObj = {};
-    for(var i=0; i < arguments.length; i += 1) {
+    for (var i = 0; i < arguments.length; i += 1) {
         var obj = arguments[i],
             keys = Object.keys(obj);
-        for(var j=0; j < keys.length; j += 1) {
+        for (var j = 0; j < keys.length; j += 1) {
             resObj[keys[j]] = obj[keys[j]];
         }
     }
@@ -526,17 +521,35 @@ export const emitEvent = function (type, elem, detail) {
  * @param  {String} url The URL
  * @return {Object}     The URL parameters
  */
-export const getParams = function (url) {
+export const getParams = function (url, nativeArrays = false) {
     var params = {};
+
     var parser = document.createElement('a');
     parser.href = url ? url : window.location.href;
+
     var query = parser.search.substring(1);
+
     var vars = query.split('&');
+
     if (vars.length < 1 || vars[0].length < 1) return params;
+
     for (var i = 0; i < vars.length; i++) {
         var pair = vars[i].split('=');
-        params[decodeURIComponent(pair[0])] = decodeURIComponent(pair[1]);
+
+        var key = decodeURIComponent(pair[0]);
+        var value = decodeURIComponent(pair[1]);
+
+        if (nativeArrays && key.slice(-2) === '[]') {
+            if (params[key] === undefined) {
+                params[key] = [];
+            }
+
+            params[key].push(value);
+        } else {
+            params[key] = value;
+        }
     }
+
     return params;
 };
 
@@ -660,7 +673,6 @@ export const shuffle = function (array) {
 };
 
 
-
 /*!
  * Apply a CSS animation to an element
  * (c) 2018 Chris Ferdinandi, MIT License, https://gomakethings.com
@@ -681,13 +693,13 @@ export const animate = function (elem, animation, callback, hide, removeClass) {
     elem.classList.add(animation);
 
     // test if animation name exist
-    if(getStyle(elem, "animation-name") === "none"){
+    if (getStyle(elem, "animation-name") === "none") {
         elem.classList.remove(animation);
         callback();
     }
 
     // Detect when the animation ends
-    elem.addEventListener('animationend', function endAnimation (event) {
+    elem.addEventListener('animationend', function endAnimation(event) {
 
         // If the element should be hidden, hide it
         if (hide) {
@@ -696,13 +708,13 @@ export const animate = function (elem, animation, callback, hide, removeClass) {
             elem.setAttribute('hidden', 'true');
         }
 
-        if(removeClass){
+        if (removeClass) {
             // Remove the animation class
             elem.classList.remove(animation);
         }
 
         // Add callback when animation ends
-        if(callback && typeof callback === "function"){
+        if (callback && typeof callback === "function") {
             callback();
         }
 
@@ -723,7 +735,7 @@ export const transition = function (elem, animation, callback, hide, removeClass
     elem.classList.add(animation);
 
     // Detect when the animation ends
-    elem.addEventListener('transitionend', function endAnimation (event) {
+    elem.addEventListener('transitionend', function endAnimation(event) {
 
         // If the element should be hidden, hide it
         if (hide) {
@@ -732,13 +744,13 @@ export const transition = function (elem, animation, callback, hide, removeClass
             elem.setAttribute('hidden', 'true');
         }
 
-        if(removeClass){
+        if (removeClass) {
             // Remove the animation class
             elem.classList.remove(animation);
         }
 
         // Add callback when animation ends
-        if(callback && typeof callback === "function"){
+        if (callback && typeof callback === "function") {
             callback();
         }
 
@@ -747,7 +759,6 @@ export const transition = function (elem, animation, callback, hide, removeClass
 
     }, false);
 };
-
 
 
 /**
@@ -867,11 +878,11 @@ export const buildQuery = function (data, encode = true, nativeArrays = false) {
                 var toPush = '';
 
                 data[key].forEach((value) => {
-                    if(toPush !== '') toPush = toPush + '&';
+                    if (toPush !== '') toPush = toPush + '&';
 
-                    if(encode){
+                    if (encode) {
                         toPush = toPush + encodeURIComponent(key) + '=' + encodeURIComponent(value);
-                    }else {
+                    } else {
                         toPush = toPush + key + '=' + value;
                     }
                 });
@@ -890,41 +901,38 @@ export const buildQuery = function (data, encode = true, nativeArrays = false) {
     return query.join('&');
 };
 
-export const updateURL = function(key, value, push=false) {
+export const updateURL = function (key, value, push = false) {
     if (history.pushState) {
         const obj = value ? key + '=' + value : key;
         const newurl = window.location.protocol + "//" + window.location.host + window.location.pathname + '?' + obj + window.location.hash;
-        if(push){
-            window.history.pushState({path:newurl},'', newurl);
-        }
-        else{
-            window.history.replaceState({path:newurl},'', newurl);
+        if (push) {
+            window.history.pushState({path: newurl}, '', newurl);
+        } else {
+            window.history.replaceState({path: newurl}, '', newurl);
         }
     }
 };
 
 export const findIndex = function (array, value, key) {
-    if(array && array.length && value) {
-        if(key){
+    if (array && array.length && value) {
+        if (key) {
             return array.findIndex((el) => {
                 return el[key] === value;
             });
-        }
-        else{
+        } else {
             return array.indexOf(value);
         }
     }
     return null;
 };
 
-export const find = function (array, value, key, all=false) {
-    if(array && array.length && value && key) {
-        if(!all){
+export const find = function (array, value, key, all = false) {
+    if (array && array.length && value && key) {
+        if (!all) {
             return array.find((el) => {
                 return el[key] === value;
             });
-        }
-        else{
+        } else {
             return array.filter((el) => {
                 return el[key] === value;
             });
@@ -933,11 +941,11 @@ export const find = function (array, value, key, all=false) {
     return null;
 };
 
-export const removeFromArray = function(array, value, key){
+export const removeFromArray = function (array, value, key) {
     var i = array.length;
-    while(i--){
-        if(array[i] && array[i].hasOwnProperty(key) && (arguments.length > 2 && array[i][key] === value)) {
-            array.splice(i,1);
+    while (i--) {
+        if (array[i] && array[i].hasOwnProperty(key) && (arguments.length > 2 && array[i][key] === value)) {
+            array.splice(i, 1);
         }
     }
     return array;
@@ -988,23 +996,21 @@ export const getOffsetTop = function (elem) {
     return location >= 0 ? location : 0;
 };
 
-export const hasNumbers = function(string) {
+export const hasNumbers = function (string) {
     var regex = /\d/g;
     return regex.test(string);
 };
 
-export const getStyle = function (elem, property, index=1) {
+export const getStyle = function (elem, property, index = 1) {
     const style = window.getComputedStyle(elem, null).getPropertyValue(property);
-    if(hasNumbers(style)){
+    if (hasNumbers(style)) {
         const numbers = style.split(' ');
-        if(numbers.length >= 2){
+        if (numbers.length >= 2) {
             return parseInt(numbers[index - 1], 10);
-        }
-        else{
+        } else {
             return parseInt(style, 10);
         }
-    }
-    else{
+    } else {
         return style;
     }
 };
@@ -1019,49 +1025,47 @@ export const effect = easing;
 
 export const animation = function (start, end, duration, easing, callback) {
     const timeStart = new Date().getTime();
-    const timer = setInterval(function() {
+    const timer = setInterval(function () {
         const time = new Date().getTime() - timeStart;
-        const x = effect[easing](time/duration, time, start, end - start, duration);
+        const x = effect[easing](time / duration, time, start, end - start, duration);
         callback(x);
         if (time >= duration) clearInterval(timer);
     }, 1000 / 60);
 };
 
-export const isIE = function() {
+export const isIE = function () {
     const ua = window.navigator.userAgent;
     const msie = ua.indexOf("MSIE ");
 
     if (msie > 0 || !!navigator.userAgent.match(/Trident.*rv\:11\./)) {
         return true;
-    }
-    else {
+    } else {
         return false;
     }
 
     return false;
 };
 
-export const getAjaxRequest = function (callback, url="", exclude = "") {
+export const getAjaxRequest = function (callback, url = "", exclude = "") {
 
     let s_ajaxListener = new Object();
     s_ajaxListener.tempOpen = XMLHttpRequest.prototype.open;
     s_ajaxListener.tempSend = XMLHttpRequest.prototype.send;
     s_ajaxListener.callback = function () {
-        if(typeof callback === "function"){
-            if(url){
-                if(this.url.includes(url) && ((exclude && !this.url.includes(exclude)) || !exclude)){
+        if (typeof callback === "function") {
+            if (url) {
+                if (this.url.includes(url) && ((exclude && !this.url.includes(exclude)) || !exclude)) {
                     callback(this);
                 }
-            }
-            else{
+            } else {
                 callback(this);
             }
         }
     };
 
-    XMLHttpRequest.prototype.open = function(a,b) {
-        if (!a) var a='';
-        if (!b) var b='';
+    XMLHttpRequest.prototype.open = function (a, b) {
+        if (!a) var a = '';
+        if (!b) var b = '';
         s_ajaxListener.tempOpen.apply(this, arguments);
         s_ajaxListener.method = a;
         s_ajaxListener.url = b;
@@ -1071,12 +1075,12 @@ export const getAjaxRequest = function (callback, url="", exclude = "") {
         }
     };
 
-    XMLHttpRequest.prototype.send = function(a,b) {
-        if (!a) var a='';
-        if (!b) var b='';
+    XMLHttpRequest.prototype.send = function (a, b) {
+        if (!a) var a = '';
+        if (!b) var b = '';
         s_ajaxListener.tempSend.apply(this, arguments);
         s_ajaxListener.request = this;
-        if(s_ajaxListener.method.toLowerCase() == 'post') {
+        if (s_ajaxListener.method.toLowerCase() == 'post') {
             s_ajaxListener.data = a;
         }
         s_ajaxListener.callback();
@@ -1090,7 +1094,7 @@ export const getAjaxRequest = function (callback, url="", exclude = "") {
  * *******************************************************
  */
 export const getHeighestElement = function (elements = []) {
-    if(elements.length){
+    if (elements.length) {
         let heighest = null;
         elements.forEach((el) => {
             const elHeight = el.offsetHeight;
