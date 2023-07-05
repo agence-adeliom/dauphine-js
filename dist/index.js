@@ -1198,7 +1198,13 @@ var updateURL = function updateURL(key, value) {
 
   if (history.pushState) {
     var obj = value ? key + '=' + value : key;
-    var newurl = window.location.protocol + "//" + window.location.host + window.location.pathname + '?' + obj + window.location.hash;
+    var newurl = null;
+
+    if (obj && obj !== '') {
+      newurl = window.location.protocol + "//" + window.location.host + window.location.pathname + '?' + obj + window.location.hash;
+    } else {
+      newurl = window.location.protocol + "//" + window.location.host + window.location.pathname;
+    }
 
     if (push) {
       window.history.pushState({
