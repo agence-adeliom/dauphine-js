@@ -1,20 +1,24 @@
-#Dauphine JS
+# Dauphine JS
 
 Adeliom JS utils
 
-## How to install Dauphine JS
+## Usage
+
+### How to install Dauphine JS
 
 ```
 npm install git@github.com:agence-adeliom/dauphine-js.git
 ```
 
-## How to install assets
+## Development
+
+### How to install assets
 
 ```bash
 ddev install
 ```
 
-## How to build assets
+### How to build assets
 
 ```bash
 ddev build
