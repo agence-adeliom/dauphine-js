@@ -22,3 +22,4 @@ yarn-error.log*
 nbproject
 
 *.css.map
+codealike.json

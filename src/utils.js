@@ -904,7 +904,14 @@ export const buildQuery = function (data, encode = true, nativeArrays = false) {
 export const updateURL = function (key, value, push = false) {
     if (history.pushState) {
         const obj = value ? key + '=' + value : key;
-        const newurl = window.location.protocol + "//" + window.location.host + window.location.pathname + '?' + obj + window.location.hash;
+        let newurl = null;
+
+        if (obj && obj !== '') {
+            newurl = window.location.protocol + "//" + window.location.host + window.location.pathname + '?' + obj + window.location.hash;
+        } else {
+            newurl = window.location.protocol + "//" + window.location.host + window.location.pathname;
+        }
+
         if (push) {
             window.history.pushState({path: newurl}, '', newurl);
         } else {
